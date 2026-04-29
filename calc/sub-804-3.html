@@ -1,0 +1,526 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.5" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+	  input.form-control {
+		font-size: 12px;
+		height:32px;
+		text-align:center !important;
+	  }
+
+	table td,
+	table th {
+		height: 50px;
+		vertical-align: middle;
+		text-align:center !important;
+	}
+	  .force-break {
+		white-space: normal !important;
+		word-break: break-word !important;
+	}
+</style>
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-layout-text-sidebar"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+ <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-titlefont-weight : normal">세무법인이화 TAX-<font size=4>E𝒂sy</font> <span style="font-weight: 300; font-size: 10px;">Beta Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+  <!-- 좌측메뉴 영역  시작 -->       
+        
+<div class="chat-history" style='padding-bottom:15px;'>
+  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+  <div class="chat-list">
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-800-1.html" class="chat-item">
+      <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+      <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+    </a> -->
+    <!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+      <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-801-1.html" class="chat-item">
+      <span class="chat-title">2-1. 개인 대표 사업소득+임대소득 세금 비교</span>
+    </a>
+    <a href="/roma/sub/sub-801-2.html" class="chat-item">
+      <span class="chat-title">2-2. 법인 대표 근로소득+임대소득 세금 비교</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+      <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">3.법인주주 증여와 법인세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-802-1.html" class="chat-item">
+      <span class="chat-title">3-1. 특정법인증여의제</span>
+    </a> 
+    <a href="/roma/sub/sub-802-2.html" class="chat-item">
+      <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+    </a>
+    <a href="/roma/sub/sub-802-3.html" class="chat-item">
+      <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+ <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+      <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+    </a>  
+   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+      <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+    </a> -->
+    <!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+      <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+    </a>  -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-804-1.html" class="chat-item">
+      <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-804-2.html" class="chat-item">
+      <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+    </a>
+  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+      <span class="chat-title">5-3. 주택 취득세 계산</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+      <span class="chat-title">6-1. 상속세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-2.html" class="chat-item">
+      <span class="chat-title">6-2. 증여세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-3.html" class="chat-item">
+    <span class="chat-title">6-3. 주식양도소득세 계산</span>
+    </a> 
+   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+      <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+    </a>
+  </div>
+</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">7.자녀법인차등배당</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+		  <span class="chat-title">7-1. 자녀법인차등배당</span>
+		</a> 
+		<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+		  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+		  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+		</a> -->
+	  </div>
+	</div>
+
+  </div>
+</div>
+<!-- 좌측메뉴 영역  끝 -->
+        
+        
+        
+        
+
+<div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+    <div class="right-wrap">
+        <div class="container" id="main-container">
+            <div class="top-box">
+                <div class="scroll-content ">
+                    <div class="inner-content">
+                        <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+                             <div id="print_wrap">					
+                                 <div class="page" id="page1">
+                            <div id="calculator-1" class="container">
+							<div class="biz-wrapper">
+							  <div class="biz-header">
+								<h2 class="biz-title">주택 취득세 계산</h2>
+								<p class="biz-description">
+								  주택 구입 시 복잡한 취득세 계산을 복잡한 세무 지식 없이도 누구나 손쉽고 정확하게 계산 할 수 있는 간편 계산기입니다.
+								</p>
+							  </div>
+							  <div class="biz-body">
+								<ul class="biz-list">
+								<li class="mb-2">1. 주택 취득세 자동 계산  : 실거래가, 주택 규모, 주택 수 등을 입력하면 정확한 취득세가 자동 산출됩니다.</li>
+											<li class="mb-2">2. 1세대 1주택, 다주택 여부 자동 판단 : 입력된 정보로 세율 차이를 자동 계산해 정확한 세액을 제공합니다.</li>
+											<li class="mb-2">3. 세율 및 감면 조건 반영 : 생애 최초, 신혼부부 등 감면 요건에 따른 세액 조정도 자동 적용됩니다.</li>
+											<li class="mb-2">4. 초보자도 쉽게 사용 가능 : 세무 지식이 없어도 누구나 쉽게 이용할 수 있는 직관적인 인터페이스 제공.</li>
+								</ul>
+								<p class="biz-note">												※ 실거래가, 주택 수, 면적 등에 따라 달라지는 세율을 자동 반영해 정확한 세금을 안내하며.,별도 설치 없이 무료로 사용할 수 있습니다.</p>
+							  </div>
+							</div>
+                           
+
+                              <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+									<div class="card input-section">
+									<div class="card-body p-0">
+										<div class="table-responsive">
+										<div class="table-title">입력란</div>										
+										<table class="table table-bordered text-center" id="myTable">
+										  <thead>
+											<tr>
+											  <th class="bg-main">구분</th>
+											  <th class="bg-main">매입가격</th>
+											  <th class="bg-main">매입면적(m²)</th>
+											  <th class="bg-main">세율</th>
+											  <th class="bg-main">취득세</th>
+											  <th class="bg-main">비고</th>
+											</tr>
+										  </thead>
+										  <tbody>
+											<tr>
+											  <td>입력값</td>
+											  <td><input type="text" id="purchasePriceInput" class="form-control text-end" value="70,000,000"></td>
+											  <td><input type="text" id="purchaseAreaInput" class="form-control text-end" value="86"></td>
+											  <td id="taxationRate"></td>
+											  <td id="totalAcquisitionTax"></td>
+											  <td></td>
+											</tr>
+										  </tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+                                </div></div>
+														<div class="page-break"></div> 								
+ 								<div class="page" id="page2">
+                                <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+								<div class="card input-section">
+									<div class="card-body p-0">
+									<div class="table-responsive">
+										<div class="table-title">확인란</div>
+										<table class="table table-fixed text-center">
+										  <thead>
+											<tr>
+											  <th class="bg-main" rowspan="2" >구분</th>
+											  <th class="bg-main" rowspan="2" >등기원인</th>
+											  <th class="bg-main" rowspan="2" colspan="3">부동산 구분</th>
+											  <th class="bg-main" colspan="3">세율 조건</th>
+											  <th class="bg-main" rowspan="2">세율합계</th>
+											  <th class="bg-main" rowspan="2">매입가격</th>
+											  <th class="bg-main" rowspan="2">취득세 계산</th>
+											</tr>
+											<tr>
+											  <th class="bg-main">취득세</th>
+											  <th class="bg-main">지방교육세</th>
+											  <th class="bg-main">농어촌특별세</th>
+											</tr>
+										  </thead>
+										  <tbody>
+											<tr>
+											  <td rowspan="13" class="bg-white">부동산소유권이전</td>
+											  <td rowspan="9">유상취득</td>
+											  <td rowspan="6" class="bg-green">주택</td>
+											  <td class="bg-green">600,000,000이하</td>
+											  <td class="bg-green">85m² 이하</td>
+											  <td class="bg-green">1%</td>
+											  <td class="bg-green">0.10%</td>
+											  <td class="bg-green"></td>
+											  <td class="bg-green" id="taxRate1">1.10%</td>
+											  <td class="bg-green" id="purchasePriceCell1"></td>
+											  <td class="bg-green" id="acquisitionTax1"></td>
+											</tr>
+											<tr>
+											  <td class="bg-green">600,000,000이하</td>
+											  <td class="bg-green">85m² 초과</td>
+											  <td class="bg-green" id="tax1-1">1%</td>
+											  <td class="bg-green" id="tax1-2">0.10%</td>
+											  <td class="bg-green" id="tax1-3">0.20%</td>
+											  <td class="bg-green" id="taxRate2">1.30%</td>
+											  <td class="bg-green" id="purchasePriceCell2"></td>
+											  <td class="bg-green" id="acquisitionTax2"></td>
+											</tr>
+											<tr class="bg-greenBold">
+											  <td>600,000,000초과</td>
+											  <td  class="bg-greenBold">85m²이하<br/>2020년 개정사항</td>
+											  <td  class="bg-greenBold"id="tax2-1"></td>
+											  <td  class="bg-greenBold" id="tax2-2"></td>
+											  <td  class="bg-greenBold"></td>
+											  <td  class="bg-greenBold" id="taxRate3">-</td>
+											  <td  class="bg-greenBold"  id="purchasePriceCell3"></td>
+											  <td  class="bg-greenBold" id="acquisitionTax3"></td>
+											</tr>
+											<tr class="bg-greenBold">
+											  <td class="bg-white">900,000,000이하</td>
+											  <td>85m²초과<br/>2020년 개정사항</td>
+											  <td id="tax3-1" data-rate="0.0166571428">1.67%</td>
+											  <td id="tax3-2" data-rate="0.0016857142">0.17%</td>
+											  <td id="tax3-3" data-rate="0.0020285714">0.20%</td>
+											  <td id="taxRate4">2.04%</td>
+											  <td id="purchasePriceCell4"></td>
+											  <td id="acquisitionTax4"></td>
+											</tr>
+											<tr>
+											  <td class="bg-green">900,000,000 초과</td>
+											  <td class="bg-green">85m² 이하</td>
+											  <td class="bg-green" id="tax4-1">3%</td>
+											  <td class="bg-green" id="tax4-1">0.30%</td>
+											  <td class="bg-green" id="tax4-1"></td>
+											  <td class="bg-green" id="taxRate5">3.30%</td>
+											  <td class="bg-green" id="purchasePriceCell5"></td>
+											  <td class="bg-green" id="acquisitionTax5"></td>
+											</tr>
+											<tr>
+											  <td class="bg-green">900,000,000 초과</td>
+											  <td class="bg-green">85m² 초과</td>
+											  <td class="bg-green" id="tax5-1">3%</td>
+											  <td class="bg-green" id="tax5-1">0.30%</td>
+											  <td class="bg-green" id="tax5-1">0.20%</td>
+											  <td class="bg-green" id="taxRate6">3.30%</td>
+											  <td class="bg-green" id="purchasePriceCell6"></td>
+											  <td class="bg-green" id="acquisitionTax6"></td>
+											</tr>											
+											<tr>
+											  <td colspan="3" class="bg-white">농지/주택 외 (상가, 오피스텔, 토지, 건물)</td>
+											  <td>4%</td>
+											  <td id="tax6-1">0.40%</td>
+											  <td id="tax6-1">0.20%</td>
+											  <td id="tax6-1">4.60%</td>
+											  <td></td>
+												<td></td>											  
+											</tr>
+											<tr>
+											  <td rowspan="2" class="bg-white">농지</td>
+											  <td colspan="2" class="">신규 (매매 취득)</td>
+											  <td>3%</td>
+											  <td>0.20%</td>
+											  <td>0.20%</td>
+											  <td>3.40%</td>
+											  	  <td></td>
+												<td></td>
+											</tr>
+											<tr>
+											  <td colspan="2" class="bg-white">2년 이상 자경</td>
+											  <td>1.50%</td>
+											  <td>0.10%</td>
+											  <td></td>
+											  <td>1.60%</td>
+											 	  <td></td>
+												<td></td>
+											</tr>
+
+											<!-- 상속 취득 -->
+											<tr>
+											  <td rowspan="2" class="bg-white">상속 취득</td>
+											  <td colspan="3" class="bg-white">농지</td>
+											  <td>2.30%</td>
+											  <td>0.06%</td>
+											  <td>0.20%</td>
+											  <td>2.56%</td>
+											  	  <td></td>
+												<td></td>
+											</tr>
+											<tr>
+											  <td colspan="3" class="bg-white">기타</td>
+											  <td>2.80%</td>
+											  <td>0.16%</td>
+											  <td>0.20%</td>
+											  <td>3.16%</td>
+											  	  <td></td>
+												<td></td>
+											</tr>
+
+											<!-- 무상취득 -->
+											<tr>
+											  <td class="bg-white">무상취득</td>
+											  <td colspan="3">일반</td>
+											  <td>3.50%</td>
+											  <td>0.30%</td>
+											  <td>0.20%</td>
+											  <td>4.00%</td>
+											  	  <td></td>
+												<td></td>
+											</tr>
+											
+
+											<tr>
+											  <td class="bg-white">(증여 등)</td>
+											  <td colspan="3">공익사업 비영리사업자</td>
+											  <td>3.50%</td>
+											  <td>0.30%</td>
+											  <td>0.20%</td>
+											  <td>4.00%</td>
+											  <td></td>
+											</tr>
+
+											<!-- 소유권보존 -->
+											<tr>
+											  <td rowspan="3" class="bg-white">소유권보존</td>
+											  <td rowspan="3" >원시취득 (신축, 증축 등)</td>
+											  <td  rowspan="2">주택</td>
+											  <td colspan="2">85㎡ 미만</td>
+											  <td>2.80%</td>
+											  <td>0.16%</td>
+											  <td></td>
+											  <td>2.96%</td>
+											  <td></td>
+											</tr>
+											<tr>
+											  <td colspan="2" class="bg-white">85㎡ 이상</td>
+											  <td>2.80%</td>
+											  <td>0.16%</td>
+											  <td>0.20%</td>
+											  <td>3.16%</td>
+											  	  <td></td>
+												<td></td>
+											</tr>
+											<tr>
+											  <td colspan="3" class="bg-white">주택 외 건축물</td>
+
+											  <td>2.80%</td>
+											  <td>0.16%</td>
+											  <td>0.20%</td>
+											  <td>3.16%</td>
+											  	  <td></td>
+												<td></td>
+											</tr>
+										  </tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+								</div>
+								</div>
+							
+							
+								<!--@import(/roma/sub/sub-menu.html)-->	
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc804-3.js?v=1.9"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

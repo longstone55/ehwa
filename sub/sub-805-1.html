@@ -1,0 +1,285 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+
+    #calculator-wrap {
+      background: white !important;
+    }
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          상속세 정밀 <br />
+          <span class="font-semibold text-[#3182f6]">미래 예측 시뮬레이션</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          현재와 미래 특정 시점의 자산 가치 변화를 정교하게 예측하여 <br class="hidden md:block" />
+          잠재적인 상속세 부담을 파악하고 최적의 승계 전략을 제안합니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block">
+    </div>
+  </section>
+
+  <!-- Sub Navigation -->
+  <!--@import(/roma/sub/sub-800-nav.html)-->
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- MAIN CONTENT CARD -->
+      <div
+        class="bg-white rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.02)] border border-gray-100/50 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/40 border-b border-gray-50">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex gap-4 items-start">
+              <span
+                class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">01</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">가족 구성을 입력하여 <br
+                  class="hidden sm:block" />인적 공제액을 설정합니다.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span
+                class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">02</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">자산 성장률을 기반으로 <br
+                  class="hidden sm:block" />미래 시점의 상속세를 예측합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Inputs Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+            <!-- Col 1: Family & Stock -->
+            <section>
+              <div class="flex items-center gap-3 mb-8">
+                <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+                <h3 class="text-xl font-normal text-[#1a1f27]">인적 구성 및 소유 주식</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#f2f4f6]/50 p-4 rounded-2xl">
+                    <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1">배우자 (명)</label>
+                    <input type="text" id="spouseCount" value="1"
+                      class="w-full bg-transparent border-none p-0 text-xl font-black text-[#1a1f27] focus:ring-0">
+                  </div>
+                  <div class="bg-[#f2f4f6]/50 p-4 rounded-2xl">
+                    <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1">자녀 (명)</label>
+                    <input type="text" id="childCount" value="2"
+                      class="w-full bg-transparent border-none p-0 text-xl font-black text-[#1a1f27] focus:ring-0">
+                  </div>
+                </div>
+
+                <div class="bg-blue-50/30 p-5 rounded-2xl border border-blue-100/50">
+                  <label class="block text-[11px] font-bold text-blue-400 uppercase mb-1">비상장 주식 보유수 (주)</label>
+                  <input type="text" id="stockCount" value="180,000"
+                    class="w-full bg-transparent border-none p-0 text-3xl font-black text-[#3182f6] focus:ring-0 tracking-tight">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#f2f4f6]/30 p-4 rounded-2xl border border-dashed border-gray-200">
+                    <label class="block text-[11px] font-medium text-[#4e5968] mb-1">현재 주당 가액</label>
+                    <input type="text" id="currentStockPrice" value="15,000"
+                      class="w-full bg-transparent border-none p-0 text-lg font-bold text-[#4e5968] focus:ring-0">
+                  </div>
+                  <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-200/50 shadow-sm">
+                    <label class="block text-[11px] font-bold text-[#3182f6] mb-1">미래 예상 주가</label>
+                    <input type="text" id="futureStockPrice" value="30,000"
+                      class="w-full bg-transparent border-none p-0 text-lg font-black text-[#3182f6] focus:ring-0 tracking-tight">
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Col 2: Assets & Growth -->
+            <section>
+              <div class="flex items-center gap-3 mb-8">
+                <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+                <h3 class="text-xl font-normal text-[#1a1f27]">자산 현황 및 성장률</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div
+                  class="bg-[#f9fafb] p-5 rounded-2xl border border-gray-100 flex justify-between items-center group">
+                  <div class="flex-grow">
+                    <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1 leading-none">부동산 가액
+                      합계</label>
+                    <input type="text" id="realEstateValue" value="5,000,000,000"
+                      class="w-full bg-transparent border-none p-0 text-xl font-black text-[#1a1f27] focus:ring-0">
+                  </div>
+                  <div class="bg-green-50 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100">
+                    <span class="text-[10px] font-bold text-green-600">연</span>
+                    <input type="text" id="realEstateGrowth" value="3"
+                      class="w-4 bg-transparent border-none p-0 text-[12px] font-black text-green-600 focus:ring-0 text-center">%
+                  </div>
+                </div>
+
+                <div
+                  class="bg-[#f9fafb] p-5 rounded-2xl border border-gray-100 flex justify-between items-center group">
+                  <div class="flex-grow">
+                    <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1 leading-none">금융 재산
+                      합계</label>
+                    <input type="text" id="financialAssetsValue" value="1,000,000,000"
+                      class="w-full bg-transparent border-none p-0 text-xl font-black text-[#1a1f27] focus:ring-0">
+                  </div>
+                  <div class="bg-blue-50 px-3 py-1 rounded-full flex items-center gap-1 border border-blue-100">
+                    <span class="text-[10px] font-bold text-blue-600">수익</span>
+                    <input type="text" id="financialAssetsGrowth" value="2"
+                      class="w-4 bg-transparent border-none p-0 text-[12px] font-black text-blue-600 focus:ring-0 text-center">%
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-[1fr,120px] gap-3">
+                  <div class="bg-[#f2f4f6]/50 p-4 rounded-2xl">
+                    <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1">총 채무액</label>
+                    <input type="text" id="debtValue" value="0"
+                      class="w-full bg-transparent border-none p-0 text-lg font-bold text-[#8b95a1] focus:ring-0">
+                  </div>
+                  <div
+                    class="bg-[#1a1f27] p-4 rounded-2xl shadow-lg shadow-black/5 flex flex-col justify-center items-center">
+                    <label class="block text-[10px] font-bold text-white/40 uppercase mb-1 leading-none">분석 시점</label>
+                    <div class="flex items-baseline gap-1 text-[#fab005]">
+                      <input type="text" id="elapsedYears" value="10"
+                        class="w-8 bg-transparent border-none p-0 text-2xl font-black focus:ring-0 text-center">
+                      <span class="text-[12px] font-bold">년 후</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Comparison Table -->
+          <section class="max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#00c471] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">현재 vs 미래 시점 분석 비교</h3>
+            </div>
+
+            <div class="overflow-hidden rounded-[24px] border border-gray-100 shadow-sm">
+              <table class="w-full">
+                <thead
+                  class="bg-[#f9fafb] text-[#8b95a1] text-[11px] font-bold uppercase tracking-widest border-b border-gray-100">
+                  <tr>
+                    <th class="p-5 text-left w-[220px]">분석 항목</th>
+                    <th class="p-5 text-right">현재 시점</th>
+                    <th class="p-5 text-right text-[#fab005] /50 elapsedYearsLabel">10년 후 미래</th>
+                    <th class="p-5 text-center">비고</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[14px]">
+                  <tr class="hover:bg-gray-50/30 transition-colors">
+                    <td class="p-5 text-left font-semibold text-[#4e5968]">비상장 주식 가치</td>
+                    <td id="stockCurrentValue" class="p-5 text-right font-medium text-gray-400 font-mono"></td>
+                    <td id="stockFutureValue"
+                      class="p-5 text-right font-black text-[#3182f6] font-mono tracking-tighter text-lg">
+                    </td>
+                    <td class="p-5 text-center text-[11px] text-[#8b95a1] font-medium"><span id="stockOwner"
+                        class="text-blue-500">0</span>주 기준</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/30 transition-colors">
+                    <td class="p-5 text-left font-semibold text-[#4e5968]">부동산 자산 가치</td>
+                    <td id="realEstateNow" class="p-5 text-right font-medium text-gray-400 font-mono"></td>
+                    <td id="realEstateFuture"
+                      class="p-5 text-right font-black text-[#3182f6] font-mono tracking-tighter text-lg">
+                    </td>
+                    <td class="p-5 text-center text-[11px] text-green-600 font-bold rounded-lg">3% 복리
+                    </td>
+                  </tr>
+                  <tr class="bg-blue-50/10">
+                    <td class="p-5 text-left font-bold text-[#3182f6]">상속재산 과세가액</td>
+                    <td id="taxTotal1" class="p-5 text-right font-bold text-gray-500 font-mono"></td>
+                    <td id="taxTotal2"
+                      class="p-5 text-right font-black text-[#3182f6] font-mono text-xl tracking-tighter"></td>
+                    <td class="p-5 text-center text-[10px] font-black text-blue-400 uppercase tracking-widest">Asset
+                      Total</td>
+                  </tr>
+                  <tr class="bg-[#1a1f27] text-white">
+                    <th class="p-6 text-left font-black text-[#fab005] text-lg">예상 납부세액 (Net)</th>
+                    <td id="finalTaxPayment1" class="p-6 text-right font-bold text-white/50 font-mono"></td>
+                    <td id="finalTaxPayment2"
+                      class="p-6 text-right font-black text-[#fab005] font-mono text-3xl tracking-tighter"></td>
+                    <td class="p-6 text-center text-[10px] text-white/30 font-bold uppercase">신고공제 반영</td>
+                  </tr>
+                  <tr class="bg-green-50/30 border-t border-green-100">
+                    <td class="p-5 text-left font-black text-[#1a1f27]">상속 후 가용 자산</td>
+                    <td id="afterTaxInheritance1" class="p-5 text-right font-medium text-gray-400 font-mono"></td>
+                    <td id="afterTaxInheritance2"
+                      class="p-5 text-right font-black text-[#1a1f27] font-mono text-2xl tracking-tighter"></td>
+                    <td class="p-5"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- Standardized Footer -->
+        <div class="mt-8 border-t border-gray-50">
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden compatibility elements -->
+<div class="hidden">
+  <input type="text" id="priorGiftValue" value="0" />
+  <input type="text" id="priorGiftTaxPaid" value="0" />
+  <input type="text" id="otherAssetsValue" value="500000000" />
+  <span id="otherAssetsNow1"></span><span id="otherAssetsNow2"></span>
+  <span id="debtNow1"></span><span id="debtNow2"></span>
+  <span id="financialNow"></span><span id="financialFuture"></span>
+  <span id="financialDeduction1"></span><span id="financialDeduction2"></span>
+  <span id="taxRate1"></span><span id="taxRate2"></span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc805-1.js?v=2.1"></script>
+<script>
+  lucide.createIcons();
+  function generatePDF() {
+    const element = document.getElementById('print_wrap');
+    const opt = {
+      margin: 10,
+      filename: '상속세_미래예측_시뮬레이션.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  }
+</script>

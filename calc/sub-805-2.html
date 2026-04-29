@@ -1,0 +1,605 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.5" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+	  input.form-control {
+		font-size: 12px;
+		height:32px;
+		text-align:center !important;
+	  }
+
+	table td,
+	table th {
+		height: 50px;
+		vertical-align: middle;
+		text-align:center !important;
+	}
+	  .force-break {
+		white-space: normal !important;
+		word-break: break-word !important;
+	}
+</style>
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-layout-text-sidebar"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+ <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-titlefont-weight : normal">세무법인이화 TAX-<font size=4>E𝒂sy</font> <span style="font-weight: 300; font-size: 10px;">Beta Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+  <!-- 좌측메뉴 영역  시작 -->       
+        
+<div class="chat-history" style='padding-bottom:15px;'>
+  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+  <div class="chat-list">
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-800-1.html" class="chat-item">
+      <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+      <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+    </a> -->
+    <!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+      <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-801-1.html" class="chat-item">
+      <span class="chat-title">2-1. 개인 대표 사업소득+임대소득 세금 비교</span>
+    </a>
+    <a href="/roma/sub/sub-801-2.html" class="chat-item">
+      <span class="chat-title">2-2. 법인 대표 근로소득+임대소득 세금 비교</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+      <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">3.법인주주 증여와 법인세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-802-1.html" class="chat-item">
+      <span class="chat-title">3-1. 특정법인증여의제</span>
+    </a> 
+    <a href="/roma/sub/sub-802-2.html" class="chat-item">
+      <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+    </a>
+    <a href="/roma/sub/sub-802-3.html" class="chat-item">
+      <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+ <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+      <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+    </a>  
+   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+      <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+    </a> -->
+    <!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+      <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+    </a>  -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-804-1.html" class="chat-item">
+      <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-804-2.html" class="chat-item">
+      <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+    </a>
+  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+      <span class="chat-title">5-3. 주택 취득세 계산</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+      <span class="chat-title">6-1. 상속세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-2.html" class="chat-item">
+      <span class="chat-title">6-2. 증여세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-3.html" class="chat-item">
+    <span class="chat-title">6-3. 주식양도소득세 계산</span>
+    </a> 
+   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+      <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+    </a>
+  </div>
+</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">7.자녀법인차등배당</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+		  <span class="chat-title">7-1. 자녀법인차등배당</span>
+		</a> 
+		<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+		  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+		  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+		</a> -->
+	  </div>
+	</div>
+
+  </div>
+</div>
+<!-- 좌측메뉴 영역  끝 -->
+        
+        
+        
+        
+<div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+    <div class="right-wrap">
+        <div class="container" id="main-container">
+            <div class="top-box">
+                <div class="scroll-content ">
+                    <div class="inner-content">
+                        <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+                             <div id="print_wrap">	
+                           <div class="page" id="page1">
+                                 
+                            <div id="calculator-1" class="container">
+							<div class="biz-wrapper">
+							  <div class="biz-header">
+								<h2 class="biz-title">증여세계산</h2>
+								<p class="biz-description">
+								  부모 자녀 간, 혹은 부부 간 재산 증여 시 적용되는 증여세는 재산 규모에 따라 달라집니다.복잡한 세율 계산 없이 간단하게 확인해보실 수 있습니다.
+								</p>
+							  </div>
+							  <div class="biz-body">
+								<ul class="biz-list">
+									<li class="mb-2">1. 복잡한 세법 계산을 자동화 : 증여의제 계산식을 자동으로 적용하여 수작업 없이 결과를 빠르게 도출합니다.</li>
+											<li class="mb-2">2. 지배주주 여부 및 지분율 반영 : 지배주주 여부, 특수관계인 지분율 등을 자동으로 고려하여 정확한 과세대상 금액을 계산합니다.</li>
+											<li class="mb-2">3. 세무 비전문가도 쉽게 사용 가능 :  회계·세무 지식이 없어도 입력만 하면 손쉽게 결과를 확인할 수 있습니다.</li>
+											<li class="mb-2">4. 실시간 결과 제공 : 값을 입력하는 즉시 계산 결과를 제공하여 의사결정을 빠르게 도와줍니다.</li>
+								</ul>
+								<p class="biz-note">※ 누구나 무료로 이용 가능하며, 최신 세법 개정사항을 반영하여 지속적으로 개선됩니다.</p>
+							  </div>
+							</div>
+							
+                          
+
+                           <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>		
+							<div class="card input-section">
+									<div class="card-body p-0">
+										<div class="table-responsive">
+										<div class="table-title">입력란</div>										
+										<table class="table table-bordered text-center">
+										  <thead>
+											<tr class="bg-main">
+											  <th colspan="5">증여재산 입력(원)</th>
+											  <th colspan="6">발행주식총수(주)</th>
+											</tr>										  
+											<tr  class="bg-green">
+											  <th colspan="5"><input type="text" id="amountWon" class="money-input form-control" placeholder="원 입력" value="0"/></th>
+											  <th colspan="6"><input type="text" id="amountStock" class="stock-input form-control" placeholder="주 입력" value="120,000"/></th>
+											</tr>
+										  </thead>
+										  <tbody>
+											<tr>
+											<th class="bg-green table-th">수증자 이름</th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family0" value="배우자"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family1" value="가족1/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family2" value="가족2/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family3" value="가족3/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family4" value="가족4/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family5" value="가족5/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family6" value="가족6/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family7" value="가족7/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family8" value="가족8/이름입력"></th>
+											<th class="bg-green"><input type="text" class="form-control" id="relation_family9" value="가족9/이름입력"></th>
+											</tr>
+											<tr>
+											  <td class="fw-bold">수증자와의 관계</td>
+												<th class="bg-green">
+												  <select id="relationSelect0" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect1" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect2" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect3" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect4" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect5" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect6" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect7" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect8" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+												<th class="bg-green">
+												  <select id="relationSelect9" class="form-select form-select-sm">
+													<option value="600000000">배우자</option>
+													<option value="50000000">직계비속(성년)</option>
+													<option value="20000000">직계비속(미성년)</option>
+													<option value="50000000">직계존속</option>
+													<option value="10000000">기타친족</option>
+                                                    <option value="0">타인</option>
+												  </select>
+												</th>
+											</tr>
+											
+											 <tr class="bg-green fw-bold">
+                                                 <td>주식수(주)</td>
+											  <td><input type="text" class="form-control" id="stock_family0" value="10,534주"></td>
+											  <td><input type="text" class="form-control" id="stock_family1" value="1,200주"></td>
+											  <td><input type="text" class="form-control" id="stock_family2" value="7,000주"></td>
+											  <td><input type="text" class="form-control" id="stock_family3" value="8,000주"></td>
+											  <td><input type="text" class="form-control" id="stock_family4" value="9,000주"></td>
+											  <td><input type="text" class="form-control" id="stock_family5" value="10,000주"></td>
+											  <td><input type="text" class="form-control" id="stock_family6" value="10,000주"></td>
+											  <td><input type="text" class="form-control" id="stock_family7" value="20,000주"></td>
+											  <td><input type="text" class="form-control" id="stock_family8" value="30,000주"></td>
+											  <td><input type="text" class="form-control" id="stock_family9" value="40,000주"></td>
+											</tr>
+											<tr>
+											  <td class="fw-bold">지분율(%)</td>
+											  <td id="ratio_family0"></td>
+											  <td id="ratio_family1"></td>
+											  <td id="ratio_family2"></td>
+											  <td id="ratio_family3"></td>
+											  <td id="ratio_family4"></td>
+											  <td id="ratio_family5"></td>
+											  <td id="ratio_family6"></td>
+											  <td id="ratio_family7"></td>
+											  <td id="ratio_family8"></td>
+											  <td id="ratio_family9"></td>
+											</tr>
+											<tr>
+											  <tr class="bg-green fw-bold">
+                                                 <td>1주당 평가액(원)</td>
+											  <td><input type="text" class="form-control" id="unitPrice_family0" value="57146"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family1" value="57146"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family2" value="25000"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family3" value="25000"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family4" value="25000"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family5" value="25000"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family6" value="25001"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family7" value="25002"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family8" value="25000"></td>
+											  <td><input type="text" class="form-control" id="unitPrice_family9" value="25000"></td>
+											</tr>
+										  </tbody>
+																				</table>
+									</div>
+								</div>
+							</div>
+							</div>
+                               </div>
+							<div class="page-break"></div> 								
+                           <div class="page" id="page2">
+
+                             <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+							<div class="card input-section">
+									<div class="card-body p-0">
+										<div class="table-responsive">
+										<div class="table-title">확인란</div>	
+											<table class="table table-bordered text-center">
+											 <thead>
+												<tr class="bg-main">
+												  <th id="header_family0">구분</th>
+												  <th id="header_family1">배우자</th>
+												  <th id="header_family2">가족1</th>
+												  <th id="header_family3">가족2</th>
+												  <th id="header_family4">가족3</th>
+												  <th id="header_family5">가족4</th>
+												  <th id="header_family6">가족5</th>
+												  <th id="header_family7">가족6</th>
+												  <th id="header_family8">가족7</th>
+												  <th id="header_family9">가족8</th>
+												  <th id="header_family10">가족9</th>
+												</tr>
+												  </thead>
+												  <tbody>
+
+													<tr id="gift_value_row">
+													 <td class="fw-bold">증여재산가액</td>
+													  <td id="gift_value_family0"></td>
+													  <td class="bg-green" id="gift_value_family1"></td>
+													  <td id="gift_value_family2"></td>
+													  <td class="bg-green" id="gift_value_family3"></td>
+													  <td id="gift_value_family4"></td>
+													  <td class="bg-green" id="gift_value_family5"></td>
+													  <td id="gift_value_family6"></td>
+													  <td class="bg-green" id="gift_value_family7"></td>
+													  <td id="gift_value_family8"></td>
+													  <td class="bg-green" id="gift_value_family9"></td>
+													</tr>
+													
+													<tr id="gift_value2_row" style="display:none;">
+													  <td>증여재산가액</td>
+													  <td><input type="text" id="gift_value2_family0" class="money-input form-control" value="500" /></td>
+													  <td class="bg-green" ><input type="text" id="gift_value2_family1" class="money-input form-control" value="25,000,000" /></td>
+													  <td><input type="text" id="gift_value2_family2" class="money-input form-control" value="1,500,000,000" /></td>
+													  <td class="bg-green" ><input type="text" id="gift_value2_family3" class="money-input form-control" value="800,000,000" /></td>
+													  <td><input type="text" id="gift_value2_family4" class="money-input form-control" value="35,250,000" /></td>
+													  <td class="bg-green" ><input type="text" id="gift_value2_family5" class="money-input form-control" /></td>
+													  <td><input type="text" id="gift_value2_family6" class="money-input form-control" /></td>
+													  <td class="bg-green" ><input type="text" id="gift_value2_family7" class="money-input form-control" /></td>
+													  <td><input type="text" id="gift_value2_family8" class="money-input form-control" /></td>
+													  <td class="bg-green" ><input type="text" id="gift_value2_family9" class="money-input form-control" /></td>
+													</tr>
+													
+													<tr>
+													  <td>(-)증여재산공제</td>
+													  <td id="deduction_family0"></td>
+													  <td  class="bg-green" id="deduction_family1"></td>
+													  <td id="deduction_family2"></td>
+													  <td  class="bg-green" id="deduction_family3"></td>
+													  <td id="deduction_family4"></td>
+													  <td  class="bg-green" id="deduction_family5"></td>
+													  <td id="deduction_family6"></td>
+													  <td  class="bg-green" id="deduction_family7"></td>
+													  <td id="deduction_family8"></td>
+													  <td  class="bg-green" id="deduction_family9"></td>
+													</tr>
+													<tr>
+													  <td class="fw-bold">증여세 과세표준</td>
+													  <td id="taxable_base_family0"></td>
+													  <td  class="bg-green" id="taxable_base_family1"></td>
+													  <td id="taxable_base_family2"></td>
+													  <td  class="bg-green" id="taxable_base_family3"></td>
+													  <td id="taxable_base_family4"></td>
+													  <td  class="bg-green" id="taxable_base_family5"></td>
+													  <td id="taxable_base_family6"></td>
+													  <td  class="bg-green" id="taxable_base_family7"></td>
+													  <td id="taxable_base_family8"></td>
+													  <td  class="bg-green" id="taxable_base_family9"></td>
+													</tr>
+
+													<tr>
+													  <td>증여세 산출세액</td>
+													  <td id="tax_due_family0"></td>
+													  <td  class="bg-green" id="tax_due_family1"></td>
+													  <td id="tax_due_family2"></td>
+													  <td  class="bg-green" id="tax_due_family3"></td>
+													  <td id="tax_due_family4"></td>
+													  <td  class="bg-green" id="tax_due_family5"></td>
+													  <td id="tax_due_family6"></td>
+													  <td  class="bg-green" id="tax_due_family7"></td>
+													  <td id="tax_due_family8"></td>
+													  <td  class="bg-green" id="tax_due_family9"></td>
+													</tr>
+													<tr  class="fw-bold" > 
+													   <td  class="bg-green fw-bold" style='color:red; font-weight:bold;'>(-)신고세액공제</td>
+													   <td style='color:red;' class="fw-bold" id="reported_deduction_family0"></td>
+													   <td  class="bg-green" style='color:red;' class="fw-bold" id="reported_deduction_family1"></td>
+													   <td style='color:red;' class="fw-bold" id="reported_deduction_family2"></td>
+													   <td  class="bg-green" style='color:red;' class="fw-bold" id="reported_deduction_family3"></td>
+													   <td style='color:red;' class="fw-bold" id="reported_deduction_family4"></td>
+													   <td  class="bg-green" style='color:red;' class="fw-bold" id="reported_deduction_family5"></td>
+													   <td style='color:red;' class="fw-bold" id="reported_deduction_family6"></td>
+													   <td  class="bg-green" style='color:red;' class="fw-bold" id="reported_deduction_family7"></td>
+													   <td style='color:red;' class="fw-bold" id="reported_deduction_family8"></td>
+													   <td  class="bg-green" style='color:red;' class="fw-bold" id="reported_deduction_family9"></td>
+													</tr>
+													<tr class="bg-main fw-bold">
+													  <td class="fw-bold bg-main">증여세 신고세액</td>
+													  <td  class="bg-main"id="declared_tax_family0"></td>
+													  <td  class="bg-main" id="declared_tax_family1"></td>
+													  <td  class="bg-main"id="declared_tax_family2"></td>
+													  <td  class="bg-main" id="declared_tax_family3"></td>
+													  <td  class="bg-main"id="declared_tax_family4"></td>
+													  <td  class="bg-main" id="declared_tax_family5"></td>
+													  <td  class="bg-main"id="declared_tax_family6"></td>
+													  <td  class="bg-main" id="declared_tax_family7"></td>
+													  <td  class="bg-main"id="declared_tax_family8"></td>
+													  <td  class="bg-main" id="declared_tax_family9"></td>
+													</tr>
+													
+												  </tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+
+								</div>
+</div>
+								<!--@import(/roma/sub/sub-menu.html)-->	
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc805-2.js?v=1.8"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -1,0 +1,506 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.5" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+
+td input.form-control {
+  height: 40px;         /* 원하는 높이 */
+  padding: 4px 8px;     /* 상하 패딩 줄여야 함 */
+  font-size: 14px;      /* 필요시 크기 조정 */
+  line-height: 1.2;     /* 줄 높이도 낮게 설정 */
+  box-sizing: border-box;  /* 패딩 포함한 높이 계산 */
+}
+
+td {
+  vertical-align: middle; /* 수직 중앙 정렬 */
+  text-align: center !important;     /* 수평 중앙 정렬 */
+  height: 55px;           /* 셀 높이 일치 */
+  padding:0px;
+}
+
+td input.form-control {
+  height: 33px;             
+  padding: 4px 8px;          
+  font-size: 12px;          
+  line-height: 1.2;
+  box-sizing: border-box;    
+  text-align: center;       
+}
+.input-group > .form-control {
+  height: 33px;
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.input-group > .input-group-text {
+  height: 33px;
+  font-size: 12px;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+.form-control{
+  height:33px;
+}
+
+</style>
+
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-list"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+  
+    <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-titlefont-weight : normal">세무법인이화 TAX-<font size=4>E𝒂sy</font> <span style="font-weight: 300; font-size: 10px;">Beta Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+	<div class="chat-history" style='padding-bottom:15px;'>
+  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+  <div class="chat-list">
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-800-1.html" class="chat-item">
+      <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+      <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+    </a> -->
+    <!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+      <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-801-1.html" class="chat-item">
+      <span class="chat-title">2-1.개인 대표 사업소득+임대소득 세금 비교</span>
+    </a>
+    <a href="/roma/sub/sub-801-2.html" class="chat-item">
+      <span class="chat-title">2-2.법인 대표 근로소득+임대소득 세금 비교</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+      <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">3.법인주주 증여와 법인세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-802-1.html" class="chat-item">
+      <span class="chat-title">3-1. 특정법인증여의제</span>
+    </a> 
+    <a href="/roma/sub/sub-802-2.html" class="chat-item">
+      <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+    </a>
+    <a href="/roma/sub/sub-802-3.html" class="chat-item">
+      <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+ <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+      <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+    </a>  
+   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+      <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+    </a> -->
+    <!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+      <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+    </a>  -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-804-1.html" class="chat-item">
+      <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-804-2.html" class="chat-item">
+      <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+    </a>
+  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+      <span class="chat-title">5-3. 주택 취득세 계산</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+      <span class="chat-title">6-1. 상속세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-2.html" class="chat-item">
+      <span class="chat-title">6-2. 증여세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-3.html" class="chat-item">
+    <span class="chat-title">6-3. 주식양도소득세 계산</span>
+    </a> 
+   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+      <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+    </a>
+  </div>
+</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">7.자녀법인차등배당</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+		  <span class="chat-title">7-1. 자녀법인차등배당</span>
+		</a> 
+		<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+		  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+		  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+		</a> -->
+	  </div>
+	</div>
+
+  </div>
+</div>
+
+<div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+    <div class="right-wrap">
+        <div class="container" id="main-container">
+            <div class="top-box">
+                <div class="scroll-content ">
+                    <div class="inner-content">
+                        <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+                            <div id="print_wrap">	
+ 							<div class="page" id="page1">                                
+                            <div id="calculator-1" class="container">
+							<div class="biz-wrapper">
+							  <div class="biz-header">
+								<h2 class="biz-title">아버지 토지 사용에 대한 적정임대료</h2>
+								<p class="biz-description">
+								  아버지 소유 토지를 자녀 법인이 무상 또는 저가로 사용하는 경우, 증여세 문제가 발생할 수 있는 적정임대료를 손쉽게 계산할 수 있는 간편 계산기입니다.
+								</p>
+							  </div>
+							  <div class="biz-body">
+								<ul class="biz-list">
+								<li class="mb-2">1. 적정임대료 자동 산출 : 공시지가, 임대보증금, 정상이자율 등을 입력하면 적정임대료가 자동 계산됩니다.</li>
+								<li class="mb-2">2. 증여의제 여부 사전 점검 가능 : 실제 임대료와 비교하여 증여세 과세 위험이 있는지를 미리 판단할 수 있습니다. </li>
+								<li class="mb-2">3. 세무 전문가가 아니어도 쉽게 사용 가능 : 간단한 정보 입력만으로 누구나 쉽게 결과를 확인할 수 있어 실무 활용도가 높습니다.</li>
+								<li class="mb-2">4. 최신 기준 반영 : 국세청 고시 이자율, 공시지가 등 최신 정보를 기준으로 정확한 계산이 가능합니다.</li>
+								</ul>
+								<p class="biz-note">※ 복잡한 공시지가, 지분 구조, 사용면적 등을 자동 반영하여 증여의제 리스크를 미리 점검할 수 있으며,별도 설치 없이 무료로 사용할 수 있습니다.</p>
+							  </div>
+							</div>
+                                 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+                                <div class="card input-section">
+                                  <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                      <div class="table-title">입력란1 / 부동산현황</div>
+                                          <table class="table table-bordered text-center" id='realEstateTable'>
+                                          <thead>
+                                            <tr class="bg-main">
+                                              <th>문발동</th>
+                                              <th>면적(㎡)</th>
+                                              <th>기준시가(원/㎡)</th>
+                                              <th>금액</th>
+                                              <th>감정평가액</th>
+                                              <th>비율</th>
+                                              <th>임대료 안분</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td class="bg-main">토지</td>
+                                              <td class="bg-green"><input type="text" class="form-control text-center " value="1758.5"/></td>
+                                              <td class="bg-green"><input type="text" class="form-control text-center input-text" value="688800"/></td>
+                                              <td class="bg-green"></td>
+                                              <td class="bg-green"><input type="text" class="form-control text-center input-text land-appraisal" value="20000000"/></td>
+                                              <td class="bg-green"></td>
+                                              <td class="bg-green"></td>
+                                            </tr>
+                                            <tr>
+                                              <td class="bg-main">건물</td>
+                                              <td class="bg-green"><input type="text" class="form-control text-center " value="3216.111" /></td>
+                                              <td class="bg-green"></td>
+                                              <td class="bg-green"><input type="text" class="form-control text-center input-text" value="10000000"/></td>
+                                              <td class="bg-green"><input type="text" class="form-control text-center input-text" value="10000000"/></td>
+                                              <td class="bg-green"><input type="text" class="form-control text-center input-text" value="16596159"/></td>
+                                              <td class="bg-green"></td>
+                                            </tr>
+                                            <tr id="realEstateTotalRow">
+                                              <td class="bg-main fw-bold">계</td>
+                                              <td class="bg-main fw-bold"></td>
+                                              <td class="bg-main fw-bold"></td>
+                                              <td class="bg-main fw-bold"></td> <!-- 금액 총합 -->
+                                              <td class="bg-main fw-bold"></td> <!-- 감정평가액 총합 → 여기에 표시할 것 -->
+                                              <td class="bg-main fw-bold"></td>
+                                              <td class="bg-main fw-bold"></td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                    </div>
+                                  </div>
+                                 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+							<div class="card input-section">
+									  <div class="card-body p-0">
+										<div class="table-responsive">
+								  <div class="table-title">입력란2 / 소득세(법인세법)상 토지의 적정임대료<br/>(시가의 50% - 전세금(보증금)) X 정기예금이자율(2.9%, 2023.3.20.부터)</div>										
+									<table id="freeUseTable" class="table table-bordered text-center">
+									  <thead class="table-light">
+										<tr class="bg-main">
+										  <th>기준</th>
+										  <th>토지 시가</th>
+										  <th>50%</th>
+										  <th>(-) 보증금</th>
+										  <th>기준금액</th>
+										  <th>정기예금이자율</th>
+										  <th>적정임대료</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="bg-main">기준시가</td>
+										  <td class="land-price bg-green">1,211,254,800</td>
+										  <td class="half-land-price bg-green">605,627,400</td>
+										  <td class="bg-main"><input type="text" class="form-control text-center input-text deposit-input" value="0" /></td>
+										  <td class="base-amount bg-green">605,627,400</td>
+										  <td class="rate bg-green">2.9%</td>
+										  <td class="fair-rent bg-green">17,563,194.6</td>
+										</tr>
+										<tr>
+										  <td class="bg-main">감정평가액</td>
+										  <td class="land-price land-appraisal-target bg-green">0</td>
+										  <td class="half-land-price bg-green">0</td>
+										  <td class="bg-main"><input type="text" class="form-control text-center input-text deposit-input" value="0" /></td>
+										  <td class="base-amount bg-green">0</td>
+										  <td class="rate bg-green">2.9%</td>
+										  <td class="fair-rent bg-green">0</td>
+										</tr>
+									  </tbody>
+									</table>
+									</div>
+								  </div>
+								</div>
+                                							</div>
+							</div>
+
+                                </div>
+							    <div class="page-break"></div> 								
+ 							<div class="page" id="page2">
+                                <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div> 
+							<div class="card input-section">
+									  <div class="card-body p-0">
+										<div class="table-responsive">
+								  <div class="table-title">확인란 / 토지에 대한 무상사용이익</div>
+										  
+									<table id="freeUseTable2" class="table table-bordered text-center">
+									  <thead class="table-light">
+										<tr class="bg-main">
+										  <th>기준</th>
+										  <th>토지 가액</th>
+										  <th>2%</th>
+										  <th>5년 현가계수</th>
+										  <th>무상사용이익</th>
+										  <th>증여의제 여부</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td class="bg-main">기준시가</td>
+										  <td class="bg-main land-price linked-to-realestate"></td>
+										  <td class="bg-green fixed-rate">2%</td>
+										  <td class="bg-main  pv-factor">3.79079</td>
+										  <td class="bg-green  base-amount"></td>
+										  <td class="bg-green  deemed-gift-result"></td>
+										</tr>
+										<tr>
+										  <td class="bg-main">감정평가액</td>
+										  <td class="bg-main  land-price land-appraisal-target">0</td>
+										  <td class="bg-green  fixed-rate">2%</td>
+										  <td class="bg-main  pv-factor">3.79079</td>
+										  <td class="bg-green  base-amount"></td>
+										  <td class="bg-green  deemed-gift-result"></td>
+										</tr>
+									  </tbody>
+									</table>
+
+									</div>
+								  </div>
+								</div>
+								<style>
+								 .custom-tip-wrapper {
+									display: flex;
+									justify-content: center;
+									align-items: center;
+									background-color: #DBEBE7;
+									padding:20px;
+								  }
+
+								  .custom-tip-box {
+									background-color: #DBEBE7;
+									border-radius: 10px;
+									width: 80%;
+									max-width: 800px;
+									text-align: left;
+								  }
+
+								  .custom-tip-box ul {
+									list-style: none; 
+									padding-left: 0;
+									margin-left: 0;
+								  }
+
+								  .custom-tip-box ul li {
+									margin-bottom: 8px;
+								  }
+								</style>
+								<div class="custom-tip-wrapper">
+								  <div class="custom-tip-box">
+									<h5 class="mb-3 text-center"><b>TIP!!</b></h5>
+									<p>아들이 아버지의 부동산을 무상으로 사용하게 되면</p>
+
+									<p>(아버지 - 임대인)</p>
+									<ul>
+									  <li>1. 소득세 및 법인세법상 부당행위계산 부인</li>
+									  <li>2. 부당행위계산 부인에 따라
+											(1) 시가에 대한 부가가치세
+											(2) 시가에 대한 종합소득세 납부 필요
+									  </li>
+									  <li>3. 적정임대료 = (시가의 50% - 전세금 등 보증금) × 2.9%</li>
+									</ul>
+
+									<p>(아들 - 임차인)</p>
+									<ul>
+									  <li>1. 상속세 및 증여세법 제37조 부동산 무상사용 증여의제에 따라 증여세 납부</li>
+									  <li>2. 무상사용을 개시한 날이 증여일</li>
+									  <li>3. 5년간 무상사용이익 = 부동산 가액 × 2% × 3.79079</li>
+									  <li>4. 5년간 무상사용이익이 1억 원 미만이면 과세하지 않음<br>
+										  (즉, 재산가액 13억 미만까지 무상임대 가능)
+									  </li>
+									</ul>
+								  </div>
+								</div>
+								</div>
+                                </div>
+							<!--@import(/roma/sub/sub-menu.html)-->	
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc803-1.js?v=1.9"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

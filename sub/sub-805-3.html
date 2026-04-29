@@ -1,0 +1,296 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  .case-col { display: none; }
+  .case-col.active { display: table-cell !important; }
+  div.case-col.active { display: block !important; }
+
+  @media print {
+    .case-col { display: table-cell !important; }
+    .no-print { display: none !important; }
+    #calculator-wrap { background: white !important; }
+  }
+
+  .segmented-control {
+    position: relative;
+    display: flex;
+    background: #f2f4f6;
+    border-radius: 14px;
+    padding: 2px;
+  }
+  .segmented-item {
+    position: relative;
+    flex: 1;
+    z-index: 1;
+    min-width: 90px;
+  }
+  .segmented-item button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8b95a1;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    background: transparent;
+    white-space: nowrap;
+  }
+  .segmented-item button.active {
+    color: #1a1f27;
+    font-weight: 600;
+  }
+  .segmented-glider {
+    position: absolute;
+    height: calc(100% - 4px);
+    width: calc(10% - 1.33px);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen pb-20 font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          비상장주식 <br />
+          <span class="font-semibold text-[#3182f6]">양도소득세 정밀 시뮬레이션</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          비상장주식 양도 시 발생하는 양도소득세와 증권거래세를 다양한 시나리오별로 <br class="hidden md:block" />
+          최신 세법을 적용하여 비교 분석하고 최적의 거래 전략을 제안합니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block"></div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- Case Selector -->
+      <div class="max-w-full overflow-x-auto no-scrollbar no-print mb-12">
+        <div class="segmented-control min-w-[900px] lg:min-w-0">
+          <div class="segmented-item"><button class="active" onclick="switchCase(1)">시나리오 1</button></div>
+          <div class="segmented-item"><button onclick="switchCase(2)">시나리오 2</button></div>
+          <div class="segmented-item"><button onclick="switchCase(3)">시나리오 3</button></div>
+          <div class="segmented-item"><button onclick="switchCase(4)">시나리오 4</button></div>
+          <div class="segmented-item"><button onclick="switchCase(5)">시나리오 5</button></div>
+          <div class="segmented-item"><button onclick="switchCase(6)">시나리오 6</button></div>
+          <div class="segmented-item"><button onclick="switchCase(7)">시나리오 7</button></div>
+          <div class="segmented-item"><button onclick="switchCase(8)">시나리오 8</button></div>
+          <div class="segmented-item"><button onclick="switchCase(9)">시나리오 9</button></div>
+          <div class="segmented-item"><button onclick="switchCase(10)">시나리오 10</button></div>
+          <div class="segmented-glider" id="caseGlider"></div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT CARD -->
+      <div class="bg-white rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.02)] border border-gray-100/50 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/40 border-b border-gray-50">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">01</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">양도할 주식수와 1주당 <br class="hidden sm:block"/>취득/양도가액을 입력하세요.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">02</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">비상장주식의 경우 세율 <br class="hidden sm:block"/>20%가 자동 적용되어 계산됩니다.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-5 h-5 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[10px] font-bold mt-0.5 shadow-sm">03</span>
+              <p class="text-[12px] text-[#4e5968] font-medium leading-tight tracking-tight">상단 탭으로 다양한 가격 시나리오를 동시에 비교 분석하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Section 1: 가액 정보 입력 -->
+          <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">주식 양도 가액 정보 입력</h3>
+            </div>
+            
+            <div class="overflow-x-auto no-scrollbar rounded-2xl border border-gray-100 divide-y divide-gray-50 border-collapse">
+              <table class="w-full text-center">
+                <thead>
+                  <tr class="bg-[#f9fafb] text-[#8b95a1] text-[10px] font-bold uppercase tracking-widest border-b border-gray-100">
+                    <th class="p-5 text-left sticky-left !bg-[#f9fafb] w-[240px]">입력 항목</th>
+                    <th class="p-5">시나리오별 데이터 입력</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[14px]">
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">주식수 (주)</th>
+                    <td class="p-2 case-col case-1 active"><input type="text" id="stockCount_1" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="10,000" /></td>
+                    <td class="p-2 case-col case-2"><input type="text" id="stockCount_2" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="5,000" /></td>
+                    <td class="p-2 case-col case-3"><input type="text" id="stockCount_3" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="20,000" /></td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">1주당 취득가액 (원)</th>
+                    <td class="p-2 case-col case-1 active"><input type="text" id="buyPrice_1" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="10,000" /></td>
+                    <td class="p-2 case-col case-2"><input type="text" id="buyPrice_2" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="10,000" /></td>
+                    <td class="p-2 case-col case-3"><input type="text" id="buyPrice_3" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="10,000" /></td>
+                  </tr>
+                  <tr class="bg-blue-50/10">
+                    <th class="p-5 text-left font-black text-[#3182f6] sticky-left border-r border-blue-50/50 !bg-[#f1f4ff]">1주당 양도가액 (원)</th>
+                    <td class="p-2 case-col case-1 active"><input type="text" id="sellPrice_1" class="w-full bg-transparent border-none text-center font-black text-[#1a1f27] text-2xl focus:ring-0 p-2" value="50,000" /></td>
+                    <td class="p-2 case-col case-2"><input type="text" id="sellPrice_2" class="w-full bg-transparent border-none text-center font-black text-[#1a1f27] text-2xl p-2" value="80,000" /></td>
+                    <td class="p-2 case-col case-3"><input type="text" id="sellPrice_3" class="w-full bg-transparent border-none text-center font-black text-[#1a1f27] text-2xl p-2" value="100,000" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 2: 상세 분석 결과 -->
+          <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#22c55e] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">시나리오별 정밀 분석 결과</h3>
+            </div>
+            
+            <div class="overflow-x-auto no-scrollbar rounded-3xl border border-gray-100 shadow-sm border-collapse">
+              <table class="w-full text-center min-w-[600px]">
+                <thead>
+                  <tr class="bg-[#1a1f27] text-white text-[10px] font-bold uppercase tracking-widest">
+                    <th class="p-5 text-left sticky-left !bg-[#1a1f27] w-[240px]">세부 항목</th>
+                    <th class="p-5">분석 결과 데이터</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[14px]">
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">총 양도금액</th>
+                    <td class="p-5 case-col case-1 active text-right pr-10 font-bold" id="transferAmount_1"></td>
+                    <td class="p-5 case-col case-2 text-right pr-10 font-bold" id="transferAmount_2"></td>
+                    <td class="p-5 case-col case-3 text-right pr-10 font-bold" id="transferAmount_3"></td>
+                    <!-- ... columns 4-10 ... -->
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-bold text-[#22c55e] sticky-left border-r border-gray-50">양도차익</th>
+                    <td class="p-5 case-col case-1 active text-right pr-10 font-black text-[#2e7d32]" id="capitalGain_1"></td>
+                    <td class="p-5 case-col case-2 text-right pr-10 font-black text-[#2e7d32]" id="capitalGain_2"></td>
+                    <td class="p-5 case-col case-3 text-right pr-10 font-black text-[#2e7d32]" id="capitalGain_3"></td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left text-gray-400 font-medium sticky-left border-r border-gray-50 text-[12px]">└ 증권거래세 (0.35%)</th>
+                    <td class="p-5 case-col case-1 active text-right pr-10 text-gray-400" id="stockTax_1"></td>
+                    <td class="p-5 case-col case-2 text-right pr-10 text-gray-400" id="stockTax_2"></td>
+                    <td class="p-5 case-col case-3 text-right pr-10 text-gray-400" id="stockTax_3"></td>
+                  </tr>
+                  <tr class="bg-blue-50/5">
+                    <th class="p-5 text-left font-black text-[#3182f6] sticky-left border-r border-blue-100/30 !bg-[#f1f4ff]">양도소득 과세표준</th>
+                    <td class="p-5 case-col case-1 active text-right pr-10 font-black text-[#1a1f27] text-lg" id="taxBase_1"></td>
+                    <td class="p-5 case-col case-2 text-right pr-10 font-black text-[#1a1f27] text-lg" id="taxBase_2"></td>
+                    <td class="p-5 case-col case-3 text-right pr-10 font-black text-[#1a1f27] text-lg" id="taxBase_3"></td>
+                  </tr>
+                  <tr class="bg-[#1a1f27] text-white">
+                    <th class="p-8 text-left font-black text-[#fab005] sticky-left !bg-[#1a1f27] text-lg">최종 예상 세금 합계</th>
+                    <td class="p-8 case-col case-1 active text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTax_1"></td>
+                    <td class="p-8 case-col case-2 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTax_2"></td>
+                    <td class="p-8 case-col case-3 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTax_3"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Summary Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-[#f9fafb] p-8 rounded-[32px] border border-gray-100 shadow-sm flex flex-col justify-between">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-white border border-gray-100 text-[#3182f6] flex items-center justify-center shadow-sm">
+                  <i data-lucide="user-minus" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-gray-500 uppercase tracking-widest">양도인 세후 수령액</h4>
+                  <p class="text-[10px] text-gray-300 font-bold uppercase tracking-[0.2em] mt-0.5">Net Proceeds</p>
+                </div>
+              </div>
+              <div class="bg-white p-6 rounded-2xl border border-gray-50 text-right">
+                <div id="totalTaxSender_1" class="case-col case-1 active font-black text-3xl text-[#1a1f27] tracking-tight"></div>
+                <div id="totalTaxSender_2" class="case-col case-2 font-black text-3xl text-[#1a1f27] tracking-tight"></div>
+                <div id="totalTaxSender_3" class="case-col case-3 font-black text-3xl text-[#1a1f27] tracking-tight"></div>
+              </div>
+            </div>
+            
+            <div class="bg-[#1a1f27] p-8 rounded-[32px] shadow-xl shadow-blue-900/10 flex flex-col justify-between">
+              <div class="flex items-center gap-4 mb-6 text-white">
+                <div class="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center shadow-lg border border-white/5">
+                  <i data-lucide="user-plus" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white/80 uppercase tracking-widest">양수인 총 필요 자금</h4>
+                  <p class="text-[10px] text-white/30 font-bold uppercase tracking-[0.2em] mt-0.5">Total Capital Required</p>
+                </div>
+              </div>
+              <div class="bg-white/5 p-6 rounded-2xl border border-white/5 text-right backdrop-blur-sm">
+                <div id="requiredAmountBuyer_1" class="case-col case-1 active font-black text-3xl text-[#fab005] tracking-tight"></div>
+                <div id="requiredAmountBuyer_2" class="case-col case-2 font-black text-3xl text-[#fab005] tracking-tight"></div>
+                <div id="requiredAmountBuyer_3" class="case-col case-3 font-black text-3xl text-[#fab005] tracking-tight"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standardized Footer -->
+        <div class="mt-8 border-t border-gray-50">
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden compatibility elements (Full 1-10) -->
+<div class="hidden">
+  <input type="text" id="stockCount_4" value=""><input type="text" id="stockCount_5" value=""><input type="text" id="stockCount_6" value=""><input type="text" id="stockCount_7" value=""><input type="text" id="stockCount_8" value=""><input type="text" id="stockCount_9" value=""><input type="text" id="stockCount_10" value="">
+  <input type="text" id="buyPrice_4" value=""><input type="text" id="buyPrice_5" value=""><input type="text" id="buyPrice_6" value=""><input type="text" id="buyPrice_7" value=""><input type="text" id="buyPrice_8" value=""><input type="text" id="buyPrice_9" value=""><input type="text" id="buyPrice_10" value="">
+  <input type="text" id="sellPrice_4" value=""><input type="text" id="sellPrice_5" value=""><input type="text" id="sellPrice_6" value=""><input type="text" id="sellPrice_7" value=""><input type="text" id="sellPrice_8" value=""><input type="text" id="sellPrice_9" value=""><input type="text" id="sellPrice_10" value="">
+  <span id="transferAmount_4"></span><span id="transferAmount_5"></span><span id="transferAmount_6"></span><span id="transferAmount_7"></span><span id="transferAmount_8"></span><span id="transferAmount_9"></span><span id="transferAmount_10"></span>
+  <span id="capitalGain_4"></span><span id="capitalGain_5"></span><span id="capitalGain_6"></span><span id="capitalGain_7"></span><span id="capitalGain_8"></span><span id="capitalGain_9"></span><span id="capitalGain_10"></span>
+  <span id="stockTax_4"></span><span id="stockTax_5"></span><span id="stockTax_6"></span><span id="stockTax_7"></span><span id="stockTax_8"></span><span id="stockTax_9"></span><span id="stockTax_10"></span>
+  <span id="taxBase_4"></span><span id="taxBase_5"></span><span id="taxBase_6"></span><span id="taxBase_7"></span><span id="taxBase_8"></span><span id="taxBase_9"></span><span id="taxBase_10"></span>
+  <span id="totalTax_4"></span><span id="totalTax_5"></span><span id="totalTax_6"></span><span id="totalTax_7"></span><span id="totalTax_8"></span><span id="totalTax_9"></span><span id="totalTax_10"></span>
+  <span id="totalTaxSender_4"></span><span id="totalTaxSender_5"></span><span id="totalTaxSender_6"></span><span id="totalTaxSender_7"></span><span id="totalTaxSender_8"></span><span id="totalTaxSender_9"></span><span id="totalTaxSender_10"></span>
+  <span id="requiredAmountBuyer_4"></span><span id="requiredAmountBuyer_5"></span><span id="requiredAmountBuyer_6"></span><span id="requiredAmountBuyer_7"></span><span id="requiredAmountBuyer_8"></span><span id="requiredAmountBuyer_9"></span><span id="requiredAmountBuyer_10"></span>
+  <span id="acquisitionAmount_1"></span><span id="acquisitionAmount_2"></span><span id="acquisitionAmount_3"></span>
+  <span id="taxRate_1"></span><span id="capitalTax_1"></span><span id="localTax_1"></span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc805-3.js?v=2.0"></script>
+<script>
+  lucide.createIcons();
+  function switchCase(caseNum) {
+    document.querySelectorAll('.segmented-item button').forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === caseNum - 1);
+    });
+    const glider = document.getElementById('caseGlider');
+    glider.style.transform = `translateX(${(caseNum - 1) * 100}%)`;
+
+    document.querySelectorAll('.case-col').forEach(col => {
+      col.classList.toggle('active', col.classList.contains('case-' + caseNum));
+    });
+  }
+</script>

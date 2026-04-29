@@ -1,0 +1,393 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  @media print {
+    .no-print { display: none !important; }
+    #calculator-wrap { background: white !important; }
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          자녀법인을 통한 <br />
+          <span class="font-semibold text-[#3182f6]">가업 승계 로드맵</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          익금불산입 제도를 활용한 간접 배당 구조의 실익과 <br class="hidden md:block" />
+          향후 20년간의 자산 증식 현황을 정밀하게 예측해 드립니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block"></div>
+  </section>
+
+  <!-- Sub Navigation -->
+  <!--@import(/roma/sub/sub-800-nav.html)-->
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- MAIN CONTENT CARD -->
+      <div class="bg-white rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.02)] border border-gray-100/50 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/40 border-b border-gray-50">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">01</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">부(父)법인의 현재 순자산과 순이익, <br class="hidden sm:block"/>자녀법인 배당 정책을 설정합니다.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">02</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">자녀법인 지분율에 따른 <br class="hidden sm:block"/>익금불산입 혜택이 자동 계산됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Section 1: 가액 정보 입력 -->
+          <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">법인 운영 및 배당 정책 설정</h3>
+            </div>
+            
+            <div class="bg-gray-50/30 p-5 md:p-8 rounded-[24px] border border-gray-100 space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                  <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1">부(父)법인 현재 순자산 가액</label>
+                  <input type="text" id="subCorpAsset" class="w-full bg-transparent border-none p-0 text-2xl font-black text-[#1a1f27] focus:ring-0 text-right" value="6,031,000,000">
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                  <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1">부(父)법인 연간 세후순이익</label>
+                  <input type="text" id="subCorpNetIncome" class="w-full bg-transparent border-none p-0 text-2xl font-black text-[#1a1f27] focus:ring-0 text-right" value="300,000,000">
+                </div>
+              </div>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm border-blue-100/50">
+                  <label class="block text-[11px] font-bold text-blue-400 uppercase mb-1">연간 차등배당 예정액</label>
+                  <input type="text" id="subCorpDividend_1" class="w-full bg-transparent border-none p-0 text-xl font-black text-[#3182f6] focus:ring-0 text-right" value="100,000,000">
+                </div>
+                <div class="bg-blue-50/30 p-5 rounded-2xl border border-blue-100/50 relative">
+                  <label class="block text-[11px] font-bold text-[#3182f6] uppercase mb-1">자녀법인 지분율 정책</label>
+                  <select id="shareRatio" class="w-full bg-transparent border-none p-0 text-sm font-bold text-[#3182f6] focus:ring-0 h-8">
+                    <option value="under20">20% 이하 (80% 익금불산입)</option>
+                    <option value="over20" selected>20% 초과 (30% 익금불산입)</option>
+                    <option value="over50">50% 초과 (익금산입 100%)</option>
+                  </select>
+                  <span id="shareRatioPercent" class="hidden"></span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                  <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1">기존 세전이익 (자녀법인)</label>
+                  <input type="text" id="sonCorpBeforeTaxIncome_1" class="w-full bg-transparent border-none p-0 text-xl font-bold text-[#4e5968] focus:ring-0 text-right" value="0">
+                  <span id="subCorpIncome_1" class="hidden"></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: 실효 이익 비교 -->
+          <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#00c471] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">배당 경로별 실효 이익 비교</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Scenario A -->
+              <div class="p-8 rounded-[32px] bg-white border border-gray-100 shadow-sm flex flex-col justify-between group">
+                <div class="flex items-center gap-4 mb-8">
+                  <div class="w-12 h-12 rounded-2xl bg-gray-50 text-gray-400 flex items-center justify-center">
+                    <i data-lucide="user" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold text-[#1a1f27]">개인 직접 배당</h4>
+                    <p id="dividendLabel_1" class="text-[10px] font-bold text-gray-400 uppercase tracking-widest"></p>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-4 px-1">
+                    <span class="text-xs font-medium text-gray-400">실효세액 (건보료 포함)</span>
+                    <span id="tax_personal_1" class="text-xs font-bold text-red-400"></span>
+                  </div>
+                  <div class="bg-gray-50/50 p-6 rounded-2xl text-right">
+                    <p class="text-[10px] font-bold text-gray-400 uppercase mb-1">최종 세후 개인 유입액</p>
+                    <div id="tax_corp3_1" class="text-3xl font-black text-[#1a1f27] tracking-tight"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Scenario B -->
+              <div class="p-8 rounded-[32px] bg-[#1a1f27] shadow-xl flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                <div class="relative z-10">
+                  <div class="flex items-center gap-4 mb-8 text-white">
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 text-blue-400 flex items-center justify-center shadow-inner">
+                      <i data-lucide="building-2" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                      <h4 class="text-lg font-bold">자녀법인 활용 배당</h4>
+                      <p class="text-[10px] font-bold text-white/30 uppercase tracking-widest">Strategic Advantage</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between items-center mb-4 px-1 text-white/30 text-xs font-bold">
+                      <span class="text-white/40">자녀법인 가중 법인세</span>
+                      <span id="sonCorpTax_1" class="text-[#fab005]"></span>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-2xl text-right border border-white/5">
+                      <p class="text-[10px] font-bold text-white/40 uppercase mb-1">법인 내 유보 가능 순자산</p>
+                      <div id="sonCorpNetIncome_1" class="text-3xl font-black text-[#fab005] tracking-tight"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hidden">
+                    <span id="subCorpTax_1"></span><span id="subCorpNetIncome_1"></span>
+                    <span id="tax_corp1_1"></span><span id="tax_corp2_1"></span><span id="sonCorpIncome_1"></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Table Simulation -->
+          <section>
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">20개년 자산 축적 로드맵</h3>
+            </div>
+            
+            <div class="overflow-x-auto no-scrollbar rounded-[24px] border border-gray-100 shadow-sm">
+              <table class="w-full text-center min-w-[1000px] border-collapse">
+                <thead>
+                  <tr class="bg-[#1a1f27] text-white text-[10px] font-bold uppercase tracking-[0.2em] border-b border-white/5">
+                    <th rowspan="2" class="p-5 border-r border-white/5 !bg-[#1a1f27] sticky-left w-[120px]">년차</th>
+                    <th class="p-5 border-r border-white/5">부(父) 법인 전망 (누적)</th>
+                    <th class="p-5 border-r border-white/5">자녀 법인 전망 (누적)</th>
+                    <th rowspan="2" class="p-5">연간 배당 유출액</th>
+                  </tr>
+                  <tr class="bg-gray-50/50 text-[#8b95a1] text-[9px] font-bold tracking-widest border-b border-gray-100">
+                    <th class="p-4 border-r border-gray-50">연간 세후이익</th>
+                    <th class="p-4 border-r border-gray-50 uppercase">Equity</th>
+                    <th class="p-4 border-r border-gray-50">연간 세후유입</th>
+                    <th class="p-4 border-r border-gray-50 uppercase tracking-tighter">Equity (Son)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[13px]">
+                  <tr class="bg-blue-50/30 font-bold">
+                    <th class="p-4 text-[#3182f6] sticky-left border-r border-blue-100 !bg-inherit">현재</th>
+                    <td class="p-4 text-gray-300">-</td>
+                    <td id="td_3_current" class="p-4 text-right font-black text-[#1a1f27] pr-8"></td>
+                    <td class="p-4 text-gray-300">-</td>
+                    <td id="td_9_current" class="p-4 text-right font-black text-[#3182f6] pr-8"></td>
+                    <td class="p-4 text-gray-300">-</td>
+                  </tr>
+                  <!-- Static 20-year rows generated from loop -->
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">1년 후</th>
+                    <td id="td_1_1year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_1year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_1year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_1year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_1year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">2년 후</th>
+                    <td id="td_1_2year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_2year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_2year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_2year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_2year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">3년 후</th>
+                    <td id="td_1_3year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_3year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_3year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_3year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_3year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">4년 후</th>
+                    <td id="td_1_4year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_4year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_4year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_4year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_4year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-gray-50/30 hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">5년 후</th>
+                    <td id="td_1_5year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_5year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_5year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_5year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_5year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">6년 후</th>
+                    <td id="td_1_6year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_6year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_6year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_6year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_6year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">7년 후</th>
+                    <td id="td_1_7year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_7year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_7year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_7year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_7year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">8년 후</th>
+                    <td id="td_1_8year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_8year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_8year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_8year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_8year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">9년 후</th>
+                    <td id="td_1_9year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_9year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_9year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_9year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_9year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-gray-50/30 hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">10년 후</th>
+                    <td id="td_1_10year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_10year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_10year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_10year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_10year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">11년 후</th>
+                    <td id="td_1_11year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_11year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_11year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_11year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_11year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">12년 후</th>
+                    <td id="td_1_12year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_12year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_12year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_12year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_12year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">13년 후</th>
+                    <td id="td_1_13year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_13year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_13year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_13year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_13year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">14년 후</th>
+                    <td id="td_1_14year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_14year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_14year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_14year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_14year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-gray-50/30 hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">15년 후</th>
+                    <td id="td_1_15year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_15year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_15year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_15year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_15year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">16년 후</th>
+                    <td id="td_1_16year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_16year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_16year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_16year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_16year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">17년 후</th>
+                    <td id="td_1_17year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_17year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_17year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_17year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_17year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">18년 후</th>
+                    <td id="td_1_18year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_18year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_18year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_18year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_18year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-white hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">19년 후</th>
+                    <td id="td_1_19year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_19year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_19year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_19year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_19year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                  <tr class="bg-gray-50/30 hover:bg-gray-50/10 transition-colors">
+                    <th class="p-4 text-gray-400 font-bold sticky-left border-r border-gray-50 bg-inherit">20년 후</th>
+                    <td id="td_1_20year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_3_20year" class="p-4 text-right font-bold text-[#1a1f27] pr-8 border-r border-gray-50"></td>
+                    <td id="td_8_20year" class="p-4 text-right pr-6 opacity-60"></td>
+                    <td id="td_9_20year" class="p-4 text-right font-black text-[#3182f6] pr-8 border-r border-gray-50"></td>
+                    <td id="td_5_20year" class="p-4 text-right pr-8 font-bold text-red-500/80"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- Standardized Footer -->
+        <div class="mt-8 border-t border-gray-50">
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc806-1.js?v=2.2"></script>
+<script>
+  lucide.createIcons();
+  function generatePDF() {
+    const element = document.getElementById('print_wrap');
+    const opt = {
+      margin: 10,
+      filename: '자녀법인_승계_전략리포트.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  }
+</script>

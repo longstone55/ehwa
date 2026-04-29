@@ -1,0 +1,288 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  .case-col { display: none; }
+  .case-col.active { display: table-cell !important; }
+
+  @media print {
+    .case-col { display: table-cell !important; }
+    .no-print { display: none !important; }
+    #calculator-wrap { background: white !important; }
+  }
+
+  .segmented-control {
+    position: relative;
+    display: flex;
+    background: #f2f4f6;
+    border-radius: 14px;
+    padding: 2px;
+  }
+  .segmented-item {
+    position: relative;
+    flex: 1;
+    z-index: 1;
+    min-width: 80px;
+  }
+  .segmented-item button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8b95a1;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    background: transparent;
+    white-space: nowrap;
+  }
+  .segmented-item button.active {
+    color: #1a1f27;
+    font-weight: 600;
+  }
+  .segmented-glider {
+    position: absolute;
+    height: calc(100% - 4px);
+    width: calc(10% - 1.33px);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen pb-20 font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          증여세 다중 수증자 <br />
+          <span class="font-semibold text-[#3182f6]">통합 정밀 시뮬레이션</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          수증자별 증여 가액과 관계를 설정하여 최종 납부 세액과 <br class="hidden md:block" />
+          증여 후 지분율 변화를 최신 세법을 적용하여 분석합니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block"></div>
+  </section>
+
+  <!-- Sub Navigation -->
+  <!--@import(/roma/sub/sub-800-nav.html)-->
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- MAIN CONTENT CARD -->
+      <div class="bg-white rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.02)] border border-gray-100/50 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/40 border-b border-gray-50">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">01</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">증여할 주식의 총수와 <br class="hidden sm:block"/>합계 현금을 입력하세요.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">02</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">수증자 탭을 선택하여 인원별 <br class="hidden sm:block"/>관계와 주식수를 설정하세요.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">03</span>
+              <p class="text-[12px] text-[#4e5968] font-medium leading-tight tracking-tight">수증자 인원별 공제가 자동 적용되어 결과가 도출됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Section 1: 기본 정보 설정 -->
+          <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">기본 주식 정보 설정</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#f9fafb] p-8 rounded-3xl border border-gray-100 shadow-inner">
+              <div class="bg-white p-6 rounded-2xl border border-gray-100 flex flex-col justify-center">
+                <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1 tracking-widest">발행주식총수 (주)</label>
+                <input type="text" id="amountStock" class="w-full bg-transparent border-none p-0 text-2xl font-black text-[#1a1f27] focus:ring-0 text-right" value="120,000">
+              </div>
+              <div class="bg-white p-6 rounded-2xl border border-gray-100 flex flex-col justify-center">
+                <label class="block text-[11px] font-bold text-[#8b95a1] uppercase mb-1 tracking-widest">합계 증여 현금 (원)</label>
+                <input type="text" id="amountWon" class="w-full bg-transparent border-none p-0 text-2xl font-black text-[#1a1f27] focus:ring-0 text-right" value="0">
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: 수증자별 상세 분석 -->
+          <section class="mb-16">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
+              <div class="flex items-center gap-3">
+                <div class="w-1 h-6 bg-[#22c55e] rounded-full"></div>
+                <h3 class="text-xl font-normal text-[#1a1f27]">수증자별 상세 분석</h3>
+              </div>
+
+              <!-- Case Selector -->
+              <div class="max-w-full overflow-x-auto no-scrollbar no-print">
+                <div class="segmented-control min-w-[800px] lg:min-w-0">
+                  <div class="segmented-item"><button class="active" onclick="switchCase(1)">수증자 1</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(2)">수증자 2</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(3)">수증자 3</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(4)">수증자 4</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(5)">수증자 5</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(6)">수증자 6</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(7)">수증자 7</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(8)">수증자 8</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(9)">수증자 9</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(10)">수증자 10</button></div>
+                  <div class="segmented-glider" id="caseGlider"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto no-scrollbar rounded-3xl border border-gray-100 divide-y divide-gray-50 border-collapse">
+              <table class="w-full text-center min-w-[600px]">
+                <thead>
+                  <tr class="bg-[#1a1f27] text-white text-[10px] font-bold uppercase tracking-widest">
+                    <th class="p-5 text-left sticky-left !bg-[#1a1f27] w-[220px]">분석 항목</th>
+                    <th class="p-5 case-col case-1 active">수증자 1 설정</th>
+                    <th class="p-5 case-col case-2">수증자 2 설정</th>
+                    <th class="p-5 case-col case-3">수증자 3 설정</th>
+                    <th class="p-5 case-col case-4">수증자 4 설정</th>
+                    <th class="p-5 case-col case-5">수증자 5 설정</th>
+                    <th class="p-5 case-col case-6">수증자 6 설정</th>
+                    <th class="p-5 case-col case-7">수증자 7 설정</th>
+                    <th class="p-5 case-col case-8">수증자 8 설정</th>
+                    <th class="p-5 case-col case-9">수증자 9 설정</th>
+                    <th class="p-5 case-col case-10">수증자 10 설정</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[14px]">
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">수증자 이름</th>
+                    <td class="p-2 case-col case-1 active"><input type="text" id="relation_family0" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="배우자"></td>
+                    <td class="p-2 case-col case-2"><input type="text" id="relation_family1" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="자녀1"></td>
+                    <td class="p-2 case-col case-3"><input type="text" id="relation_family2" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="자녀2"></td>
+                    <!-- ... repeated inputs for JS to bind ... -->
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">증여 관계 (공제액)</th>
+                    <td class="p-5 case-col case-1 active">
+                      <select id="relationSelect0" class="w-full bg-white border border-gray-100 rounded-xl p-2.5 text-xs font-bold text-[#3182f6] outline-none shadow-sm capitalize">
+                        <option value="600,000,000" selected>배우자 (6억)</option>
+                        <option value="50,000,000">자녀 성년 (5천)</option>
+                        <option value="20,000,000">자녀 미성년 (2천)</option>
+                        <option value="10,000,000">기타친족 (1천)</option>
+                      </select>
+                    </td>
+                    <td class="p-5 case-col case-2">
+                       <select id="relationSelect1" class="w-full bg-white border border-gray-100 rounded-xl p-2.5 text-xs font-bold text-[#3182f6] outline-none">
+                        <option value="50,000,000" selected>자녀 성년</option>
+                        <option value="600,000,000">배우자</option>
+                        <option value="20,000,000">자녀 미성년</option>
+                      </select>
+                    </td>
+                    <td class="p-5 case-col case-3">
+                       <select id="relationSelect2" class="w-full bg-white border border-gray-100 rounded-xl p-2.5 text-xs font-bold text-[#3182f6] outline-none">
+                        <option value="20,000,000" selected>자녀 미성년</option>
+                        <option value="50,000,000">자녀 성년</option>
+                      </select>
+                    </td>
+                    <!-- ... other selects hidden by default ... -->
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-bold text-[#22c55e] sticky-left border-r border-gray-50">증여 주식수 (주)</th>
+                    <td class="p-2 case-col case-1 active"><input type="text" id="stock_family0" class="w-full bg-transparent border-none text-center font-black text-[#22c55e] border border-green-50 rounded-xl p-2" value="0"></td>
+                    <td class="p-2 case-col case-2"><input type="text" id="stock_family1" class="w-full bg-transparent border-none text-center font-black text-[#22c55e] p-2" value="0"></td>
+                    <td class="p-2 case-col case-3"><input type="text" id="stock_family2" class="w-full bg-transparent border-none text-center font-black text-[#22c55e] p-2" value="0"></td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">1주당 평가액 (원)</th>
+                    <td class="p-2 case-col case-1 active"><input type="text" id="unitPrice_family0" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="15,000"></td>
+                    <td class="p-2 case-col case-2"><input type="text" id="unitPrice_family1" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="15,000"></td>
+                    <td class="p-2 case-col case-3"><input type="text" id="unitPrice_family2" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] p-2" value="15,000"></td>
+                  </tr>
+                  <!-- RESULT ROWS -->
+                   <tr class="bg-[#1a1f27] text-white">
+                    <th class="p-6 text-left font-black text-[#fab005] border-r border-white/5 text-lg sticky-left !bg-[#1a1f27]">최종 납부 세액</th>
+                    <td class="p-6 case-col case-1 active text-right font-black text-2xl text-[#fab005] tracking-tight" id="declared_tax_family0">-</td>
+                    <td class="p-6 case-col case-2 text-right font-black text-2xl text-[#fab005] tracking-tight" id="declared_tax_family1">-</td>
+                    <td class="p-6 case-col case-3 text-right font-black text-2xl text-[#fab005] tracking-tight" id="declared_tax_family2">-</td>
+                  </tr>
+                  <tr class="bg-blue-50/20">
+                    <th class="p-5 text-left font-bold text-[#3182f6] border-r border-blue-50/50 sticky-left !bg-[#f1f4ff]">증여 후 지분율</th>
+                    <td class="p-5 case-col case-1 active text-right font-black text-lg text-[#3182f6]" id="ratio_family0">-</td>
+                    <td class="p-5 case-col case-2 text-right font-black text-lg text-[#3182f6]" id="ratio_family1">-</td>
+                    <td class="p-5 case-col case-3 text-right font-black text-lg text-[#3182f6]" id="ratio_family2">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Info Alert Case -->
+          <div class="p-6 bg-[#f9fafb] rounded-[24px] border border-gray-100 flex gap-4 items-start shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-[#3182f6] shrink-0 shadow-sm border border-blue-50">
+              <i data-lucide="info" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-1">
+              <h4 class="text-sm font-bold text-[#1a1f27]">증여세 신고 및 주식 평가 안내</h4>
+              <p class="text-[12px] text-[#4e5968] leading-relaxed opacity-70">
+                증여세는 수증자가 증여받은 날이 속하는 달의 말일부터 3개월 이내에 신고해야 합니다. 위 결과는 신고세액공제(3%)가 반영된 예상치이며, 정확한 주식 평가를 위해 전문가와 상담하세요.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standardized Footer -->
+        <div class="mt-8 border-t border-gray-50">
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden Elements for script binding (Full coverage 0-9) -->
+<div class="hidden">
+  <input type="text" id="relation_family3" value=""><input type="text" id="relation_family4" value=""><input type="text" id="relation_family5" value=""><input type="text" id="relation_family6" value=""><input type="text" id="relation_family7" value=""><input type="text" id="relation_family8" value=""><input type="text" id="relation_family9" value="">
+  <select id="relationSelect3"><option value="0"></option></select><select id="relationSelect4"><option value="0"></option></select><select id="relationSelect5"><option value="0"></option></select><select id="relationSelect6"><option value="0"></option></select><select id="relationSelect7"><option value="0"></option></select><select id="relationSelect8"><option value="0"></option></select><select id="relationSelect9"><option value="0"></option></select>
+  <input type="text" id="stock_family3" value="0"><input type="text" id="stock_family4" value="0"><input type="text" id="stock_family5" value="0"><input type="text" id="stock_family6" value="0"><input type="text" id="stock_family7" value="0"><input type="text" id="stock_family8" value="0"><input type="text" id="stock_family9" value="0">
+  <input type="text" id="unitPrice_family3" value="0"><input type="text" id="unitPrice_family4" value="0"><input type="text" id="unitPrice_family5" value="0"><input type="text" id="unitPrice_family6" value="0"><input type="text" id="unitPrice_family7" value="0"><input type="text" id="unitPrice_family8" value="0"><input type="text" id="unitPrice_family9" value="0">
+  <span id="declared_tax_family3"></span><span id="declared_tax_family4"></span><span id="declared_tax_family5"></span><span id="declared_tax_family6"></span><span id="declared_tax_family7"></span><span id="declared_tax_family8"></span><span id="declared_tax_family9"></span>
+  <span id="ratio_family3"></span><span id="ratio_family4"></span><span id="ratio_family5"></span><span id="ratio_family6"></span><span id="ratio_family7"></span><span id="ratio_family8"></span><span id="ratio_family9"></span>
+  <div id="gift_value_row"><span id="gift_value_family0"></span><span id="gift_value_family1"></span><span id="gift_value_family2"></span><span id="gift_value_family3"></span><span id="gift_value_family4"></span><span id="gift_value_family5"></span><span id="gift_value_family6"></span><span id="gift_value_family7"></span><span id="gift_value_family8"></span><span id="gift_value_family9"></span></div>
+  <div id="gift_value2_row"><input type="text" id="gift_value2_family0" value="0" /></div>
+  <span id="deduction_family0"></span><span id="deduction_family1"></span><span id="taxable_base_family0"></span><span id="taxable_base_family1"></span><span id="tax_due_family0"></span><span id="reported_deduction_family0"></span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc805-2.js?v=2.0"></script>
+<script>
+  lucide.createIcons();
+  function switchCase(caseNum) {
+    document.querySelectorAll('.segmented-item button').forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === caseNum - 1);
+    });
+    const glider = document.getElementById('caseGlider');
+    glider.style.transform = `translateX(${(caseNum - 1) * 100}%)`;
+
+    document.querySelectorAll('.case-col').forEach(col => {
+      col.classList.toggle('active', col.classList.contains('case-' + caseNum));
+    });
+  }
+</script>

@@ -3,11 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, ChevronDown } from "lucide-react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +24,19 @@ export default function Header() {
     { name: "서비스", href: "/#services" },
     { name: "세미나", href: "/#seminar" },
     { name: "간편 계산기", href: "/simple-calculator" },
+    { name: "심화 시뮬레이션", href: "/pro-calculator" },
+    { name: "AI 서비스", href: "/ai" },
+  ];
+
+  const calculatorLinks = [
     { name: "전문 계산기", href: "/calculator" },
+    { name: "사업·임대 세금비교", href: "/business-rental-income-tax" },
+    { name: "법인·임대 세금비교", href: "/corporate-salary-rental-income-tax" },
+    { name: "특정법인 증여의제", href: "/specific-corporation-gift-tax" },
+    { name: "차등배당 세후수령", href: "/differential-dividend-after-tax" },
+    { name: "특정법인 증여와 법인세", href: "/specific-corporation-gift-corporate-tax" },
+    { name: "토지 무상사용 적정임대료", href: "/land-free-use-rent" },
+    { name: "법인전환 양도·취득세", href: "/corporate-conversion-transfer-tax" },
   ];
 
   return (
@@ -65,10 +78,47 @@ export default function Header() {
 
           {/* 데스크탑 전용 메뉴 (중앙) */}
           <div className="hidden md:flex space-x-10 text-[16px] font-bold text-[#4e5968]">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
+            {navLinks.slice(0, 3).map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="hover:text-primary transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsCalculatorOpen(!isCalculatorOpen)}
+                className="flex items-center gap-1 hover:text-primary transition-colors"
+                aria-expanded={isCalculatorOpen}
+              >
+                계산기
+                <ChevronDown className={`w-4 h-4 transition-transform ${isCalculatorOpen ? "rotate-180" : ""}`} />
+              </button>
+              <div
+                className={`absolute left-1/2 top-full mt-4 w-64 -translate-x-1/2 rounded-2xl border border-gray-100 bg-white p-2 shadow-2xl transition-all ${
+                  isCalculatorOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
+                }`}
+              >
+                {calculatorLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsCalculatorOpen(false)}
+                    className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-bold text-[#4e5968] hover:bg-gray-50 hover:text-primary transition-all"
+                  >
+                    {link.name}
+                    <ChevronRight className="w-4 h-4 text-gray-300" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+            {navLinks.slice(3).map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
                 className="hover:text-primary transition-colors"
               >
                 {link.name}
@@ -106,7 +156,32 @@ export default function Header() {
           </div>
 
           <div className="space-y-2">
-            {navLinks.map((link) => (
+            {navLinks.slice(0, 3).map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={toggleMenu}
+                className="flex items-center justify-between p-4 rounded-2xl text-[17px] font-bold text-[#1a1f27] hover:bg-gray-50 active:bg-gray-100 transition-all"
+              >
+                {link.name}
+                <ChevronRight className="w-5 h-5 text-gray-300" />
+              </Link>
+            ))}
+            <div className="rounded-2xl bg-gray-50 p-2">
+              <div className="px-3 py-2 text-[13px] font-black text-[#203578]">계산기</div>
+              {calculatorLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={toggleMenu}
+                  className="flex items-center justify-between p-3 rounded-xl text-[15px] font-bold text-[#1a1f27] hover:bg-white active:bg-gray-100 transition-all"
+                >
+                  {link.name}
+                  <ChevronRight className="w-5 h-5 text-gray-300" />
+                </Link>
+              ))}
+            </div>
+            {navLinks.slice(3).map((link) => (
               <Link
                 key={link.name}
                 href={link.href}

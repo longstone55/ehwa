@@ -1,0 +1,245 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+
+    #calculator-wrap {
+      background: white !important;
+    }
+  }
+
+  /* Specific Card/Input Styles */
+  .input-label {
+    @apply p-5 text-left font-normal text-[#4e5968];
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          법인 간 거래 리스크 <br />
+          <span class="font-semibold text-[#3182f6]">정밀 시뮬레이션</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          특정법인과의 거래로 발생할 수 있는 <br class="hidden md:block" />
+          간접적인 이익의 증여세 부담을 정밀하게 분석합니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block">
+    </div>
+  </section>
+
+  <!-- Sub Navigation -->
+  <!--@import(/roma/sub/sub-800-nav.html)-->
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- MAIN CONTENT CARD -->
+      <div
+        class="bg-white rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.02)] border border-gray-100/50 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/40 border-b border-gray-50">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="flex gap-4 items-start">
+              <span
+                class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">01</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">자녀법인 및 부(父)법인 현황을 입력하여
+                <br class="hidden sm:block" />지분 구조 및 배당 소득을 분석합니다.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span
+                class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">02</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">특정법인과의 거래 이익을 상세히 입력하여
+                <br class="hidden sm:block" />증여의제 이익 산출 근거를 도출합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Top Input Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <!-- Section 1: 법인 현황 -->
+            <section>
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+                <h3 class="text-xl font-normal text-[#1a1f27]">자녀 및 부(父)법인 현황</h3>
+              </div>
+              <div class="rounded-2xl border border-gray-100 overflow-hidden">
+                <table class="w-full text-[14px]">
+                  <tbody class="divide-y divide-gray-50">
+                    <tr class="hover:bg-gray-50/50 transition-colors">
+                      <th class="p-4 w-1/2 text-left font-semibold text-[#4e5968] bg-[#f9fafb]/50">자녀법인 주주수</th>
+                      <td class="p-3"><input id="subCorpShareInput_2" type="text"
+                          class="w-full bg-[#f2f4f6]/50 border-none text-center font-bold text-[#1a1f27] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all"
+                          value="3" /></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 transition-colors">
+                      <th class="p-4 text-left font-semibold text-[#4e5968] bg-[#f9fafb]/50">자녀법인 지분율</th>
+                      <td class="p-3"><input type="text" id="input_subCorpRate"
+                          class="w-full bg-[#f2f4f6]/50 border-none text-center font-bold text-[#1a1f27] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all"
+                          value="1" /></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 transition-colors text-blue-600">
+                      <th class="p-4 text-left font-semibold bg-[#f9fafb]/50">각 주주지분율</th>
+                      <td id="sharePercentPerPerson" class="p-4 text-center font-bold underline decoration-dotted"></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 transition-colors">
+                      <th class="p-4 text-left font-semibold text-[#4e5968] bg-[#f9fafb]/50">부(父)법인 배당액</th>
+                      <td class="p-3"><input type="text" id="input_totalDividend"
+                          class="w-full bg-[#f2f4f6]/50 border-none text-center font-bold text-[#1a1f27] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all text-right"
+                          value="107,874,865" /></td>
+                    </tr>
+                    <tr class="bg-blue-50/20">
+                      <th class="p-4 text-left font-bold text-[#203578]">자녀법인 배당소득</th>
+                      <td id="output_corpDividendRatio" class="p-4 text-right font-black text-[#203578]"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 2: 거래 이익 상세 -->
+            <section>
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+                <h3 class="text-xl font-normal text-[#1a1f27]">특정법인 거래 이익</h3>
+              </div>
+              <div class="rounded-2xl border border-gray-100 overflow-hidden">
+                <table class="w-full text-[14px]">
+                  <tbody class="divide-y divide-gray-50">
+                    <tr class="hover:bg-gray-50/50 transition-colors">
+                      <th class="p-4 w-1/2 text-left font-semibold text-[#4e5968] bg-[#f9fafb]/50">특정법인 지분율 (%)</th>
+                      <td class="p-3"><input id="childCorpStatusInput" type="text"
+                          class="w-full bg-[#f2f4f6]/50 border-none text-center font-bold text-[#1a1f27] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all"
+                          value="100" /></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 transition-colors">
+                      <th class="p-4 text-left font-semibold text-[#4e5968] bg-[#f9fafb]/50">지배주주수 (명)</th>
+                      <td class="p-3"><input id="subCorpShareInput_1" type="text"
+                          class="w-full bg-[#f2f4f6]/50 border-none text-center font-bold text-[#1a1f27] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all"
+                          value="1" /></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 transition-colors">
+                      <th class="p-4 text-left font-semibold text-[#4e5968] bg-[#f9fafb]/50">연간 소득금액</th>
+                      <td class="p-3"><input id="incomeYearlyInput_1" type="text"
+                          class="w-full bg-[#f2f4f6]/50 border-none text-right font-bold text-[#1a1f27] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all"
+                          value="0" /></td>
+                    </tr>
+                    <tr class="hover:bg-gray-50/50 transition-colors">
+                      <th class="p-4 text-left font-semibold text-[#4e5968] bg-[#f9fafb]/50">저가양수/차액</th>
+                      <td class="p-3"><input id="lowHighDiffInput" type="text"
+                          class="w-full bg-[#f2f4f6]/50 border-none text-right font-black text-[#3182f6] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all underline decoration-dotted"
+                          value="1,000,000,000" /></td>
+                    </tr>
+                    <tr class="bg-gray-50/30">
+                      <th class="p-4 text-left font-semibold text-[#4e5968]">이월결손금</th>
+                      <td class="p-3"><input id="lossCarriedForwardInput" type="text"
+                          class="w-full bg-transparent border-none text-right font-bold text-[#4e5968] focus:ring-2 focus:ring-blue-100 rounded-lg p-2 transition-all"
+                          value="0" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <!-- Result Section -->
+          <section class="mt-12 bg-[#1a1f27] rounded-[24px] overflow-hidden shadow-xl text-white">
+            <div class="px-8 py-6 border-b border-white/5 bg-white/5 flex justify-between items-center">
+              <h3 class="text-lg font-bold">시뮬레이션 분석 결과</h3>
+              <div class="flex items-center gap-2 text-[12px] text-gray-400">
+                <i data-lucide="info" class="w-4 h-4"></i>
+                입력 데이터 기반 실시간 분석
+              </div>
+            </div>
+
+            <div class="p-8">
+              <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 mb-8">
+                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                  <span class="text-gray-400 font-medium text-sm">특정법인 이익 합계</span>
+                  <span id="specificCorpBenefit" class="font-bold text-lg"></span>
+                </div>
+                <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                  <span class="text-gray-400 font-medium text-sm">법인세 산출세액</span>
+                  <span id="corporateTax" class="font-bold text-lg text-red-400"></span>
+                </div>
+              </div>
+
+              <div class="bg-white/5 rounded-2xl p-8 mb-8 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-blue-500/5 blur-2xl"></div>
+                <div class="relative z-10">
+                  <p class="text-gray-400 text-sm font-bold mb-2">증여의제이익 (1인당)</p>
+                  <p id="giftAssumedIncome" class="text-4xl md:text-5xl font-black text-white"></p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex justify-between items-center bg-white/5 p-5 rounded-xl border border-white/5">
+                  <div class="flex items-center gap-3">
+                    <span class="text-sm text-gray-400">증여의제 여부</span>
+                    <span id="giftAssumedJudgment"
+                      class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-bold"></span>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-[10px] text-gray-500 font-bold mb-1 uppercase tracking-widest">Gift Tax (Assumed)</p>
+                    <p id="giftAssumedTax" class="text-xl font-black text-red-400"></p>
+                  </div>
+                </div>
+
+                <div class="flex justify-center items-center py-8 border-t border-dashed border-white/20 mt-8">
+                  <div class="text-center">
+                    <h5 class="text-sm font-bold text-blue-400 mb-4 tracking-[0.2em] uppercase">Final Results</h5>
+                    <div class="flex items-baseline gap-2">
+                      <span class="text-sm text-gray-400 font-medium">최종 납부할 증여세액</span>
+                      <span id="finalGiftTax" class="text-5xl md:text-6xl font-black text-[#fab005]"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Standardized Footer -->
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc802-1.js?v=2.1"></script>
+<script>
+  lucide.createIcons();
+  function switchCase(caseNum) {
+    // Shared structure consistency
+  }
+</script>

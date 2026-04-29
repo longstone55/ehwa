@@ -1,0 +1,560 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.9" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+</style>
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-layout-text-sidebar"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+    <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-title fw-bold">세무법인이화 간편세금계산 <span style="font-weight: 300; font-size: 10px;">Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+<div class="chat-history" style='padding-bottom:15px;'>
+  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+  <div class="chat-list">
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-800-1.html" class="chat-item">
+      <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+      <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+    </a> -->
+    <!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+      <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-801-1.html" class="chat-item">
+      <span class="chat-title">2-1. 개인 대표 사업소득+임대소득 세금 비교</span>
+    </a>
+    <a href="/roma/sub/sub-801-2.html" class="chat-item">
+      <span class="chat-title">2-2. 법인 대표 근로소득+임대소득 세금 비교</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+      <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">3.법인주주 증여와 법인세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px;">
+    <a href="/roma/sub/sub-802-1.html" class="chat-item">
+      <span class="chat-title">3-1. 특정법인증여의제</span>
+    </a> 
+    <a href="/roma/sub/sub-802-2.html" class="chat-item">
+      <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+    </a>
+    <a href="/roma/sub/sub-802-3.html" class="chat-item">
+      <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+ <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+      <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+    </a>  
+   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+      <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+    </a> -->
+    <!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+      <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+    </a>  -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-804-1.html" class="chat-item">
+      <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-804-2.html" class="chat-item">
+      <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+    </a>
+  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+      <span class="chat-title">5-3. 주택 취득세 계산</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+      <span class="chat-title">6-1. 상속세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-2.html" class="chat-item">
+      <span class="chat-title">6-2. 증여세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-3.html" class="chat-item">
+    <span class="chat-title">6-3. 주식양도소득세 계산</span>
+    </a> 
+   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+      <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+    </a>
+  </div>
+</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">7.자녀법인차등배당</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+		  <span class="chat-title">7-1. 자녀법인차등배당</span>
+		</a> 
+		<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+		  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+		  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+		</a> -->
+	  </div>
+	</div>
+
+  </div>
+</div>
+<!-- 좌측메뉴 영역  끝 -->
+        
+        
+        
+        
+   <div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+<style>
+.collapsible-row td.toggle-btn {
+  cursor: pointer;
+}
+</style>
+                <div class="right-wrap">
+                <div class="container" id="main-container">
+                  <div class="top-box">
+                    <div class="scroll-content">
+                      <div class="inner-content">
+                        <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+                          <div id="print_wrap">
+                            <div class="page" id="page1">
+                              <div class="biz-wrapper">
+                                <div class="biz-header">
+								<h2 class="biz-title">특정법인증여의제</h2>
+								<p class="biz-description">
+								특정법인과의 거래로 발생할 수 있는 간접적인 이익의 증여세 부담을 간편하고 정확하게 계산할 수 있도록 도와주는,<br/>지배주주 및 세무 담당자를 위한 실용적인 계산기입니다.
+								</p>
+							  </div>
+							  <div class="biz-body">
+								<ul class="biz-list">
+								<li class="mb-2">1.복잡한 세법 계산을 자동화 : 증여의제 계산식을 자동으로 적용하여 수작업 없이 결과를 빠르게 도출합니다.</li>
+								<li class="mb-2">2.지배주주 여부 및 지분율 반영 : 지배주주 여부, 특수관계인 지분율 등을 자동으로 고려하여 정확한 과세대상 금액을 계산합니다.</li>
+								<li class="mb-2">3.세무 비전문가도 쉽게 사용 가능 :  회계·세무 지식이 없어도 입력만 하면 손쉽게 결과를 확인할 수 있습니다.</li>
+								<li class="mb-2">4.실시간 결과 제공 : 값을 입력하는 즉시 계산 결과를 제공하여 의사결정을 빠르게 도와줍니다.</li>
+								</ul>
+								<p class="biz-note">※ 누구나 무료로 이용 가능하며, 최신 세법 개정사항을 반영하여 지속적으로 개선됩니다.</p>
+							  </div>
+							</div>
+								
+                                <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>	
+							<div class="card input-section">
+							  <div class="card-body p-0">
+								<div class="table-responsive">
+								  <div class="table-title">확인란1</div>
+									<table class="table input-form-table text-center">
+									  <thead>
+										<tr>
+										  <th style='width:250px'>구분</th>
+										  <th>자녀법인 현황</th>
+										  <th style='width:250px'>구분</th>
+										  <th>부(父)법인 현황</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr>
+										  <td>자녀법인 주주수</td>	
+										  <td><input id="subCorpShareInput_2" type="text" class="share-input form-control text-center no-won input-text input9" value="3"/></td>		
+										  <td>자녀법인 지분율</td>
+										  <td><input type="text" id="input_subCorpRate" class="form-control text-center no-won percent-input" value="1"/></td>									  
+										</tr>
+										<tr>
+										  <td>각 주주지분율</td>
+										  <td id="sharePercentPerPerson"></td>	
+										  <td>배당실시액</td>
+										  <td>
+											<input type="text" id="input_totalDividend" class="form-control text-center money-input input-text" value="107874865"/>
+										  </td>									  
+										</tr>
+										<tr>
+										  <td>자녀법인 배당소득</td>
+										    <td id="output_corpDividendRatio"></td>
+										  <td></td><td></td>			  
+										</tr>
+										<tr>
+									      <td>자녀법인 균등배당소득</td>
+										  <td id="output_equalDividendIncome"></td>		
+										  <td></td><td></td>
+										</tr>
+									  </tbody>
+									</table>
+									</div>	
+							  </div>
+							</div>
+                               </div>
+                           <div class="page" id="page2">
+                      		<div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>	
+							<div class="card input-section">
+							  <div class="card-body p-0">
+								<div class="table-responsive">
+								  <div class="table-title">입력란1</div>
+									<table class="table input-form-table text-center">
+									  <thead>
+										<tr>
+										  <th style='width:250px' class="position-relative text-center">
+										   구분
+                                              <button data-group="1" class="toggle-group-btn btn btn-sm toggle-btn2 position-absolute top-50 end-0 translate-middle-y me-1" data-target="tbody" title="전체 접기">
+                                                  <i class="bi bi-chevron-down"></i>
+                                              </button>                                              
+										  </th>
+										  <th>금액/내용</th>
+										  <th style='width:250px'>구분</th>
+										  <th>금액/내용</th>
+										</tr>
+									  </thead>
+									  <tbody>
+										<tr class="group-1">
+										  <td>자녀법인의 부법인 지분율</td>
+										  <td><input id="childCorpStatusInput" type="text" class="form-control text-center no-won percent-input" value="50" /></td>
+										  <td>자녀법인 주주수</td>
+										  <td><input id="subCorpShareInput_1" type="text" class="share-input form-control text-center no-won input-text input9" value="3"/></td>
+										</tr>
+										<tr class="group-1">
+										  <td>(1)각 사업연도 소득</td>	
+										  <td><input id="incomeYearlyInput_1" type="text" class="incomeYearly form-control text-center money-input input-text" value="0"/></td>		
+										  <td>(2)이월결손금</td>
+										  <td><input id="lossCarriedForwardInput" type="text" class="form-control text-center money-input input-text input2" value="0"/></td>										  
+										</tr>
+
+										<tr class="group-1">
+										  <td>① 저고가 거래 차액</td>
+										  <td><input id="lowHighDiffInput" type="text" class="form-control text-center money-input input-text input3" value="0"/></td>	
+										  <td>② 채무면제이익</td>
+										  <td><input id="debtForgivenInput" type="text" class="form-control text-center money-input input-text input4" value="0"/></td>										  
+										</tr>
+										<tr class="group-1">
+										  <td>③ 저가현물출자이익</td>
+										  <td><input id="cheapInKindInput" type="text" class="form-control text-center money-input input-text input5" value="0"/></td>	
+										  <td>④-1 자산수증이익</td>
+										  <td><input id="assetReceiptInput" type="text" class="form-control text-center money-input input-text input6" value="0"/></td>										  
+										</tr>
+										<tr class="group-1">
+										  <td>④-2 금전무상대부이익</td>
+										  <td><input id="freeLoanInput" type="text" class="form-control text-center money-input input-text input7" value="0" /></td>
+										  <td>배당소득</td>
+										  <td><input id="dividendIncomeInput" type="text" class="form-control text-center money-input input-text input8" value="600000000" /></td>
+										</tr>
+									  </tbody>
+									</table>
+									</div>	
+							  </div>
+							</div>
+							
+							<div class="page-break"></div> 								
+                                <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>	
+							<div class="card">
+							  <div class="card-body p-0">
+                                  							<div class="card input-section">
+
+								<table class="table excel-table m-0">
+								  <div class="table-title">입력란2 / 확인란2</div>								
+								  <thead>
+									<tr>
+									<th class="position-relative text-center" style="width:250px; background-color:#95c4ba;">구분</th>
+                                    <th class="text-center" style="background-color:#95c4ba;">계산식</th>
+                                    <th class="text-center" style="background-color:#95c4ba;">금액</th>
+									</tr>
+								  </thead>
+								  <tbody>
+									<tr>
+									  <td>자녀법인의 부법인 지분율</td>
+									  <td></td>
+									  <td id="subCorpShare" class="bg-green">
+										  <div class="input-group">
+											<input id="childCorpStatusMirror" type="text" class=" form-control text-center no-won percent-input" value="50" />
+
+										  </div>
+										</td>
+									</tr>
+									<tr>
+									  <td>자녀법인 주주수</td>
+									  <td></td>
+									  <td id="numShareholders" class="bg-green"><input id="subCorpShareInput_2" type="text" class="share-input form-control text-center no-won" value="3"/></td>
+									</tr>
+									<tr>
+									 <td style="text-align:left !important; padding-left:70px !important;">(1)각 사업연도 소득</td>
+									  <td></td>
+									  <td id="incomeYearly" class="bg-green"><input id="incomeYearlyInput_2" type="text" class=" incomeYearly form-control text-center money-input input-text" value="0"/></td>
+									</tr>
+									<tr>
+									  <td style="text-align:left !important; padding-left:70px !important;">(2) 이월결손금</td>
+									  <td></td>
+									  <td id="lossCarriedForward" class="bg-green"><input id="lossCarriedForwardInput" type="text" class=" form-control text-center money-input input-text input2" value="0"/></td>
+									</tr>
+									<tr>
+									   <td style="text-align:left !important; padding-left:70px !important;">(3)특정법인 이익</td>
+									  <td>①+②+③+④-3-1</td>
+									  <td id="specificCorpBenefit"></td>
+									</tr>
+									<tr>
+									    <td style="text-align:left !important; padding-left:75px !important;">① 저고가 거래 차액</td>
+									  <td></td>
+									  <td id="lowHighDiff" class="bg-green"><input id="lowHighDiffInput" type="text" class=" form-control text-center money-input input-text input3" value="0"/></td>
+									</tr>
+									<tr>
+									   <td style="text-align:left !important; padding-left:75px !important;">② 채무면제이익</td>
+									  <td></td>
+									  <td id="debtForgiven" class="bg-green"><input id="debtForgivenInput" type="text" class=" form-control text-center money-input input-text input4" value="0"/></td>
+									</tr>
+									<tr>
+									   <td style="text-align:left !important; padding-left:75px !important;">③ 저가현물출자이익</td>
+									  <td></td>
+									  <td id="cheapInKind" class="bg-green"><input id="cheapInKindInput" type="text" class=" form-control text-center money-input input-text input5" value="0"/></td>
+									</tr>
+									<tr>
+									 <td style="text-align:left !important; padding-left:75px !important;">④-1 자산수증이익</td>
+									  <td></td>
+									  <td id="assetReceipt" class="bg-green"><input id="assetReceiptInput" type="text" class=" form-control text-center money-input input-text input6" value="0"/></td>
+									</tr>
+									<tr>
+									   <td style="text-align:left !important; padding-left:75px !important;">④-2 금전무상대부이익</td>
+									  <td></td>
+									  <td id="freeLoan" class="bg-green"><input id="freeLoanInput" type="text" class=" form-control text-center money-input input-text input7" value="0" /></td>
+									</tr>
+									<tr>
+									   <td style="text-align:left !important; padding-left:75px !important;">④-3-1 배당소득</td>
+									  <td></td>
+									  <td id="dividendIncome" class="bg-green"><input id="dividendIncomeInput" type="text" class=" form-control text-center money-input input-text input8" value="0" /></td>
+									</tr>
+									<tr class="bg-green">
+									   <td style='font-weight:bold'>(-) 수입배당금 익금불산입</td>
+									  <td>100%</td>
+									  <td id="excludedDividend" style='color:red; font-weight:bold'></td>
+									</tr>
+									<tr class="bg-green">
+									  <td style='font-weight:bold'>(F) 특정법인 소득금액</td>
+									  <td>(1)+(2)+(3)</td>
+									  <td id="specificCorpIncome" style='font-weight:bold'></td>
+									</tr>
+									<tr>
+									  <td>법인세율 (t)</td>
+									  <td></td>
+									  <td id="corporateTaxRate">0%</td>
+									</tr>
+									<tr>
+									  <td>(T) 법인세 산출세액</td>
+									  <td>(F) * t</td>
+									  <td id="corporateTax">0</td>
+									</tr>
+									<tr class="bg-green">
+									  <td style='font-weight:bold'>④-3-2 초과배당이익</td>
+									  <td></td>
+									  <td id="extraDividend" style='font-weight:bold'></td>
+									</tr>
+									<tr>
+									  <td>특정법인 지분율</td>
+									  <td></td>
+									  <td id="specificShareRate"></td>
+									</tr>
+									<tr>
+									  <td>균등배당금액</td>
+									  <td>배당실시액*특정법인지분율</td>
+									  <td id="equalDividend"></td>
+									</tr>
+									<tr class="bg-green">
+									  <td style='font-weight:bold'>(G) 특정법인 거래이익</td>
+									  <td>①+②+③+④-3-2</td>
+									  <td id="specificCorpTradeProfit" style='font-weight:bold'></td>
+									</tr>
+									<tr>
+									  <td>(H) 특정이익 비중</td>
+									  <td>G / F</td>
+									  <td id="incomeRatio"></td>
+									</tr>
+									<tr>
+									  <td>(T')특정법인거래이익 상당세액</td>
+									  <td>T × H</td>
+									  <td id="dealTax"></td>
+									</tr>
+									<tr class="bg-green">
+									  <td style='font-weight:bold'>(a) 지배주주 지분율</td>
+									  <td></td>
+									  <td id="majorShareRate" style='font-weight:bold'></td>
+									</tr>
+									<tr>
+									  <td>(R)특정법인 주주 1인당 증여의제이익</td>
+									  <td>(G-T')*a</td>
+									  <td id="giftAssumedIncome"></td>
+									</tr>
+									<tr>
+									  <td>증여의제 여부 판단</td>
+									  <td>1억원 이상</td>
+									  <td id="giftAssumedJudgment"></td>
+									</tr>
+									<tr class="bg-green">
+									  <td style='font-weight:bold'>(J)증여의제 증여세액</td>
+									  <td>R × 20%</td>
+									  <td id="giftAssumedTax" style='font-weight:bold'></td>
+									</tr>
+									<tr>
+									  <td>(K) 증여세 한도액</td>
+									  <td>(ㄴ - w)</td>
+									  <td id="giftTaxLimit"></td>
+									</tr>
+									<tr class="bg-green">
+									  <td style='font-weight:bold'>특정법인 주주 1인당 직접증여이익</td>
+									  <td>G × a</td>
+									  <td id="directGiftIncome" style='font-weight:bold'></td>
+									</tr>
+									<tr>
+									  <td>직접증여 증여세액 (20%)</td>
+									  <td>G × a × 20%</td>
+									  <td id="directGiftTax"></td>
+									</tr>
+									<tr>
+									  <td>법인세 상당세액 (T' × a)</td>
+									  <td>T' × a</td>
+									  <td id="corporateTaxShare"></td>
+									</tr>
+									<tr class="bg-green">
+									  <td style='font-weight:bold'>납부할 증여세액 = min(J, K)</td>
+									  <td>min(J, K)</td>
+									  <td><strong id="finalGiftTax" style='font-weight:bold'></strong></td>
+									</tr>
+								  </tbody>
+								</table>
+							  </div>
+							</div>
+                                </div>
+                           </div>
+						   </div>
+                            </div>
+							<!--@import(/roma/sub/sub-menu.html)-->	
+
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc802-1.js?v=2.0"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

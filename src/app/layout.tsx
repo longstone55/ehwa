@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
+import HeaderWrapper from "@/components/HeaderWrapper";
+import FooterWrapper from "@/components/FooterWrapper";
 
 export const metadata: Metadata = {
   title: "세무법인이화 - 전문적인 세무 솔루션",
@@ -15,8 +16,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className="antialiased font-pretendard">
-        <Header />
+        <HeaderWrapper />
         {children}
+        <FooterWrapper />
       </body>
     </html>
   );

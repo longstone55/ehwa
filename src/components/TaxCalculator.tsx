@@ -37,19 +37,7 @@ export default function TaxCalculator() {
   return (
     <div className="w-full space-y-6">
       {/* 1. Case Selector Tabs */}
-      <div className="flex p-1 bg-gray-100 rounded-2xl md:max-w-md mx-auto">
-        {['CASE I', 'CASE II', 'CASE III', 'CASE IV'].map((label, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveCase(i)}
-            className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
-              activeCase === i ? 'bg-white text-[#203578] shadow-sm' : 'text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+
 
       {/* 2. Integrated Calculator Card */}
       <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
@@ -82,6 +70,20 @@ export default function TaxCalculator() {
           </div>
         </div>
 
+      <div className="flex p-1 bg-gray-100 rounded-2xl md:max-w-md mx-auto mt-8">
+        {['CASE I', 'CASE II', 'CASE III', 'CASE IV'].map((label, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveCase(i)}
+            className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
+              activeCase === i ? 'bg-white text-[#203578] shadow-sm' : 'text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      
         <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
           {/* --- INPUT SECTION --- */}
           <section className="px-4 md:px-0">

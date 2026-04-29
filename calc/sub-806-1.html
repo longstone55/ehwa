@@ -1,0 +1,719 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.5" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+.highlight-columns-table tbody td:nth-child(3),
+.highlight-columns-table tbody td:nth-child(5),
+.highlight-columns-table tbody td:nth-child(7),
+.highlight-columns-table tbody td:nth-child(9),
+.highlight-columns-table tbody td:nth-child(11)
+{
+    background-color: #e6f0ec;
+}
+
+	  input.form-control {
+		font-size: 12px;
+		height:32px;
+		text-align:center !important;
+		border:1px solid black;
+	  }
+
+	table td,
+	table th {
+		height: 50px;
+		vertical-align: middle;
+		text-align:center !important;
+	}
+	  .force-break {
+		white-space: normal !important;
+		word-break: break-word !important;
+	}
+
+	#td_5_1year,
+    #td_5_2year,
+    #td_5_3year,
+    #td_5_4year,
+    #td_5_5year,
+    #td_5_6year,
+    #td_5_7year,
+    #td_5_8year,
+    #td_5_9year,
+    #td_5_10year,
+    #td_5_11year,
+    #td_5_12year,
+    #td_5_13year,
+    #td_5_14year,
+    #td_5_15year,
+    #td_5_16year,
+    #td_5_17year,
+    #td_5_18year,
+    #td_5_19year,
+    #td_5_20year {
+      color: red;
+    }
+
+</style>
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-layout-text-sidebar"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+ <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-titlefont-weight : normal">세무법인이화 TAX-<font size=4>E𝒂sy</font> <span style="font-weight: 300; font-size: 10px;">Beta Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+	<div class="chat-history" style='padding-bottom:15px;'>
+	  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+	  <div class="chat-list">
+
+		<div class="category-item">
+		  <a href="#" class="chat-item toggle-category">
+			<span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+			<i class="bi bi-chevron-down"></i>
+		  </a>
+		  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+			<a href="/roma/sub/sub-800-1.html" class="chat-item">
+			  <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+			</a>
+			<!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+			  <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+			</a> -->
+			<!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+			  <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+			</a> -->
+		  </div>
+		</div>
+
+		<div class="category-item">
+		  <a href="#" class="chat-item toggle-category">
+			<span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+			<i class="bi bi-chevron-down"></i>
+		  </a>
+		  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+			<a href="/roma/sub/sub-801-1.html" class="chat-item">
+			  <span class="chat-title">2-1.개인 대표 사업소득+임대소득 세금 비교</span>
+			</a>
+			<a href="/roma/sub/sub-801-2.html" class="chat-item">
+			  <span class="chat-title">2-2.법인 대표 근로소득+임대소득 세금 비교</span>
+			</a>
+			<!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+			  <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+			</a> -->
+		  </div>
+		</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">3.법인주주 증여와 법인세</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+		<a href="/roma/sub/sub-802-1.html" class="chat-item">
+		  <span class="chat-title">3-1. 특정법인증여의제</span>
+		</a> 
+		<a href="/roma/sub/sub-802-2.html" class="chat-item">
+		  <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+		</a>
+		<a href="/roma/sub/sub-802-3.html" class="chat-item">
+		  <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+		</a> 
+	  </div>
+	</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+		  <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+		</a>  
+	   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+		  <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+		  <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+		</a>  -->
+	  </div>
+	</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+		<a href="/roma/sub/sub-804-1.html" class="chat-item">
+		  <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+		</a> 
+		<a href="/roma/sub/sub-804-2.html" class="chat-item">
+		  <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+		</a>
+	  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+		  <span class="chat-title">5-3. 취득세</span>
+		</a> 
+	  </div>
+	</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+		  <span class="chat-title">6-1. 상속세 계산</span>
+		</a> 
+		<a href="/roma/sub/sub-805-2.html" class="chat-item">
+		  <span class="chat-title">6-2. 증여세 계산</span>
+		</a> 
+		<a href="/roma/sub/sub-805-3.html" class="chat-item">
+		<span class="chat-title">6-3. 주식양도소득세 계산</span>
+		</a> 
+	   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+		  <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+		</a>
+	  </div>
+	</div>
+
+		<div class="category-item">
+		  <a href="#" class="chat-item toggle-category">
+			<span class="chat-title">7.자녀법인차등배당</span>
+			<i class="bi bi-chevron-down"></i>
+		  </a>
+		 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+		 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+			  <span class="chat-title">7-1. 자녀법인차등배당</span>
+			</a> 
+			<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+			  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+			</a> -->
+			<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+			  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+			</a> -->
+		  </div>
+		</div>
+
+	  </div>
+	</div>
+
+<div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+    <div class="right-wrap">
+        <div class="container" id="main-container">
+            <div class="top-box">
+                <div class="scroll-content ">
+                    <div class="inner-content">
+                        <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+                                <div id="print_wrap">	
+                           <div class="page" id="page1">
+                                    
+								<div id="calculator-1" class="container">
+								<div class="biz-wrapper">
+								  <div class="biz-header">
+									<h2 class="biz-title">자녀법인차등배당</h2>
+									<p class="biz-description">
+									   아버지 법인이 자녀 법인을 통해 이익을 분배하는 구조에서, 지분율, 배당률, 이익 규모 등을 입력하면, <br/>직접 배당과 자녀법인을 통한 세금 부담과 순이익 변화및 간접배당의 세부 결과를 시뮬레이션할 수 있는 간편계산기입니다.
+									</p>
+								  </div>
+								  <div class="biz-body">
+									<ul class="biz-list">
+											<li class="mb-2">1.특수관계인 거래 반영 : 저가 양도 시 증여세 추정 문제를 자동으로 판단하여 리스크를 줄일 수 있습니다.</li>
+												<li class="mb-2">2.상장·비상장 모두 지원 : 상장주식, 비상장주식, 중소기업 주식 등 다양한 경우의 세율 차이를 반영합니다.</li>
+												<li class="mb-2">3.절세전략 사전 검토 가능 :  실제 양도 전 예상세액을 미리 확인함으로써 세금 부담을 줄일 수 있는 구조 판단이 가능합니다.</li>
+												<li class="mb-2">4.증여세/양도소득세 자동 계산 : 주식 양도가액과 취득가액만 입력하면 정확한 세금이 즉시 산출됩니다.</li>
+									</ul>
+									<p class="biz-note">※ 복잡한 구조도 숫자만 입력하면 자동 계산되므로 절세 전략 수립이나 지분 조정 시, 지분율·배당률을 자유롭게 조정하며 최적의 절세 조합을 찾아볼 수 있습니다.</p>
+								  </div>
+							</div>
+		
+                                
+                                
+                       <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>	
+							<div class="card input-section">
+									<div class="card-body p-0">
+										<div class="table-responsive">
+										<div class="table-title">입력란</div>										
+											<table class="table text-center" style="font-size:0.9em; white-space:nowrap;">
+											  <thead>
+												<tr>
+												  <th class="bg-main">구분</th>
+												  <th class="bg-main">입력</th>
+												  <th class="bg-main" rowspan="3" colspan="2">익금</th>
+												  <th class="bg-main" rowspan="3" colspan="2">법인세</th>
+												  <th class="bg-main" rowspan="3" colspan="2">세후유입</th>
+												</tr>
+												<tr>
+												  <td class="bg-main fw-bold">부법인 순자산</td>
+												  <td class="bg-green"><input type="text" id="subCorpAsset" class="form-control text-end" value="6,031,000,000" /></td>
+												</tr>	
+												<tr>
+												  <td class="bg-main fw-bold">부법인 세후순익</td>
+												  <td class="bg-green"> <input type="text" id="subCorpNetIncome" class="form-control text-end" value="300,000,000" /></td>
+												</tr>												
+											  </thead>
+											  <tbody>
+												<tr>
+												<td class="bg-main fw-bold">아들법인세전이익</td>
+												  <td class="bg-green"><input type="text" id="sonCorpBeforeTaxIncome_1" class="form-control text-end" value="0" /></td>								
+												  
+												  <td class="bg-main fw-bold">익금</td>                                                  
+												  <td class="bg-green" id="subCorpIncome_1"></td> 
+												  <td class="bg-main fw-bold">법인세 2</td>                                                  
+												  <td class="bg-green" id="subCorpTax_1"></td>
+												  <td class="bg-main fw-bold">세후유입 </td>                                                  
+												  <td class="bg-green" id="subCorpNetIncome_1"></td> 
+												</tr>
+												<tr>
+												<td class="bg-main fw-bold">부법인 차등배당</td>	
+												  <td class="bg-green"> <input type="text" id="subCorpDividend_1" class="form-control text-end" value="500,000,000" /></td>		
+												
+												  <td class="bg-main fw-bold">익금1 </td>
+												  <td class="bg-green" id="sonCorpIncome_1"></td> 
+												  <td class="bg-main fw-bold">법인세 1</td>
+												  <td class="bg-green" id="sonCorpTax_1"></td>
+												  <td class="bg-main fw-bold">세후유입1 </td>
+												  <td class="bg-green" id="sonCorpNetIncome_1"></td>
+												</tr>
+												<tr>
+												  <td class="bg-main fw-bold">자녀법인 지분율</td>
+												  <td class="bg-main fw-bold">  <select id="shareRatio" class="form-select form-select-sm text-center">
+													  <option value="under20">20% 미만</option>
+													  <option value="over20">20% 이상</option>
+													  <option value="over50">50% 이상</option>
+													</select></td>												  
+													  <td colspan="2" class="bg-main fw-bold">일 경우 / 익금불산입</td>												  
+												  <td class="bg-green" colspan="4" id="shareRatioPercent"></td>
+
+												</tr>
+											  </tbody>
+											</table>
+												</div>
+											</div>
+										</div>
+                                    </div></div>
+							    <div class="page-break"></div> 								
+                           <div class="page" id="page2">
+
+							 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>				
+							<div class="card input-section">
+									<div class="card-body p-0">
+										<div class="table-responsive">
+										<div class="table-title">확인란1</div>	
+                                            <div class="table-title bg-main" style='border:1px solid black;' id="dividendLabel_1">500백만원 배당시 개인배당 과 법인배당 세금 비교 / 건보료포함</div>
+											<table class="table table-bordered text-center" style="font-size:0.9em; white-space:nowrap;">
+											  <thead>
+												<thead>
+												  <tr class="bg-main">
+													<th>개인 배당 시 배당소득세</th>
+													<th>개인 배당 시 세후유입</th>
+													<th>법인 배당 시 법인세1</th>
+													<th>법인 배당 시 세후유입1</th>
+												  </tr>
+												</thead>
+											  </thead>
+											  <tbody>
+											  <tr>
+												<td class="bg-green" id="tax_personal_1"></td>
+												<td class="bg-green" id="tax_corp3_1"></td>
+												<td class="bg-green" id="tax_corp1_1"></td>
+												<td class="bg-green" id="tax_corp2_1"></td>
+											  </tr>
+											</tbody>
+											</table>
+												</div>
+											</div>
+										</div>
+
+                        <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>	
+							<div class="card input-section">
+									<div class="card-body p-0">
+										<div class="table-responsive">
+										<div class="table-title">확인란 2 / 전략 시뮬레이션 </div>	
+										<table class="table  text-center" style="font-size:0.9em; white-space:nowrap;">
+										 <thead>
+												<tr>
+												  <th rowspan="3"  class="bg-main">경과년수</th>
+												  <th colspan="3" class="bg-main" >전략 없이 실행할 때</th>
+												  <th colspan="6" class="bg-main" >전략 실행할 때</th>
+												</tr>
+												<tr  >
+												  <th colspan="3" class="bg-green">아버지 법인</th>
+												  <th colspan="3" class="bg-green">아버지 법인</th>
+												  <th colspan="3" class="bg-green">아들 법인</th>
+												</tr>
+												<tr >
+												  <th class="bg-green">순이익</th>
+												  <th class="bg-green">배당유출</th>
+												  <th class="bg-green">순자산</th>
+												  <th class="bg-green">순이익</th>
+												  <th class="bg-green">배당유출</th>
+												  <th class="bg-green">순자산</th>
+												  <th class="bg-green">순이익</th>
+												  <th class="bg-green">세후배당유입</th>
+												  <th class="bg-green">순자산</th>
+												</tr>
+											  </thead>
+											  <tbody>
+												<tr class="bg-green fw-bold" id="row_current">
+												  <td>현재</td>
+												  <td id="td_1_current"></td>
+												  <td id="td_2_current"></td>
+												  <td id="td_3_current"></td>
+												  <td id="td_4_current"></td>
+												  <td id="td_5_current"></td>
+												  <td id="td_6_current"></td>
+												  <td id="td_7_current"></td>
+												  <td id="td_8_current"></td>
+												  <td id="td_9_current">500,000,000</td>
+												</tr>
+
+												<tr id="row_1year">
+												  <td>1년 후</td>
+												  <td id="td_1_1year"></td>
+												  <td id="td_2_1year"></td>
+												  <td id="td_3_1year"></td>
+												  <td id="td_4_1year"></td>
+												  <td id="td_5_1year"></td>
+												  <td id="td_6_1year"></td>
+												  <td id="td_7_1year"></td>
+												  <td id="td_8_1year"></td>
+												  <td id="td_9_1year"></td>
+												</tr>
+
+												<tr id="row_2year">
+												  <td>2년 후</td>
+												  <td id="td_1_2year"></td>
+												  <td id="td_2_2year"></td>
+												  <td id="td_3_2year"></td>
+												  <td id="td_4_2year"></td>
+												  <td id="td_5_2year"></td>
+												  <td id="td_6_2year"></td>
+												  <td id="td_7_2year"></td>
+												  <td id="td_8_2year"></td>
+												  <td id="td_9_2year"></td>
+												</tr>
+
+												<tr id="row_3year">
+												  <td>3년 후</td>
+												  <td id="td_1_3year"></td>
+												  <td id="td_2_3year"></td>
+												  <td id="td_3_3year"></td>
+												  <td id="td_4_3year"></td>
+												  <td id="td_5_3year"></td>
+												  <td id="td_6_3year"></td>
+												  <td id="td_7_3year"></td>
+												  <td id="td_8_3year"></td>
+												  <td id="td_9_3year"></td>
+												</tr>
+
+												<tr id="row_4year">
+												  <td>4년 후</td>
+												  <td id="td_1_4year"></td>
+												  <td id="td_2_4year"></td>
+												  <td id="td_3_4year"></td>
+												  <td id="td_4_4year"></td>
+												  <td id="td_5_4year"></td>
+												  <td id="td_6_4year"></td>
+												  <td id="td_7_4year"></td>
+												  <td id="td_8_4year"></td>
+												  <td id="td_9_4year"></td>
+												</tr>
+
+												<tr class="bg-green fw-bold" id="row_5year">
+												  <td>5년 후</td>
+												  <td id="td_1_5year"></td>
+												  <td id="td_2_5year"></td>
+												  <td id="td_3_5year"></td>
+												  <td id="td_4_5year"></td>
+												  <td id="td_5_5year"></td>
+												  <td id="td_6_5year"></td>
+												  <td id="td_7_5year"></td>
+												  <td id="td_8_5year"></td>
+												  <td id="td_9_5year"></td>
+												</tr>
+
+												<tr id="row_6year">
+												  <td>6년 후</td>
+												  <td id="td_1_6year"></td>
+												  <td id="td_2_6year"></td>
+												  <td id="td_3_6year"></td>
+												  <td id="td_4_6year"></td>
+												  <td id="td_5_6year"></td>
+												  <td id="td_6_6year"></td>
+												  <td id="td_7_6year"></td>
+												  <td id="td_8_6year"></td>
+												  <td id="td_9_6year"></td>
+												</tr>
+
+												<tr id="row_7year">
+												  <td>7년 후</td>
+												  <td id="td_1_7year"></td>
+												  <td id="td_2_7year"></td>
+												  <td id="td_3_7year"></td>
+												  <td id="td_4_7year"></td>
+												  <td id="td_5_7year"></td>
+												  <td id="td_6_7year"></td>
+												  <td id="td_7_7year"></td>
+												  <td id="td_8_7year"></td>
+												  <td id="td_9_7year"></td>
+												</tr>
+
+												<tr id="row_8year">
+												  <td>8년 후</td>
+												  <td id="td_1_8year"></td>
+												  <td id="td_2_8year"></td>
+												  <td id="td_3_8year"></td>
+												  <td id="td_4_8year"></td>
+												  <td id="td_5_8year"></td>
+												  <td id="td_6_8year"></td>
+												  <td id="td_7_8year"></td>
+												  <td id="td_8_8year"></td>
+												  <td id="td_9_8year"></td>
+												</tr>
+
+												<tr id="row_9year">
+												  <td>9년 후</td>
+												  <td id="td_1_9year"></td>
+												  <td id="td_2_9year"></td>
+												  <td id="td_3_9year"></td>
+												  <td id="td_4_9year"></td>
+												  <td id="td_5_9year"></td>
+												  <td id="td_6_9year"></td>
+												  <td id="td_7_9year"></td>
+												  <td id="td_8_9year"></td>
+												  <td id="td_9_9year"></td>
+												</tr>
+
+												<tr class="bg-green fw-bold" id="row_10year">
+												  <td>10년 후</td>
+												  <td id="td_1_10year"></td>
+												  <td id="td_2_10year"></td>
+												  <td id="td_3_10year"></td>
+												  <td id="td_4_10year"></td>
+												  <td id="td_5_10year"></td>
+												  <td id="td_6_10year"></td>
+												  <td id="td_7_10year"></td>
+												  <td id="td_8_10year"></td>
+												  <td id="td_9_10year"></td>
+												</tr>
+												<tr id="row_11year">
+												  <td>11년 후</td>
+												  <td id="td_1_11year"></td>
+												  <td id="td_2_11year"></td>
+												  <td id="td_3_11year"></td>
+												  <td id="td_4_11year"></td>
+												  <td id="td_5_11year"></td>
+												  <td id="td_6_11year"></td>
+												  <td id="td_7_11year"></td>
+												  <td id="td_8_11year"></td>
+												  <td id="td_9_11year"></td>
+												</tr>
+												<tr id="row_12year">
+												  <td>12년 후</td>
+												  <td id="td_1_12year"></td>
+												  <td id="td_2_12year"></td>
+												  <td id="td_3_12year"></td>
+												  <td id="td_4_12year"></td>
+												  <td id="td_5_12year"></td>
+												  <td id="td_6_12year"></td>
+												  <td id="td_7_12year"></td>
+												  <td id="td_8_12year"></td>
+												  <td id="td_9_12year"></td>
+												</tr>
+												<tr id="row_13year">
+												  <td>13년 후</td>
+												  <td id="td_1_13year"></td>
+												  <td id="td_2_13year"></td>
+												  <td id="td_3_13year"></td>
+												  <td id="td_4_13year"></td>
+												  <td id="td_5_13year"></td>
+												  <td id="td_6_13year"></td>
+												  <td id="td_7_13year"></td>
+												  <td id="td_8_13year"></td>
+												  <td id="td_9_13year"></td>
+												</tr>
+												<tr id="row_14year">
+												  <td>14년 후</td>
+												  <td id="td_1_14year"></td>
+												  <td id="td_2_14year"></td>
+												  <td id="td_3_14year"></td>
+												  <td id="td_4_14year"></td>
+												  <td id="td_5_14year"></td>
+												  <td id="td_6_14year"></td>
+												  <td id="td_7_14year"></td>
+												  <td id="td_8_14year"></td>
+												  <td id="td_9_14year"></td>
+												</tr>
+												<tr class="bg-green fw-bold" id="row_15year">
+												  <td>15년 후</td>
+												  <td id="td_1_15year"></td>
+												  <td id="td_2_15year"></td>
+												  <td id="td_3_15year"></td>
+												  <td id="td_4_15year"></td>
+												  <td id="td_5_15year"></td>
+												  <td id="td_6_15year"></td>
+												  <td id="td_7_15year"></td>
+												  <td id="td_8_15year"></td>
+												  <td id="td_9_15year"></td>
+												</tr>
+												<tr id="row_16year">
+												  <td>16년 후</td>
+												  <td id="td_1_16year"></td>
+												  <td id="td_2_16year"></td>
+												  <td id="td_3_16year"></td>
+												  <td id="td_4_16year"></td>
+												  <td id="td_5_16year"></td>
+												  <td id="td_6_16year"></td>
+												  <td id="td_7_16year"></td>
+												  <td id="td_8_16year"></td>
+												  <td id="td_9_16year"></td>
+												</tr>
+												<tr id="row_17year">
+												  <td>17년 후</td>
+												  <td id="td_1_17year"></td>
+												  <td id="td_2_17year"></td>
+												  <td id="td_3_17year"></td>
+												  <td id="td_4_17year"></td>
+												  <td id="td_5_17year"></td>
+												  <td id="td_6_17year"></td>
+												  <td id="td_7_17year"></td>
+												  <td id="td_8_17year"></td>
+												  <td id="td_9_17year"></td>
+												</tr>
+												<tr id="row_18year">
+												  <td>18년 후</td>
+												  <td id="td_1_18year"></td>
+												  <td id="td_2_18year"></td>
+												  <td id="td_3_18year"></td>
+												  <td id="td_4_18year"></td>
+												  <td id="td_5_18year"></td>
+												  <td id="td_6_18year"></td>
+												  <td id="td_7_18year"></td>
+												  <td id="td_8_18year"></td>
+												  <td id="td_9_18year"></td>
+												</tr>
+												<tr id="row_19year">
+												  <td>19년 후</td>
+												  <td id="td_1_19year"></td>
+												  <td id="td_2_19year"></td>
+												  <td id="td_3_19year"></td>
+												  <td id="td_4_19year"></td>
+												  <td id="td_5_19year"></td>
+												  <td id="td_6_19year"></td>
+												  <td id="td_7_19year"></td>
+												  <td id="td_8_19year"></td>
+												  <td id="td_9_19year"></td>
+												</tr>
+												<tr class="bg-green fw-bold" id="row_20year">
+												  <td>20년 후</td>
+												  <td id="td_1_20year"></td>
+												  <td id="td_2_20year"></td>
+												  <td id="td_3_20year"></td>
+												  <td id="td_4_20year"></td>
+												  <td id="td_5_20year"></td>
+												  <td id="td_6_20year"></td>
+												  <td id="td_7_20year"></td>
+												  <td id="td_8_20year"></td>
+												  <td id="td_9_20year"></td>
+												</tr>
+											  </tbody>
+										</table>
+										
+									</div>
+								</div>
+							</div>
+								</div>
+                                    </div>
+									<!--@import(/roma/sub/sub-menu.html)-->	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc806-1.js?v=2.1"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

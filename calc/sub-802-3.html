@@ -1,0 +1,558 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.5" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-list"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+    <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-title fw-bold">세무법인이화 간편세금계산 <span style="font-weight: 300; font-size: 10px;">Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+<div class="chat-history" style='padding-bottom:15px;'>
+  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+  <div class="chat-list">
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px;">
+    <a href="/roma/sub/sub-800-1.html" class="chat-item">
+      <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+      <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+    </a> -->
+    <!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+      <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-801-1.html" class="chat-item">
+      <span class="chat-title">2-1.개인 대표 사업소득+임대소득 세금 비교</span>
+    </a>
+    <a href="/roma/sub/sub-801-2.html" class="chat-item">
+      <span class="chat-title">2-2.법인 대표 근로소득+임대소득 세금 비교</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+      <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">3.법인주주 증여와 법인세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-802-1.html" class="chat-item">
+      <span class="chat-title">3-1. 특정법인증여의제</span>
+    </a> 
+    <a href="/roma/sub/sub-802-2.html" class="chat-item">
+      <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+    </a>
+    <a href="/roma/sub/sub-802-3.html" class="chat-item">
+      <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+ <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+      <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+    </a>  
+   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+      <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+    </a> -->
+    <!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+      <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+    </a>  -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-804-1.html" class="chat-item">
+      <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-804-2.html" class="chat-item">
+      <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+    </a>
+  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+      <span class="chat-title">5-3. 주택 취득세 계산</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+      <span class="chat-title">6-1. 상속세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-2.html" class="chat-item">
+      <span class="chat-title">6-2. 증여세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-3.html" class="chat-item">
+    <span class="chat-title">6-3. 주식양도소득세 계산</span>
+    </a> 
+   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+      <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+    </a>
+  </div>
+</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">7.자녀법인차등배당</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+		  <span class="chat-title">7-1. 자녀법인차등배당</span>
+		</a> 
+		<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+		  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+		  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+		</a> -->
+	  </div>
+	</div>
+
+  </div>
+</div>
+
+
+   <div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+    <div class="right-wrap">
+        <div class="container" id="main-container">
+            <div class="top-box">
+                <div class="scroll-content ">
+                    <div class="inner-content">
+                        <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+                            <div id="print_wrap">	
+ 						<div class="page" id="page1">                                
+                            <div id="calculator-1" class="container">
+							<div class="biz-wrapper">
+							  <div class="biz-header">
+								<h2 class="biz-title">특정법인 증여와 법인세</h2>
+								<p class="biz-description">
+								  특정법인과의 거래로 인해 발생할 수 있는 증여세와 법인세 부담을 한 번에 간편하게 계산할 수 있는 통합 계산기입니다.
+								</p>
+							  </div>
+							  <div class="biz-body">
+								<ul class="biz-list">
+									<li class="mb-2">1.증여세와 법인세를 한 번에 계산 : 하나의 계산기로 두 가지 세금 항목을 동시에 계산할 수 있어 시간과 노력을 절약할 수 있습니다.</li>
+									<li class="mb-2">2.지배주주 및 특수관계인 지분 자동 반영 : 복잡한 지분 구조와 세법상 특수관계 요건을 자동으로 반영하여 정확도를 높입니다.</li>
+									<li class="mb-2">3.실시간 결과 제공 :  입력 즉시 세금 계산 결과를 확인할 수 있어 실무 판단이 신속하게 가능합니다.</li>
+									<li class="mb-2">4.최신 세법 반영 : 2025년 기준 최신 상속세 및 증여세법과 법인세율을 적용하여 믿을 수 있는 결과를 제공합니다.</li>
+								</ul>
+								<p class="biz-note">※ 세무 지식이 없는 사용자도 직관적인 입력만으로 전문가 수준의 계산 결과를 얻을 수 있습니다.</p>
+							  </div>
+							</div>
+
+                                
+                                 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>		
+							<div class="card input-section">
+							  <div class="card-body p-0">
+								<div class="table-responsive">
+								  <div class="table-title">입력란</div>
+								  <table class="table input-form-table text-center">
+									<thead>
+									  <tr>
+										<th>구분</th>
+										<th>부동산가액</th>
+										<th>월 임대소득</th>
+										<th>년 임대소득</th>
+									  </tr>
+									</thead>
+									<tbody>
+									  <tr>
+										<td>입력값</td>
+										<td><input type="text" class="form-control text-center money-input" value="832000000" id="subsidiaryStockPrice"  /></td>
+										<td><input type="text" class="form-control text-center money-input" value="1904167"  id="subsidiaryTotalShares"/></td>
+										<td><input type="text" class="form-control text-center money-input" value="77200" id="parentOwnedShares" readonly/></td>									
+									  </tr>
+									</tbody>
+								  </table>
+								</div>
+							  </div>
+							</div>
+                                </div>
+                                </div>
+                                
+						<div class="page-break"></div> 								
+ <div class="page" id="page2">
+                                 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>		
+							<div class="card my-4">
+								  <div class="card-body table-responsive p-0">
+									<div class="table-title">확인란/특정법인 증여와 법인세</div>
+									<table class=" excel-table text-center" id="tax-output-table">
+										  <thead>
+										  <tr>
+											<th class="bg-main" rowspan="2">부법인 지분율</th>
+											<th class="bg-main" rowspan="2">항목</th>
+											<th class="bg-main"  colspan="10">특정법인 주주수</th>
+										  </tr>
+										  <tr>
+											<th  class="bg-main">1명</th>
+											<th  class="bg-main">2명</th>
+											<th  class="bg-main">3명</th>
+											<th class="bg-main">4명</th>
+											<th class="bg-main">5명</th>
+											<th class="bg-main">6명</th>
+											<th class="bg-main">7명</th>
+											<th class="bg-main">8명</th>
+											<th class="bg-main">9명</th>
+											<th class="bg-main">10명</th>
+										  </tr>
+										</thead>
+										
+										<tbody>
+										  <tr class="table-secondary">
+											<td rowspan="3">1회분 증여재산</td>
+											<td class="text-center item-cell">재산가액</td>
+											<td>100,000,000</td>
+											<td class="bg-even">200,000,000</td>
+											<td>300,000,000</td>
+											<td class="bg-even">400,000,000</td>
+											<td>500,000,000</td>
+											<td class="bg-even">600,000,000</td>
+											<td>700,000,000</td>
+											<td class="bg-even">800,000,000</td>
+											<td>900,000,000</td>
+											<td class="bg-even">1,000,000,000</td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">부동산지분율</td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">소요기간</td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="table-secondary">
+											<td rowspan="3">1년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">2년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">3년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">4년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">5년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">6년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">7년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">8년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">9년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+
+										  <tr class="table-secondary">
+											<td rowspan="3">10년차</td>
+											<td class="text-center item-cell">임대소득</td>
+											<td>215000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr class="tax-output-row">
+											<td class="text-center">자녀법인소득금액</td>
+											<td>326000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										  <tr>
+											<td class="text-center">법인세</td>
+											<td>443000000</td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td><td></td><td class="bg-even"></td>
+											<td></td><td class="bg-even"></td>
+										  </tr>
+										</tbody>
+									</table>
+								  </div>
+								</div>						
+                            </div>
+							</div>
+                                </div>
+													<!--@import(/roma/sub/sub-menu.html)-->	
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc802-3.js?v=1.9"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

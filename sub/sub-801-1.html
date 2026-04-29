@@ -1,0 +1,329 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  /* Base styles that are hard to do with Tailwind utilities alone or need to be global for this page */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  .case-col {
+    display: none;
+  }
+
+  .case-col.active {
+    display: table-cell !important;
+  }
+
+  @media print {
+    .case-col {
+      display: table-cell !important;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+
+    #calculator-wrap {
+      background: white !important;
+    }
+  }
+
+  /* Segmented Control Animation */
+  .segmented-control {
+    position: relative;
+    display: flex;
+    background: #f2f4f6;
+    border-radius: 14px;
+    padding: 2px;
+  }
+
+  .segmented-item {
+    position: relative;
+    flex: 1;
+    z-index: 1;
+  }
+
+  .segmented-item button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8b95a1;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .segmented-item button.active {
+    color: #1a1f27;
+    font-weight: 600;
+  }
+
+  .segmented-glider {
+    position: absolute;
+    height: calc(100% - 4px);
+    width: calc(25% - 1px);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          사업소득과 임대소득 <br />
+          <span class="font-semibold text-[#3182f6]">상세 비교 분석</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          종합소득세와 건강보험료 부담을 포함한 <br class="hidden md:block" />
+          실제 가처분 소득의 변화를 시뮬레이션합니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block">
+    </div>
+  </section>
+
+  <!-- Sub Navigation -->
+  <!--@import(/roma/sub/sub-800-nav.html)-->
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- Case Selector (Modern Segmented Control) -->
+      <div class="max-w-sm mx-auto mb-12 no-print">
+        <div class="segmented-control">
+          <div class="segmented-item"><button class="active" onclick="switchCase(1)">상황 I</button></div>
+          <div class="segmented-item"><button onclick="switchCase(2)">상황 II</button></div>
+          <div class="segmented-item"><button onclick="switchCase(3)">상황 III</button></div>
+          <div class="segmented-item"><button onclick="switchCase(4)">상황 IV</button></div>
+          <div class="segmented-glider" id="caseGlider"></div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT CARD -->
+      <div
+        class="bg-white rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.02)] border border-gray-100/50 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/40 border-b border-gray-50">
+          <div class="space-y-4">
+            <div class="flex gap-4 items-start">
+              <span
+                class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">1</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">대표의 사업소득 외에 임대소득이 추가될 경우의
+                세부담 변화를 즉시 확인 가능합니다.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span
+                class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">2</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">상단 상황 탭을 통해 다양한 소득 시나리오를
+                전환하며 비교 분석하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Section 1: 소득 정보 입력 -->
+          <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">분석 대상 소득 입력</h3>
+            </div>
+
+            <div class="overflow-x-auto no-scrollbar rounded-3xl border border-gray-100 shadow-sm">
+              <table class="w-full text-center min-w-[600px]">
+                <thead>
+                  <tr
+                    class="bg-[#f9fafb] text-[#8b95a1] text-[11px] font-medium uppercase tracking-widest border-b border-gray-100">
+                    <th class="p-5 text-left sticky-left !bg-[#f9fafb] w-[200px]">소득 항목</th>
+                    <th class="p-5 case-col case-1 active">현재 (A)</th>
+                    <th class="p-5 case-col case-1 active text-[#3182f6]">임대추가 (B)</th>
+                    <th class="p-5 case-col case-2">현재 (A)</th>
+                    <th class="p-5 case-col case-2 text-[#3182f6]">임대추가 (B)</th>
+                    <th class="p-5 case-col case-3">현재 (A)</th>
+                    <th class="p-5 case-col case-3 text-[#3182f6]">임대추가 (B)</th>
+                    <th class="p-5 case-col case-4">현재 (A)</th>
+                    <th class="p-5 case-col case-4 text-[#3182f6]">임대추가 (B)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[15px]">
+                  <tr class="group hover:bg-gray-50/30 transition-colors">
+                    <th class="p-5 text-left font-normal text-[#4e5968] sticky-left">사업소득</th>
+                    <td class="p-2 case-col case-1 active"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="150,000,000"></td>
+                    <td class="p-2 case-col case-1 active"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="150,000,000"></td>
+                    <td class="p-2 case-col case-2"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="200,000,000"></td>
+                    <td class="p-2 case-col case-2"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="200,000,000"></td>
+                    <td class="p-2 case-col case-3"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="250,000,000"></td>
+                    <td class="p-2 case-col case-3"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="250,000,000"></td>
+                    <td class="p-2 case-col case-4"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="300,000,000"></td>
+                    <td class="p-2 case-col case-4"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="300,000,000"></td>
+                  </tr>
+                  <tr class="group hover:bg-gray-50/30 transition-colors">
+                    <th class="p-5 text-left font-normal text-[#4e5968] sticky-left">임대소득</th>
+                    <td class="p-2 case-col case-1 active"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="0"></td>
+                    <td class="p-2 case-col case-1 active"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-semibold text-[#3182f6] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all underline decoration-2 underline-offset-8"
+                        value="75,600,000"></td>
+                    <td class="p-2 case-col case-2"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="0"></td>
+                    <td class="p-2 case-col case-2"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-semibold text-[#3182f6] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all underline decoration-2 underline-offset-8"
+                        value="75,600,000"></td>
+                    <td class="p-2 case-col case-3"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="0"></td>
+                    <td class="p-2 case-col case-3"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-semibold text-[#3182f6] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all underline decoration-2 underline-offset-8"
+                        value="75,600,000"></td>
+                    <td class="p-2 case-col case-4"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-normal text-[#1a1f27] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all"
+                        value="0"></td>
+                    <td class="p-2 case-col case-4"><input type="text"
+                        class="w-full bg-transparent border-none text-center font-semibold text-[#3182f6] focus:ring-2 focus:ring-blue-50 rounded-xl p-3 transition-all underline decoration-2 underline-offset-8"
+                        value="75,600,000"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Section 2: 조세 효과 분석 -->
+          <section class="mb-6">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#00c471] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">소득구성에 따른 조세 효과 분석</h3>
+            </div>
+
+            <div class="overflow-x-auto no-scrollbar rounded-3xl border border-gray-100 shadow-md">
+              <table class="w-full text-center border-collapse">
+                <thead>
+                  <tr
+                    class="bg-[#1a1f27] text-white text-[11px] font-medium uppercase tracking-widest border-b border-white/5">
+                    <th class="p-6 text-left sticky-left !bg-[#1a1f27] w-[240px]">분석 항목 상세</th>
+                    <th class="p-6 case-col case-1 active">현재 (A)</th>
+                    <th class="p-6 case-col case-1 active text-blue-400">임대추가 (B)</th>
+                    <th class="p-6 case-col case-2">현재 (A)</th>
+                    <th class="p-6 case-col case-2 text-blue-400">임대추가 (B)</th>
+                    <th class="p-6 case-col case-3">현재 (A)</th>
+                    <th class="p-6 case-col case-3 text-blue-400">임대추가 (B)</th>
+                    <th class="p-6 case-col case-4">현재 (A)</th>
+                    <th class="p-6 case-col case-4 text-blue-400">임대추가 (B)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[14px]">
+                  <tr class="bg-gray-50/30">
+                    <td class="p-6 text-left font-normal text-[#1a1f27] sticky-left !bg-[#fcfdfe]">종합소득 합계</td>
+                    <td class="p-6 text-right font-semibold case-col case-1 active"></td>
+                    <td class="p-6 text-right font-semibold case-col case-1 active text-[#3182f6]"></td>
+                    <td class="p-6 text-right font-semibold case-col case-2"></td>
+                    <td class="p-6 text-right font-semibold case-col case-2 text-[#3182f6]"></td>
+                    <td class="p-6 text-right font-semibold case-col case-3"></td>
+                    <td class="p-6 text-right font-semibold case-col case-3 text-[#3182f6]"></td>
+                    <td class="p-6 text-right font-semibold case-col case-4"></td>
+                    <td class="p-6 text-right font-semibold case-col case-4 text-[#3182f6]"></td>
+                  </tr>
+                  <tr>
+                    <td class="p-6 text-left font-normal text-[#1a1f27] sticky-left">결정세액 (지방세 포함)</td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-1 active"></td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-1 active"></td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-2"></td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-2"></td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-3"></td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-3"></td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-4"></td>
+                    <td class="p-6 text-right font-semibold text-red-500 case-col case-4"></td>
+                  </tr>
+                  <tr>
+                    <td class="p-6 text-left font-normal text-[#1a1f27] sticky-left !bg-[#fcfdfe]">실질 가처분 소득 (세후)</td>
+                    <td class="p-6 text-right font-medium text-lg case-col case-1 active"></td>
+                    <td class="p-6 text-right font-semibold text-2xl text-[#3182f6] case-col case-1 active"></td>
+                    <td class="p-6 text-right font-medium text-lg case-col case-2"></td>
+                    <td class="p-6 text-right font-semibold text-2xl text-[#3182f6] case-col case-2"></td>
+                    <td class="p-6 text-right font-medium text-lg case-col case-3"></td>
+                    <td class="p-6 text-right font-semibold text-2xl text-[#3182f6] case-col case-3"></td>
+                    <td class="p-6 text-right font-medium text-lg case-col case-4"></td>
+                    <td class="p-6 text-right font-semibold text-2xl text-[#3182f6] case-col case-4"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Standardized Footer (Actions, Branding, CTA) -->
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc801-1.js?v=1.2"></script>
+<script>
+  lucide.createIcons();
+
+  function switchCase(caseNum) {
+    // 1. Update Tabs Class
+    document.querySelectorAll('.segmented-item button').forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === caseNum - 1);
+    });
+
+    // 2. Clear & Update Glider Position
+    const glider = document.getElementById('caseGlider');
+    if (glider) glider.style.transform = `translateX(${(caseNum - 1) * 100}%)`;
+
+    // 3. Update Table Columns Visibility
+    document.querySelectorAll('.case-col').forEach(col => {
+      col.classList.remove('active');
+    }
+    });
+
+  // 4. Trigger Calculation if needed (assuming original script handles window resize or similar)
+  if (typeof updateResult === 'function') updateResult();
+  }
+    });
+  document.querySelectorAll('.case-col').forEach(col => {
+    if (col.classList.contains('case-' + caseNum)) col.classList.add('active');
+    else col.classList.remove('active');
+  });
+  }
+</script>

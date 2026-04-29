@@ -1,0 +1,771 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.5" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+	  input.form-control {
+		font-size: 12px;
+		height:32px;
+		text-align:center !important;
+	  }
+
+	table td,
+	table th {
+		height: 50px;
+		vertical-align: middle;
+		text-align:center !important;
+	}
+	  .force-break {
+		white-space: normal !important;
+		word-break: break-word !important;
+	}
+</style>
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-layout-text-sidebar"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+ <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-titlefont-weight : normal">세무법인이화 TAX-<font size=4>E𝒂sy</font> <span style="font-weight: 300; font-size: 10px;">Beta Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+<div class="chat-history" style='padding-bottom:15px;'>
+  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+  <div class="chat-list">
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-800-1.html" class="chat-item">
+      <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+      <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+    </a> -->
+    <!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+      <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-801-1.html" class="chat-item">
+      <span class="chat-title">2-1.개인 대표 사업소득+임대소득 세금 비교</span>
+    </a>
+    <a href="/roma/sub/sub-801-2.html" class="chat-item">
+      <span class="chat-title">2-2.법인 대표 근로소득+임대소득 세금 비교</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+      <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">3.법인주주 증여와 법인세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-802-1.html" class="chat-item">
+      <span class="chat-title">3-1. 특정법인증여의제</span>
+    </a> 
+    <a href="/roma/sub/sub-802-2.html" class="chat-item">
+      <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+    </a>
+    <a href="/roma/sub/sub-802-3.html" class="chat-item">
+      <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+ <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+      <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+    </a>  
+   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+      <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+    </a> -->
+    <!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+      <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+    </a>  -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-804-1.html" class="chat-item">
+      <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-804-2.html" class="chat-item">
+      <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+    </a>
+  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+      <span class="chat-title">5-3. 주택 취득세 계산</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+      <span class="chat-title">6-1. 상속세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-2.html" class="chat-item">
+      <span class="chat-title">6-2. 증여세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-3.html" class="chat-item">
+    <span class="chat-title">6-3. 주식양도소득세 계산</span>
+    </a> 
+   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+      <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+    </a>
+  </div>
+</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">7.자녀법인차등배당</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+		  <span class="chat-title">7-1. 자녀법인차등배당</span>
+		</a> 
+		<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+		  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+		  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+		</a> -->
+	  </div>
+	</div>
+
+  </div>
+</div>
+
+<div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+    <div class="right-wrap">
+        <div class="container" id="main-container">
+            <div class="top-box">
+                <div class="scroll-content ">
+                    <div class="inner-content">
+                        <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+                             <div id="print_wrap">				
+                           <div class="page" id="page1">
+                                 
+                            <div id="calculator-1" class="container">
+							<div class="biz-wrapper">
+							  <div class="biz-header">
+								<h2 class="biz-title">부동산 양도소득세 계산(주택외)</h2>
+								<p class="biz-description">
+								  주택 외 토지, 상가, 건물 등 부동산 양도 시 발생하는 양도소득세를 복잡한 세무 지식 없이도 누구나 손쉽고 정확하게 계산할 수 있는 간편 계산기입니다.
+								</p>
+							  </div>
+							  <div class="biz-body">
+								<ul class="biz-list">
+								<li class="mb-2">1. 양도소득세 자동 계산  : 양도가액, 취득가액, 보유기간 등을 입력하면 정확한 양도소득세를 자동 산출합니다.</li>
+											<li class="mb-2">2. 장기보유특별공제· 입력된 정보를 바탕으로 공제 항목을 자동 반영하여 실제 부담 세액을 예측할 수 있습니다.</li>
+											<li class="mb-2">3. 세법 기준에 따른 정밀 계산 : 복잡한 세율 구조, 누진세율, 이월결손금 등을 반영한 현실적인 세금 계산이 가능합니다.</li>
+											<li class="mb-2">4. 비전문가도 사용 가능 : 세무 지식이 없어도 간단한 입력만으로 결과를 쉽게 확인할 수 있습니다.</li>
+								</ul>
+								<p class="biz-note">	※ 복잡한 세율 구조와 공제 항목도 자동 반영되어 누구나 쉽게 정확한 세액을 예측 가능하며.,별도 설치 없이 무료로 사용할 수 있습니다.	</p>
+							  </div>
+							</div>
+							
+                          <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+								<div class="card input-section">
+									<div class="card-body p-0">
+									<div class="table-responsive">
+										<div class="table-title">기본 정보 입력란</div>
+										<table class="table text-center" style="table-layout: fixed; width: 100%;">
+										  <tbody>
+										  <thead>
+											<tr >
+											  <th class="bg-main">구분</th>
+											  <th class="bg-main">입력</th>
+											  <th class="bg-main" colspan="3" style="padding: 0;">
+												<div style="width: 100%;">비고</div>
+											  </th>
+											</tr>
+										  </thead>
+											<tbody>
+											  <tr>
+												<td class="bg-main">취득일</td>
+												<td class="bg-green"><input id="acquisitionDate" type="date" class="form-control text-center calc-trigger" value="1990-01-01" style="width: 100%; max-width: 100%;"></td>
+												<td colspan="3">대금청산일과 등기접수일중 빠른 날 입력</td>
+											  </tr>
+											  <tr>
+												<td class="bg-main">취득원인</td>
+												<td class="bg-green">
+												  <select id="acquisitionType" class="form-select text-center calc-trigger" style="width: 100%; max-width: 100%; font-size:12px;">
+													<option value="1" selected>증여</option>
+													<option value="0">양수</option>
+												  </select>
+												</td>
+												<td colspan="3">양수=0, 증여=1</td>
+											  </tr>
+											  <tr>
+												<td class="bg-main">양도일</td>
+												<td class="bg-green"><input id="transferDate" type="date" class="form-control text-center calc-trigger" value="2023-12-31" style="width: 100%; max-width: 100%;"></td>
+												<td colspan="3">위의 날짜보다 이후를 입력할 것</td>
+											  </tr>
+											  <tr>
+												<td class="bg-main">취득가액</td>
+												<td class="bg-green"><input id="acquisitionPrice" type="text" class="form-control text-end calc-trigger money-input" value="2000000000" style="width: 100%; max-width: 100%;"></td>
+												<td colspan="3"></td>
+											  </tr>
+											  <tr>
+												<td class="bg-main" rowspan="2">양도가액</td>
+												<td class="bg-main">감정평가액/평균</td>
+												<td class="bg-main">감정평가액/평균</td>
+												<td class="bg-main">사례가액</td>
+												<td rowspan="2">2이상 감정가액의 평균가액,<br/>단 기준시가10억미만의 경우 1개의 감정가액도 인정</td>
+											  </tr>
+											  <tr>
+												<td class="bg-green"><input id="valuation1" type="text" class="form-control text-end calc-trigger money-input" value="10000000000" style="width: 100%; max-width: 100%;"></td>
+												<td class="bg-green"><input id="valuation2" type="text" class="form-control text-end calc-trigger money-input" value="20,000,000,000" style="width: 100%; max-width: 100%;"></td>
+												<td class="bg-green"><input id="marketCase" type="text" class="form-control text-end calc-trigger money-input" value="18,000,000,000" style="width: 100%; max-width: 100%;"></td>
+											  </tr>
+											  <tr>
+												<td class="bg-main">사업용여부</td>
+												<td class="bg-green">
+												  <select id="businessUse" class="form-select text-center calc-trigger" style="width: 100%; max-width: 100%; font-size:12px;">
+													<option value="1" selected>사업용</option>
+													<option value="0">비사업용</option>
+												  </select>
+												</td>
+												<td colspan="3">사업용=0, 비사업용=1</td>
+											  </tr>
+											  <tr>
+												<td class="bg-main">보유기간/년</td>
+												<td id="holdingPeriod" class="bg-green"></td>
+												<td colspan="3">증여할 때 소요된 감정평가비용은 양도시 필요경비에 해당하지 않음(부동산거래-274,2011.03.24.)</td>
+											  </tr>
+											</tbody>
+										</table>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="card input-section">
+									<div class="card-body p-0">
+										<div class="table-responsive">	
+												<table class="table table-bordered text-center">
+												  <thead>
+													<tr class="bg-main">
+													  <th>구 분</th>
+													  <th>취득일</th>
+													  <th>양도일</th>
+													  <th>사업용/비사업용 여부</th>
+													  <th>보유기간</th>
+													</tr>
+												  </thead>
+												  <tbody>
+													<tr>
+													  <td>양도가액</td>
+													  <td class="bg-green" id="acquisitionDateDisplay">-</td>
+													  <td class="bg-green" id="transferDateDisplay">-</td>
+													  <td class="bg-green" id="usageTypeDisplay">-</td>
+													  <td class="bg-green" id="holdingPeriodDisplay">-</td>
+													</tr>
+												  </tbody>
+												</table>
+									</div>
+								</div>
+							</div>
+                                </div>
+                               </div>
+                                
+                                                           <div class="page" id="page2">
+
+                        <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+								<div class="card input-section">
+								  <div class="card-body p-0">
+									<div class="table-responsive">
+								  <div class="table-title">필수정보 입력란</div>										
+									<table id="realEstateTable" class="table table-bordered text-center">
+									  <thead class="table-light">
+										<tr class="bg-main">
+										  <th class="position-relative w260">구 분
+										   <button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="0">
+												<i class="bi bi-chevron-down"></i>
+											</button>
+										  </th>
+										  <th class="w260">감정평가액</th>
+										  <th class="w260">감정평가액</th>
+										  <th class="w260">매매사례가액</th>
+										  <th class="w260">비고</th>
+										</tr>
+									  </thead>
+										  
+										<tbody>
+										   <tr class="bg-green">
+											<td>양도가액</td>
+											<td id="valuationCell1"></td>  
+											<td id="valuationCell2"></td> 
+											<td id="marketCaseCell"></td>  
+											<td id="extraCell1"></td>     
+										  </tr>
+										<tr class="bg-white">
+										  <td class="position-relative">
+											(-)취득가액
+											<button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="1" title="1번 그룹 토글">
+											  <i class="bi bi-chevron-down"></i>
+											</button>
+										  </td>
+										  <td><input type="text" id="acqPrice1" class="form-control text-end" value="1,322,801,282" /></td>
+										  <td id="acqPriceRight1"></td> <!-- 우측 첫 셀 -->
+										  <td id="acqPriceRight2"></td> <!-- 우측 두 번째 셀 -->
+										  <td></td>
+										</tr>
+										<tr class="bg-sub group-1">
+										  <td class="bg-sub">매입가액</td>
+										  <td class="bg-sub" id="acquisitionPriceCell"></td>
+										  <td class="bg-sub"></td>
+										  <td class="bg-sub"></td>
+										  <td class="bg-sub"></td>
+										</tr>
+										<tr>
+										  <td class="position-relative">개산공제액
+										     <button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="2">
+												<i class="bi bi-chevron-down"></i>
+											</button>
+											</td>
+										  <td id="deductEstimate1"></td>
+										  <td id="deductEstimate2"></td>
+										  <td id="deductEstimate3"></td>
+										  <td id="deductEstimate4"></td>
+										</tr>
+										<tr class="group-2">
+										  <td class="bg-sub">법무사비용</td>
+										  <td class="bg-sub"><input type="text" id="legalFee1" class="form-control " /></td>
+										  <td class="bg-sub"><input type="text" id="legalFee2" class="form-control " /></td>
+										  <td class="bg-sub"><input type="text" id="legalFee3" class="form-control text-end" /></td>
+										  <td class="bg-sub"><input type="text" id="legalFee4" class="form-control text-end" /></td>
+										</tr>
+										<tr class="group-2">
+										  <td class="bg-sub">취득중개수수료</td>
+										  <td class="bg-sub"><input type="text" id="brokerFee1" class="form-control text-end" /></td>
+										  <td class="bg-sub"><input type="text" id="brokerFee2" class="form-control text-end" /></td>
+										  <td class="bg-sub"><input type="text" id="brokerFee3" class="form-control text-end" /></td>
+										  <td class="bg-sub"><input type="text" id="brokerFee4" class="form-control text-end" /></td>
+										</tr>
+										<tr class="group-2">
+										  <td class="bg-sub">기타</td>
+										  <td  class="bg-sub"><input type="text" id="etcCost1" class="form-control text-end" /></td>
+										  <td class="bg-sub"><input type="text" id="etcCost2" class="form-control text-end" /></td>
+										  <td class="bg-sub"><input type="text" id="etcCost3" class="form-control text-end" /></td>
+										  <td class="bg-sub"><input type="text" id="etcCost4" class="form-control text-end" /></td>
+										</tr>
+										<tr>
+										  <td class="position-relative">(-)필요경비<button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="3">
+												<i class="bi bi-chevron-down"></i>
+											</button></td>
+											  <td id="necessaryCost1" class="text-end"></td>
+											  <td id="necessaryCost2" class="text-end"></td>
+											  <td id="necessaryCost3" class="text-end"></td>
+											  <td id="necessaryCost4" class="text-end"></td>
+										</tr>
+										<tr class="group-3">
+										  <td class="bg-sub">자본적지출액</td>
+										  <td class="bg-sub"><input type="text" id="capitalExp1" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="capitalExp2" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="capitalExp3" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="capitalExp4" class="form-control text-end calc-trigger" /></td>
+										</tr>
+										<tr class="group-3">
+										  <td class="bg-sub">양도중개수수료</td>
+										  <td class="bg-sub"><input type="text" id="transferBrokerFee1" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="transferBrokerFee2" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="transferBrokerFee3" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="transferBrokerFee4" class="form-control text-end calc-trigger" /></td>
+										</tr>
+										<tr class="group-3">
+										  <td class="bg-sub">국민주택채권매각차손</td>
+										  <td class="bg-sub"><input type="text" id="bondLoss1" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="bondLoss2" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="bondLoss3" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="bondLoss4" class="form-control text-end calc-trigger" /></td>
+										</tr>
+										<tr class="group-3">
+										  <td class="bg-sub">기타</td>
+										  <td class="bg-sub"><input type="text" id="etc2_1" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="etc2_2" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="etc2_3" class="form-control text-end calc-trigger" /></td>
+										  <td class="bg-sub"><input type="text" id="etc2_4" class="form-control text-end calc-trigger" /></td>
+										</tr>
+										<tr class="bg-green">
+										  <td>양도차익</td>
+										  <td id="capitalGain1"></td>
+										  <td id="capitalGain2"></td>
+										  <td id="capitalGain3"></td>
+										  <td id="capitalGain4"></td>
+										</tr>
+										<tr>
+										  <td class="bg-white">(-)장기보유특별공제</td>
+										  <td id="specialDeduct1"></td>
+										  <td id="specialDeduct2"></td>
+										  <td id="specialDeduct3"></td>
+										  <td id="specialDeduct4"></td>
+										</tr>
+										<tr class="bg-green">
+										  <td>양도소득금액</td>
+										  <td id="taxableGain1"></td>
+										  <td id="taxableGain2"></td>
+										  <td id="taxableGain3"></td>
+										  <td id="taxableGain4"></td>
+										</tr>
+										<tr>
+										  <td class="bg-white">(-)기본공제</td>
+										  <td><input type="text" id="basicDeduct1" class="form-control text-end" value="2,500,000" /></td>
+										  <td></td>
+										  <td></td>
+										  <td></td>
+										</tr>
+										<tr>
+										  <td class="bg-main fw-bold">과세표준</td>
+										  <td id="taxBase1" class="bg-main fw-bold"></td>
+										  <td id="taxBase2" class="bg-main fw-bold"></td>
+										  <td id="taxBase3" class="bg-main fw-bold"></td>
+										  <td id="taxBase4" class="bg-main fw-bold"></td>
+										</tr>
+										<tr>
+										  <td class="bg-white">적용세율</td>
+										  <td id="appliedRate1"></td>
+										  <td id="appliedRate2"></td>
+										  <td id="appliedRate3"></td>
+										  <td id="appliedRate4"></td>
+										</tr>
+										<tr>
+										  <td class="bg-white">(-)누진공제</td>
+										  <td id="progressiveDeduction1"></td>
+										  <td id="progressiveDeduction2"></td>
+										  <td id="progressiveDeduction3"></td>
+										  <td id="progressiveDeduction4"></td>
+										</tr>
+										<tr class="bg-green">
+										  <td>산출세액</td>
+										  <td id="calculatedTax1"></td>
+										  <td id="calculatedTax2"></td>
+										  <td id="calculatedTax3"></td>
+										  <td id="calculatedTax4"></td>
+										</tr>
+
+										<tr>
+										  <td class="bg-white">지방소득세</td>
+										  <td id="localTax1"></td>
+										  <td id="localTax2"></td>
+										  <td id="localTax3"></td>
+										  <td id="localTax4"></td>
+										</tr>
+										<tr>
+										  <td class="bg-main fw-bold">세금 소계</td>
+										  <td id="taxSubtotal1"  class="bg-main fw-bold"></td>
+										  <td id="taxSubtotal2"  class="bg-main fw-bold"></td>
+										  <td id="taxSubtotal3"  class="bg-main fw-bold"></td>
+										  <td id="taxSubtotal4"  class="bg-main fw-bold"></td>
+										</tr>
+									  </tbody>
+									</table>
+									</div>
+								  </div>
+								</div>
+                                                               </div>
+                                
+                                                           <div class="page" id="page3">
+
+                                
+                                 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+								<div class="card input-section">
+									  <div class="card-body p-0">
+										<div class="table-responsive">
+											<div class="table-title">확인란1 / 취득세 계산</div>
+											<table class="table table-bordered text-center">
+											  <thead class="table-light">
+												<tr class="bg-main">
+												  <th class="w260">개인 / 법인 일반</th>
+												  <th class="w260">기준시가</th>
+												  <th class="w260">감정평가액</th>
+												  <th class="w260">매매사례가액</th>
+												  <th class="w260">비고</th>
+												</tr>
+											  </thead>
+											 <tbody>
+												<tr>
+												  <td>취득세</td>
+												  <td id="acquisitionTax1"></td>
+												  <td id="acquisitionTax2"></td>
+												  <td id="acquisitionTax3"></td>
+												  <td id="acquisitionRateText">4%</td>
+												</tr>
+												<tr>
+												  <td>농어촌특별세</td>
+												  <td id="ruralTax1"></td>
+												  <td id="ruralTax2"></td>
+												  <td id="ruralTax3"></td>
+												  <td id="ruralRateText">0.20%</td>
+												</tr>
+												<tr>
+												  <td>지방교육세</td>
+												  <td id="eduTax1"></td>
+												  <td id="eduTax2"></td>
+												  <td id="eduTax3"></td>
+												  <td id="eduRateText">0.40%</td>
+												</tr>
+											  <tr class="bg-main fw-bold">
+												<td class="bg-main">계</td>
+												<td class="bg-main" id="totalTax1"></td>
+												<td class="bg-main" id="totalTax2"></td>
+												<td class="bg-main" id="totalTax3"></td>
+												<td class="bg-main" ></td>
+											  </tr>
+											</tbody>
+
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="card input-section">
+									  <div class="card-body p-0">
+										<div class="table-responsive">
+											<table class="table table-bordered text-center">
+											  <thead class="table-light">
+												<tr class="bg-main">
+												  <th class="w260">법인(수도권과밀&5년미만)</th>
+												  <th class="w260">기준시가</th>
+												  <th class="w260">감정평가액</th>
+												  <th class="w260">매매사례가액</th>
+												  <th class="w260">비고</th>
+												</tr>
+											  </thead>
+											  <tbody>
+											<tr>
+												  <td>취득세</td>
+												  <td id="acquisitionTax_2_1"></td>
+												  <td id="acquisitionTax_2_2"></td>
+												  <td id="acquisitionTax_2_3"></td>
+												  <td id="acquisitionRateText_2">8%</td>
+												</tr>
+												<tr>
+												  <td>농어촌특별세</td>
+												  <td id="ruralTax_2_1"></td>
+												  <td id="ruralTax_2_2"></td>
+												  <td id="ruralTax_2_3"></td>
+												  <td id="ruralRateText_2">0.2%</td>
+												</tr>
+												<tr>
+												  <td>지방교육세</td>
+												  <td id="eduTax_2_1"></td>
+												  <td id="eduTax_2_2"></td>
+												  <td id="eduTax_2_3"></td>
+												  <td id="eduRateText_2">1.2%</td>
+												</tr>
+												<tr class="table-secondary fw-bold">
+												  <td class="bg-main">계</td>
+												  <td class="bg-main" id="totalTax_2_1"></td>
+												  <td class="bg-main" id="totalTax_2_2"></td>
+												  <td class="bg-main" id="totalTax_2_3"></td>
+												  <td class="bg-main" ></td>
+												</tr>
+
+											  </tbody>
+											</table>
+											<div class="table-footer">※현물출자/포괄양수도/중소기업통합 등 법인전환시 부동산업/부동산임대업 전환은 취득세 감면 없음</div>				
+											<div class="table-footer">※㈜중소기업통합을 제외한 현물출자/포괄양수도의 경우 주택등에 대한 양도소득세 이월과세 적용안됨</div>														
+										</div>
+									</div>
+								</div>
+                                
+                                 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>
+								<div class="card input-section">
+								  <div class="card-body p-0">
+									<div class="table-responsive">
+										<div style="display: flex; width: 100%; border: 1px solid #ccc; background-color: var(--main-color);">
+										  <div style="width: 50%; border-right: 1px solid #ccc; display: flex; justify-content: center; align-items: center; padding: 10px;">
+											담보채무
+										  </div>
+										 <div style="width: 50%; border:none; display: flex; justify-content: center; align-items: center; padding: 10px;" class="bg-green">
+										  <input id="collateralDebt" type="text" class="form-control text-end money-input" placeholder="0원" style="width: 100%; text-align: center; border: none; outline: none;" value="14000000000" />
+										  
+										</div>
+										</div>
+										<div class="table-title">확인란2 / 법인설립 등기</div>
+										<table class="table table-bordered text-center align-middle" id="thirdTable">
+										  <thead>
+											<tr class="bg-main">
+											  <th class="w260">구분</th>
+											  <th class="w260">기준시가</th>
+											  <th class="w260">감정평가액</th>
+											  <th class="w260">매매사례가액</th>
+											  <th class="w260">비고</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr>
+											  <td>순자산가액</td>
+											   <td class="bg-green" id="netAsset1"></td>
+												  <td class="bg-green" id="netAsset2"></td>
+												  <td class="bg-green" id="netAsset3"></td>
+												  <td class="bg-green" id="netAsset4"></td>
+											</tr>
+											<tr>
+											  <td class="bg-white">등록면허세<br/>(과밀억제권 외,5년경과)</td>
+												<td id="licenseTax1"></td>
+												<td id="licenseTax2"></td>
+												<td id="licenseTax3"></td>
+												<td>0.4%</td>
+											</tr>
+											<tr>
+											  <td class="bg-white">지방교육세</td>
+											  <td id="eduTaxFromLicense1"></td> 
+											  <td id="eduTaxFromLicense2"></td>
+											  <td id="eduTaxFromLicense3"></td>
+											  <td>등록면허세의 20%</td>
+											</tr>
+											<tr class="fw-bold">
+											  <td class="bg-main fw-bold">계</td>
+											  <td class="bg-main fw-bold" id="taxTotal1">0</td>
+											  <td class="bg-main fw-bold" id="taxTotal2">0</td>
+											  <td class="bg-main fw-bold" id="taxTotal3">0</td>
+											  <td class="bg-main fw-bold" ></td>
+											</tr>
+											<tr>
+											  <td class="bg-white">등록면허세(과밀억제권)</td>
+												<td id="denseTax1">0</td>
+												<td id="denseTax2">0</td>
+												<td id="denseTax3">0</td>
+											  <td>1.2%</td>
+											</tr>
+											<tr>
+											  <td class="bg-white">지방교육세</td>
+												<td id="denseEduTax1" class="text-center ">0</td>
+												<td id="denseEduTax2" class="text-center ">0</td>
+												<td id="denseEduTax3" class="text-center ">0</td>
+													<td>등록면허세의20%</td>
+											</tr>
+											<tr class="fw-bold">
+											  <td class="bg-main fw-bold">계</td>
+												<td id="denseTotal1" class="bg-main fw-bold">0</td>
+												<td id="denseTotal2" class="bg-main fw-bold">0</td>
+												<td id="denseTotal3" class="bg-main fw-bold">0</td>
+											   <td class="bg-main fw-bold"> </td>
+											</tr>
+										  </tbody>
+										</table>
+										</div>
+									</div>
+                                                               </div>
+							
+								<!--@import(/roma/sub/sub-menu.html)-->	
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc804-2.js?v=1.9"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

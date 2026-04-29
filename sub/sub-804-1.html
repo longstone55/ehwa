@@ -1,0 +1,413 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- 
+- [x] `sub-800-1.html`
+- [x] `sub-801-1.html`
+- [x] `sub-801-2.html`
+- [x] `sub-801-3.html`
+- [x] `sub-802-1.html`
+- [x] `sub-802-2.html`
+- [x] `sub-802-3.html`
+- [x] `sub-803-1.html`
+- [x] `sub-803-2.html`
+- [x] `sub-803-3.html`
+- [x] `sub-804-1.html`
+- [/] `sub-804-2.html`
+- [ ] `sub-804-3.html`
+- [ ] `sub-805-1.html`
+- [ ] `sub-805-2.html`
+- [ ] `sub-805-3.html`
+- [ ] `sub-805-4.html`
+- [ ] `sub-806-1.html`
+- [ ] `sub-806-2.html` (Coming Soon)
+- [ ] `sub-806-3.html` (Coming Soon)
+- [ ] `sub-806-4.html` (Coming Soon)
+-->
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  .case-col { display: none; }
+  .case-col.active { display: table-cell !important; }
+
+  @media print {
+    .case-col { display: table-cell !important; }
+    .no-print { display: none !important; }
+    #calculator-wrap { background: white !important; }
+  }
+
+  .segmented-control {
+    position: relative;
+    display: flex;
+    background: #f2f4f6;
+    border-radius: 14px;
+    padding: 2px;
+  }
+  .segmented-item {
+    position: relative;
+    flex: 1;
+    z-index: 1;
+  }
+  .segmented-item button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8b95a1;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .segmented-item button.active {
+    color: #1a1f27;
+    font-weight: 600;
+  }
+  .segmented-glider {
+    position: absolute;
+    height: calc(100% - 4px);
+    width: calc(25% - 1px);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          증여 후 법인세 <br />
+          <span class="font-semibold text-[#3182f6]">과세 구조 분석 시뮬레이션</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          증여 후 발생하는 법인세 과세 구조와 주식 가치 변동을 분석하여 <br class="hidden md:block" />
+          최적의 사후 관리 전략을 제안합니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block"></div>
+  </section>
+
+  <!-- Sub Navigation -->
+  <!--@import(/roma/sub/sub-800-nav.html)-->
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- Case Selector -->
+      <div class="max-w-md mx-auto mb-10 no-print">
+        <div class="segmented-control">
+          <div class="segmented-item"><button class="active" onclick="switchCase(1)">물건지 1</button></div>
+          <div class="segmented-item"><button onclick="switchCase(2)">물건지 2</button></div>
+          <div class="segmented-item"><button onclick="switchCase(3)">물건지 3</button></div>
+          <div class="segmented-item"><button onclick="switchCase(4)">물건지 4</button></div>
+          <div class="segmented-glider" id="caseGlider"></div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT CARD -->
+      <div class="bg-white rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/50 border-b border-gray-50">
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="flex gap-3 items-start">
+              <span class="w-5 h-5 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[10px] font-bold mt-0.5 shadow-sm">01</span>
+              <p class="text-[12px] text-[#4e5968] font-medium leading-tight tracking-tight">물건별 취득일, 양도일 및 용도를 정확히 선택하세요.</p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <span class="w-5 h-5 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[10px] font-bold mt-0.5 shadow-sm">02</span>
+              <p class="text-[12px] text-[#4e5968] font-medium leading-tight tracking-tight">양도/취득 가액 입력 시 장기보유공제가 자동 적용됩니다.</p>
+            </div>
+            <div class="flex gap-3 items-start">
+              <span class="w-5 h-5 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[10px] font-bold mt-0.5 shadow-sm">03</span>
+              <p class="text-[12px] text-[#4e5968] font-medium leading-tight tracking-tight">이월과세 혜택과 취득세 부담액을 물건별로 확인하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Top Section: Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-14">
+            <!-- Left: Property Info -->
+            <section>
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-1 h-5 bg-[#3182f6] rounded-full"></div>
+                <h3 class="text-md font-bold text-[#1a1f27]">물건지별 상세 속성 설정</h3>
+              </div>
+              <div class="rounded-2xl border border-gray-100 overflow-hidden">
+                <table class="w-full text-[14px]">
+                  <thead>
+                    <tr class="bg-[#f9fafb] text-[#8b95a1] text-[10px] font-bold uppercase tracking-wider border-b border-gray-100">
+                      <th class="p-4 text-left w-[140px]">구분</th>
+                      <th class="p-4 case-col case-1 active">물건 1</th>
+                      <th class="p-4 case-col case-2">물건 2</th>
+                      <th class="p-4 case-col case-3">물건 3</th>
+                      <th class="p-4 case-col case-4">물건 4</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-50">
+                    <tr>
+                      <th class="p-4 text-left font-semibold text-[#4e5968]">물건 명칭</th>
+                      <td class="p-2 case-col case-1 active"><input type="text" id="itemInput1" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all" value="물건지 1" /></td>
+                      <td class="p-2 case-col case-2"><input type="text" id="itemInput2" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all" value="물건지 2" /></td>
+                      <td class="p-2 case-col case-3"><input type="text" id="itemInput3" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all" value="물건지 3" /></td>
+                      <td class="p-2 case-col case-4"><input type="text" id="itemInput4" class="w-full bg-transparent border-none text-center font-bold text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all" value="물건지 4" /></td>
+                    </tr>
+                    <tr>
+                      <th class="p-4 text-left font-semibold text-[#4e5968]">취득일</th>
+                      <td class="p-2 case-col case-1 active"><input type="date" id="acqDate1" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="1996-04-08" /></td>
+                      <td class="p-2 case-col case-2"><input type="date" id="acqDate2" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="2015-11-20" /></td>
+                      <td class="p-2 case-col case-3"><input type="date" id="acqDate3" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="1981-12-03" /></td>
+                      <td class="p-2 case-col case-4"><input type="date" id="acqDate4" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="1981-12-03" /></td>
+                    </tr>
+                    <tr>
+                      <th class="p-4 text-left font-semibold text-[#4e5968]">양도일</th>
+                      <td class="p-2 case-col case-1 active"><input type="date" id="transDate1" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="2024-12-31" /></td>
+                      <td class="p-2 case-col case-2"><input type="date" id="transDate2" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="2024-12-31" /></td>
+                      <td class="p-2 case-col case-3"><input type="date" id="transDate3" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="2024-12-31" /></td>
+                      <td class="p-2 case-col case-4"><input type="date" id="transDate4" class="w-full bg-transparent border-none text-center font-medium text-[#1a1f27] focus:ring-1 focus:ring-blue-100 p-2" value="2024-12-31" /></td>
+                    </tr>
+                    <tr class="bg-blue-50/20">
+                      <th class="p-4 text-left font-bold text-[#3182f6]">용도구분</th>
+                      <td class="p-2 case-col case-1 active">
+                        <select id="useType1" class="w-full bg-transparent border-none text-center font-bold text-[#3182f6] focus:ring-1 focus:ring-blue-100 p-2">
+                          <option value="1" selected>사업용</option>
+                          <option value="0">비사업용</option>
+                        </select>
+                      </td>
+                      <td class="p-2 case-col case-2">
+                        <select id="useType2" class="w-full bg-transparent border-none text-center font-bold text-[#3182f6] focus:ring-1 focus:ring-blue-100 p-2">
+                          <option value="1" selected>사업용</option>
+                          <option value="0">비사업용</option>
+                        </select>
+                      </td>
+                      <td class="p-2 case-col case-3">
+                        <select id="useType3" class="w-full bg-transparent border-none text-center font-bold text-[#3182f6] focus:ring-1 focus:ring-blue-100 p-2">
+                          <option value="1" selected>사업용</option>
+                          <option value="0">비사업용</option>
+                        </select>
+                      </td>
+                      <td class="p-2 case-col case-4">
+                        <select id="useType4" class="w-full bg-transparent border-none text-center font-bold text-[#3182f6] focus:ring-1 focus:ring-blue-100 p-2">
+                          <option value="1" selected>사업용</option>
+                          <option value="0">비사업용</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Right: Value Info -->
+            <section>
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-1 h-5 bg-[#3182f6] rounded-full"></div>
+                <h3 class="text-md font-bold text-[#1a1f27]">양도·취득 관련 가액 입력</h3>
+              </div>
+              <div class="rounded-2xl border border-gray-100 overflow-hidden">
+                <table class="w-full text-[14px]">
+                  <thead>
+                    <tr class="bg-[#f9fafb] text-[#8b95a1] text-[10px] font-bold uppercase tracking-wider border-b border-gray-100">
+                      <th class="p-4 text-left w-[140px]">구분</th>
+                      <th class="p-4 case-col case-1 active">물건 1</th>
+                      <th class="p-4 case-col case-2">물건 2</th>
+                      <th class="p-4 case-col case-3">물건 3</th>
+                      <th class="p-4 case-col case-4">물건 4</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-50">
+                    <tr>
+                      <th class="p-4 text-left font-semibold text-[#4e5968]">양도가액</th>
+                      <td class="p-2 case-col case-1 active"><input type="text" id="transferPrice1" class="w-full bg-blue-50/10 border-none text-right font-black text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all underline decoration-dotted underline-offset-4" value="12,028,803,178" /></td>
+                      <td class="p-2 case-col case-2"><input type="text" id="transferPrice2" class="w-full bg-blue-50/10 border-none text-right font-black text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all underline decoration-dotted underline-offset-4" value="1,032,156,018" /></td>
+                      <td class="p-2 case-col case-3"><input type="text" id="transferPrice3" class="w-full bg-blue-50/10 border-none text-right font-black text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all underline decoration-dotted underline-offset-4" value="1,493,524,409" /></td>
+                      <td class="p-2 case-col case-4"><input type="text" id="transferPrice4" class="w-full bg-blue-50/10 border-none text-right font-black text-[#1a1f27] focus:ring-1 focus:ring-blue-100 rounded-lg p-2 transition-all underline decoration-dotted underline-offset-4" value="1,143,316,396" /></td>
+                    </tr>
+                    <tr>
+                      <th class="p-4 text-left font-semibold text-[#4e5968]">취득가액</th>
+                      <td class="p-2 case-col case-1 active"><input type="text" id="acqPrice1" class="w-full bg-transparent border-none text-right font-bold text-[#4e5968] focus:ring-1 focus:ring-blue-100 p-2" value="341,201,840" /></td>
+                      <td class="p-2 case-col case-2"><input type="text" id="acqPrice2" class="w-full bg-transparent border-none text-right font-bold text-[#4e5968] focus:ring-1 focus:ring-blue-100 p-2" value="1,032,156,018" /></td>
+                      <td class="p-2 case-col case-3"><input type="text" id="acqPrice3" class="w-full bg-transparent border-none text-right font-bold text-[#4e5968] focus:ring-1 focus:ring-blue-100 p-2" value="23,962,568" /></td>
+                      <td class="p-2 case-col case-4"><input type="text" id="acqPrice4" class="w-full bg-transparent border-none text-right font-bold text-[#4e5968] focus:ring-1 focus:ring-blue-100 p-2" value="3,634,704" /></td>
+                    </tr>
+                    <tr>
+                      <th class="p-4 text-left font-semibold text-[#8b95a1]">자본적 지출</th>
+                      <td class="p-2 case-col case-1 active"><input type="text" id="capitalExp1" class="w-full bg-transparent border-none text-right font-medium text-[#8b95a1] focus:ring-1 focus:ring-blue-100 p-2" value="0" /></td>
+                      <td class="p-2 case-col case-2"><input type="text" id="capitalExp2" class="w-full bg-transparent border-none text-right font-medium text-[#8b95a1] focus:ring-1 focus:ring-blue-100 p-2" value="0" /></td>
+                      <td class="p-2 case-col case-3"><input type="text" id="capitalExp3" class="w-full bg-transparent border-none text-right font-medium text-[#8b95a1] focus:ring-1 focus:ring-blue-100 p-2" value="0" /></td>
+                      <td class="p-2 case-col case-4"><input type="text" id="capitalExp4" class="w-full bg-transparent border-none text-right font-medium text-[#8b95a1] focus:ring-1 focus:ring-blue-100 p-2" value="0" /></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <!-- Result Table Section -->
+          <section class="mb-14">
+            <div class="flex items-center gap-2 mb-6">
+              <div class="w-1 h-5 bg-[#22c55e] rounded-full"></div>
+              <h3 class="text-lg font-bold text-[#1a1f27]">양도소득세 정밀 계산 결과</h3>
+            </div>
+            
+            <div class="overflow-hidden rounded-3xl border border-gray-100 shadow-sm border-collapse">
+              <table class="w-full text-center">
+                <thead>
+                  <tr class="bg-[#1a1f27] text-white text-[11px] font-bold uppercase tracking-widest">
+                    <th class="p-5 text-left w-[200px]">분석 항목</th>
+                    <th class="p-5 case-col case-1 active font-black tracking-tight">CASE 01 분석</th>
+                    <th class="p-5 case-col case-2 font-black tracking-tight">CASE 02 분석</th>
+                    <th class="p-5 case-col case-3 font-black tracking-tight">CASE 03 분석</th>
+                    <th class="p-5 case-col case-4 font-black tracking-tight">CASE 04 분석</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 text-[14px]">
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <td class="p-5 text-left font-bold text-[#4e5968] bg-[#f9fafb]/50">보유기간</td>
+                    <td class="p-5 case-col case-1 active font-medium" id="holdingPeriod1"></td>
+                    <td class="p-5 case-col case-2 font-medium" id="holdingPeriod2"></td>
+                    <td class="p-5 case-col case-3 font-medium" id="holdingPeriod3"></td>
+                    <td class="p-5 case-col case-4 font-medium" id="holdingPeriod4"></td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors bg-blue-50/10">
+                    <td class="p-5 text-left font-bold text-[#3182f6]">양도차익 (Gain)</td>
+                    <td class="p-5 case-col case-1 active font-black text-lg" id="capitalGain1"></td>
+                    <td class="p-5 case-col case-2 font-black text-lg" id="capitalGain2"></td>
+                    <td class="p-5 case-col case-3 font-black text-lg" id="capitalGain3"></td>
+                    <td class="p-5 case-col case-4 font-black text-lg" id="capitalGain4"></td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <td class="p-5 text-left font-bold text-[#4e5968] bg-[#f9fafb]/50">장기보유특별공제</td>
+                    <td class="p-5 case-col case-1 active font-medium text-gray-500" id="specialDeduct1"></td>
+                    <td class="p-5 case-col case-2 font-medium text-gray-500" id="specialDeduct2"></td>
+                    <td class="p-5 case-col case-3 font-medium text-gray-500" id="specialDeduct3"></td>
+                    <td class="p-5 case-col case-4 font-medium text-gray-500" id="specialDeduct4"></td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <td class="p-5 text-left font-bold text-[#4e5968] bg-[#f9fafb]/50">적용 세율</td>
+                    <td class="p-5 case-col case-1 active font-black text-[#1a1f27]" id="appliedRate1"></td>
+                    <td class="p-5 case-col case-2 font-black text-[#1a1f27]" id="appliedRate2"></td>
+                    <td class="p-5 case-col case-3 font-black text-[#1a1f27]" id="appliedRate3"></td>
+                    <td class="p-5 case-col case-4 font-black text-[#1a1f27]" id="appliedRate4"></td>
+                  </tr>
+                  <tr class="bg-gray-50/50">
+                    <td class="p-6 text-left font-black text-[#1a1f27]">최종 산출세액</td>
+                    <td class="p-6 case-col case-1 active font-black text-2xl text-red-500" id="calculatedTax1"></td>
+                    <td class="p-6 case-col case-2 font-black text-2xl text-red-500" id="calculatedTax2"></td>
+                    <td class="p-6 case-col case-3 font-black text-2xl text-red-500" id="calculatedTax3"></td>
+                    <td class="p-6 case-col case-4 font-black text-2xl text-red-500" id="calculatedTax4"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Summary Analysis Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Asset Summary Card -->
+            <div class="bg-gradient-to-br from-white to-[#f9fafb] p-8 rounded-[32px] border border-gray-100 shadow-sm relative overflow-hidden group">
+              <div class="absolute -right-8 -top-8 w-32 h-32 bg-blue-50/50 rounded-full blur-3xl group-hover:bg-blue-100/50 transition-colors"></div>
+              <div class="relative z-10 flex flex-col h-full">
+                <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                  <i data-lucide="wallet" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-bold text-[#1a1f27] mb-6 tracking-tight">통합 자산 리포트</h4>
+                
+                <div class="space-y-4 flex-grow">
+                  <div class="flex justify-between items-center border-b border-gray-50 pb-3">
+                    <span class="text-sm font-medium text-[#8b95a1]">총 양도가액 합계</span>
+                    <span id="transferPriceTotal" class="font-bold text-[#1a1f27]"></span>
+                  </div>
+                  <div class="flex justify-between items-center border-b border-gray-50 pb-3 font-bold">
+                    <span class="text-sm text-[#4e5968]">이월과세 예상 총액</span>
+                    <span id="carryForwardTax" class="text-red-500"></span>
+                  </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-blue-100/50 bg-blue-50/10 -mx-8 px-8 -mb-8 pb-8">
+                  <p class="text-[11px] font-bold text-blue-400 uppercase tracking-widest mb-1 leading-none">Net Assets Outlook</p>
+                  <div class="flex items-baseline gap-2">
+                    <span id="netAssetsAfterTax" class="text-3xl font-black text-[#1a1f27] tracking-tighter"></span>
+                    <span id="netAssetsAfterTaxRatio" class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded-full"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stock Value Card -->
+            <div class="bg-[#1a1f27] p-8 rounded-[32px] shadow-xl relative overflow-hidden group">
+              <div class="absolute -right-8 -top-8 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
+              <div class="relative z-10 flex flex-col h-full text-white">
+                <div class="w-12 h-12 bg-white/10 text-blue-400 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                  <i data-lucide="trending-up" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-6 tracking-tight">주식가치 및 절세 요건</h4>
+
+                <div class="bg-white/5 p-6 rounded-2xl mb-8 text-center border border-white/5">
+                  <p class="text-gray-400 text-[11px] font-bold uppercase tracking-widest mb-2">Estimated Stock Price</p>
+                  <p id="stockPrice1" class="text-3xl font-black text-white tracking-tighter"></p>
+                </div>
+
+                <div class="flex items-start gap-4 p-4 bg-blue-500/10 rounded-2xl border border-blue-500/20">
+                  <i data-lucide="shield-check" class="w-5 h-5 text-blue-400 shrink-0 mt-1"></i>
+                  <div>
+                    <p class="text-[12px] font-bold text-blue-400 mb-1">가업상속공제 분석</p>
+                    <p id="requiredAssetIncrease" class="text-[13px] text-gray-300 leading-snug font-medium"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standardized Footer -->
+        <div class="mt-8 border-t border-gray-50">
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden Calculation Elements -->
+<div class="hidden">
+  <span id="bizFlag1"></span><span id="bizFlag2"></span><span id="bizFlag3"></span><span id="bizFlag4"></span>
+  <input type="text" id="etc2_1" value="0" /><input type="text" id="etc2_2" value="0" />
+  <input type="text" id="etc2_3" value="0" /><input type="text" id="etc2_4" value="0" />
+  <input type="text" id="basicDeduct1" value="2500000" /><input type="text" id="basicDeduct2" value="0" />
+  <input type="text" id="basicDeduct3" value="0" /><input type="text" id="basicDeduct4" value="0" />
+  <span id="currentNetAssetsMirror"></span><span id="carryForwardTaxMirror"></span>
+  <span id="netAssetsAfterTaxMirror"></span><span id="netAssetsAfterTaxRatioMirror"></span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc804-1.js?v=2.0"></script>
+<script>
+  lucide.createIcons();
+  function switchCase(caseNum) {
+    document.querySelectorAll('.segmented-item button').forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === caseNum - 1);
+    });
+    const glider = document.getElementById('caseGlider');
+    glider.style.transform = `translateX(${(caseNum - 1) * 100}%)`;
+
+    document.querySelectorAll('.case-col').forEach(col => {
+      col.classList.toggle('active', col.classList.contains('case-' + caseNum));
+    });
+  }
+</script>

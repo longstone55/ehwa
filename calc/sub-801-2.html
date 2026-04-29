@@ -1,0 +1,1011 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://mixednuts.co.kr/css/calc_styles.css?v=1.8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://mixednuts.co.kr/excel.css" rel="stylesheet">
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+<link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<div id="content">
+    <button id="mobileMenuToggle" class="mobile-menu-toggle">
+        <i class="bi bi-layout-text-sidebar"></i>
+    </button>
+    <!-- 모바일 오버레이 -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+    <div id="sidebar" class="sidebar" style="width:300px;">
+        <div id="sidebar-header" class="d-flex justify-content-between align-items-center">
+            <span class="sidebar-title fw-bold">세무법인이화 간편세금계산 <span style="font-weight: 300; font-size: 10px;">Version 1.0</span></span>
+            <button id="sidebarToggle" class="toggle-btn">
+                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+        <div class="new-chat-btn">
+            <a href="#" class="btn btn-primary d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-plus-lg"></i>
+                <span class="nav-label"> 새로고침</span>
+            </a>
+        </div>
+		
+<div class="chat-history" style='padding-bottom:15px;'>
+  <h6 class="chat-history-title px-3 mt-4 mb-2">세금 계산 항목</h6>
+  <div class="chat-list">
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title"> 1.개인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-800-1.html" class="chat-item">
+      <span class="chat-title">1-1. 개인사업자 소득구성과 조세효과</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-800-2.html" class="chat-item">
+      <span class="chat-title">1-2. 매출 누락과 세무위험</span>
+    </a> -->
+    <!-- <a href="/roma/sub/sub-800-3.html" class="chat-item">
+      <span class="chat-title">1-3. 비용 인정과 절세 포인트</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">2.법인사업자 소득구성과 조세효과</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px;">
+    <a href="/roma/sub/sub-801-1.html" class="chat-item">
+      <span class="chat-title">2-1.개인 대표 사업소득+임대소득 세금 비교</span>
+    </a>
+    <a href="/roma/sub/sub-801-2.html" class="chat-item">
+      <span class="chat-title">2-2.법인 대표 근로소득+임대소득 세금 비교</span>
+    </a>
+    <!-- <a href="/roma/sub/sub-801-3.html" class="chat-item">
+      <span class="chat-title">2-3. 대표자 상여 및 소득세 이슈</span>
+    </a> -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">3.법인주주 증여와 법인세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-802-1.html" class="chat-item">
+      <span class="chat-title">3-1. 특정법인증여의제</span>
+    </a> 
+    <a href="/roma/sub/sub-802-2.html" class="chat-item">
+      <span class="chat-title">3-2. 법인주주차등배당과 세후수령액</span>
+    </a>
+    <a href="/roma/sub/sub-802-3.html" class="chat-item">
+      <span class="chat-title">3-3. 특정법인 증여와 법인세</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">4.부(父)의 토지사용 적정임대료</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+ <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+   <a href="/roma/sub/sub-803-1.html" class="chat-item">
+      <span class="chat-title">4-1. 아버지 토지 사용에 대한 적정임대료</span>
+    </a>  
+   <!--  <a href="/roma/sub/sub-803-2.html" class="chat-item">
+      <span class="chat-title">4-2. 증여 후 법인세 과세 구조</span>
+    </a> -->
+    <!--  <a href="/roma/sub/sub-803-3.html" class="chat-item">
+      <span class="chat-title">4-3. 배당소득과 이중과세 이슈</span>
+    </a>  -->
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">5.법인전환과 양도세/취득세/주가변동계산</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+    <a href="/roma/sub/sub-804-1.html" class="chat-item">
+      <span class="chat-title">5-1. 법인전환 양도소득세 취득세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-804-2.html" class="chat-item">
+      <span class="chat-title">5-2. 부동산 양도소득세 계산(주택외)</span>
+    </a>
+  <a href="/roma/sub/sub-804-3.html" class="chat-item">
+      <span class="chat-title">5-3. 주택 취득세 계산</span>
+    </a> 
+  </div>
+</div>
+
+<div class="category-item">
+  <a href="#" class="chat-item toggle-category">
+    <span class="chat-title">6.상속세/증여세/주식양도소득세</span>
+    <i class="bi bi-chevron-down"></i>
+  </a>
+  <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+  <a href="/roma/sub/sub-805-1.html" class="chat-item">
+      <span class="chat-title">6-1. 상속세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-2.html" class="chat-item">
+      <span class="chat-title">6-2. 증여세 계산</span>
+    </a> 
+    <a href="/roma/sub/sub-805-3.html" class="chat-item">
+    <span class="chat-title">6-3. 주식양도소득세 계산</span>
+    </a> 
+   <a href="/roma/sub/sub-805-4.html" class="chat-item">
+      <span class="chat-title">6-4. 주식양수도 케이스별 세금</span>
+    </a>
+  </div>
+</div>
+
+	<div class="category-item">
+	  <a href="#" class="chat-item toggle-category">
+		<span class="chat-title">7.자녀법인차등배당</span>
+		<i class="bi bi-chevron-down"></i>
+	  </a>
+	 <div class="chat-sub-list" style="padding-left: 5px; margin-top: 0px; display: none;">
+	 <a href="/roma/sub/sub-806-1.html" class="chat-item">
+		  <span class="chat-title">7-1. 자녀법인차등배당</span>
+		</a> 
+		<!-- <a href="/roma/sub/sub-806-2.html" class="chat-item">
+		  <span class="chat-title">7-2. 증여 후 법인세 과세 구조</span>
+		</a> -->
+		<!-- <a href="/roma/sub/sub-806-3.html" class="chat-item">
+		  <span class="chat-title">7-3. 배당소득과 이중과세 이슈</span>
+		</a> -->
+	  </div>
+	</div>
+
+  </div>
+</div>
+
+
+   <div class="sidebar-wrapper"  style='border-top:1px solid #dee2e6; '>
+  <!-- 공공 사이트 영역 -->
+  <div class="chat-history2">
+    <div class="chat-public-links">
+      <div class="chat-side-label">
+        <a href="/roma/sub/sub-01.html" style="color:black;">
+          <i class="fas fa-square" style="margin-right: 6px;"></i> 공공 사이트
+        </a>
+      </div>
+      <div class="chat-banner-wrapper">
+        <div class="chat-side-banner">
+          <a href="https://www.nts.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kuk_02.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.gov.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/jung24_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://taxlaw.nts.go.kr/" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/kunjong_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://hometax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/hometax_2.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.wetax.go.kr" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/wetax_1.jpg" alt=""></a>
+        </div>
+        <div class="chat-side-banner">
+          <a href="https://www.ehwatax.co.kr/roma/sub/sub-100.html" target="_blank"><img src="//ecimg.cafe24img.com/pg1246b36467805019/ehwatax/web/taxi_1.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 메뉴 -->
+  <div class="sidebar-menu" style='border-top:1px solid #dee2e6; '> 
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/">
+          <i class="bi bi-house"></i>
+          <span class="nav-label">홈</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.ehwatax.co.kr/myshop/index.html">
+          <i class="bi bi-gear"></i>
+          <span class="nav-label">마이페이지</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-question-circle"></i>
+          <span class="nav-label">도움말</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+    <div class="right-wrap">
+    <div class="container" id="main-container">
+      <div class="top-box">
+        <div class="scroll-content">
+          <div class="inner-content">
+            <div class="chat-container" id="chatContainer" style='padding-bottom:50px;'>
+              <div id="print_wrap">
+                <div class="page" id="page1">
+                  <div class="biz-wrapper">
+                    <div class="biz-header">
+									<h2 class="biz-title">법인 대표 근로소득+임대소득 세금 비교</h2>
+									<p class="biz-description">
+										법인사업자의 소득 구성에 따른 세금 부담 효과를 분석한 자료입니다.<br/>
+										사업소득과 임대소득의 조합에 따른 세금 및 준조세 부담률을 케이스별로 비교해 보세요.
+									</p>
+								  </div>
+								  <div class="biz-body">
+									<ul class="biz-list">
+										<li class="mb-2">1. 대표의 소득이 급여에만 다른 소득이 있는 경우 상황에 맞추어 시뮬레이션 해볼 수 있습니다.</li>
+										<li class="mb-2">2. 각각의 소득을 조합하여 원하는대로 시뮬레이션할 수 있습니다.</li>
+										<li class="mb-2">3. 셀이 클릭되어 수정가능한 곳은 직접 입력하여 수정(입력)할 수 있습니다.</li>
+										<li class="mb-2">4. 산업재산권의 경우 필요경비율 60%를 제외한 금액에 대해 소득세를 계산합니다.</li>
+									</ul>
+									<p class="biz-note">
+										※ 앞에 있는 쉬트 1.급여의 재구성(가료)와 계산값이 다를 수 있습니다. 그건 엑셀을 작성하면서 가정이 달리 적용된 까닭입니다. 큰 차이는 없을 겁니다.
+									</p>
+								  </div>
+								</div>
+                                
+                                
+                                
+                                 <div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>		
+                                <div class="card input-section">
+                                    <div class="card-body p-0">
+                                        <div class="table-responsive">
+											<div class="table-title">입력란</div>
+                                            <table class="table input-form-table text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th rowspan="2" class="table-w80">구분</th>
+                                                        <th colspan="2">CASE I</th>
+                                                        <th colspan="2">CASE II</th>
+                                                        <th colspan="2">CASE III</th>
+                                                        <th colspan="2">CASE IV</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>현재상황</th>
+                                                        <th>임대소득</th>
+                                                        <th>현재상황</th>
+                                                        <th>임대소득</th>
+                                                        <th>현재상황</th>
+                                                        <th>임대소득</th>
+                                                        <th>현재상황</th>
+                                                        <th>임대소득</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+													<tr>
+                                                        <th>근로소득(연급여)</th>
+                                                        <td><input type="text" class="form-control text-center money-input" value="150000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="150000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="150000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="150000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="200000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="200000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="250000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="250000000"/></td>
+                                                    </tr>												
+                                                    <tr>
+                                                        <th>사업소득</th>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                    </tr>
+													<tr>
+                                                        <th>임대소득</th>
+                                                        <td><input type="text" class="form-control text-center money-input" value="60000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="50000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="0"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="50000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="0"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="50000000"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="0"/></td>
+                                                        <td><input type="text" class="form-control text-center money-input" value="50000000" /></td>
+                                                    </tr>
+                                                 													
+                                                    <tr>
+                                                        <th>배당소득</th>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>배당소득외 금융소득</th>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>산업재산권 양도소득</th>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                        <td><input type="text" class="form-control text-center money-input" /></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                </div>
+
+															<div class="page-break"></div> 	
+								<div class="page" id="page2">                                
+								<div style='width:100%; text-align:right;border:0px;'>(단위:원)</div>																																		
+                                <div class="card">
+                                    <div class="card-body p-0">
+                                                                        <div class="card input-section">
+
+										<div class="table-title">확인란 / 소득구성에 따른 조세효과</div>
+                                        <table class="table excel-table m-0">
+                                            <thead>
+                                                <tr class="bg-main">
+                                                    <th rowspan="2" colspan="2" class="position-relative text-center table-th">
+                                                        구분
+											             <button data-group="0" class="toggle-group-btn btn btn-sm toggle-btn2 position-absolute top-50 end-0 translate-middle-y me-1" data-target="tbody" title="전체 접기">
+                                                            <i class="bi bi-chevron-down"></i>
+                                                        </button>
+                                                    </th>
+                                                    <th colspan="2">CASE I</th>
+                                                    <th colspan="2">CASE II</th>
+                                                    <th colspan="2">CASE III</th>
+                                                    <th colspan="2">CASE IV</th>
+                                                </tr>
+                                                <tr class="sub-header bg-main">
+                                                    <th>현재상황</th>
+                                                    <th>임대소득</th>
+                                                    <th>현재상황</th>
+                                                    <th>임대소득</th>
+                                                    <th>현재상황</th>
+                                                    <th>임대소득</th>
+                                                    <th>현재상황</th>
+                                                    <th>임대소득</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+												<tr class="bg-green" data-label="근로소득">
+                                                    <td colspan="2" class="position-relative text-center" style="font-weight: bold;">근로소득(연급여)
+                                                        <button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="4" title="1번 그룹 토글">
+                                                            <i class="bi bi-chevron-down"></i>
+                                                        </button>
+                                                    </td>
+                                                     <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                </tr>
+                                                <tr class="group-4" data-label="근로소득과세표준">
+                                                    <td class="bg-d6dce4" colspan="2">근로소득과세표준</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="group-4" data-label="소득공제후 급여과세표준">
+                                                    <td class="bg-d6dce4" colspan="2">소득공제 후<br/>급여과세표준</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+												
+                                                <tr class="bg-green" data-label="사업소득">
+                                                       <td colspan="2" style="font-weight: bold;">사업소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+												<tr class="bg-green" data-label="임대소득">
+                                                   <td colspan="2" class="position-relative text-center" style="font-weight: bold;">임대소득
+                                                        <button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="3" title="1번 그룹 토글">
+                                                            <i class="bi bi-chevron-down"></i>
+                                                        </button>
+                                                    </td>
+													<td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+											   <tr class="group-3" data-label="필요경비">
+                                                    <td class="bg-d6dce4" colspan="">필요경비</td>
+													<td class="bg-d6dce4">0%</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>												
+                                                <tr class="bg-green" data-label="배당소득">
+                                                   <td colspan="2" class="position-relative text-center" style="font-weight: bold;">배당소득(a)
+                                                        <button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="1" title="1번 그룹 토글">
+                                                            <i class="bi bi-chevron-down"></i>
+                                                        </button></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="group-1" data-label="원천징수배당">
+                                                    <td class="bg-d6dce4" colspan="2">원천징수배당</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="group-1" data-label="그로스업배당(10%가산)">
+                                                    <td class="bg-d6dce4" colspan="2">그로스업배당 (10%가산)</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="bg-green" data-label="배당소득외 금융소득">
+                                                    <td colspan="2" class="position-relative text-center" style="font-weight: bold;">배당소득외 금융소득(b)
+                                                        <button class="btn btn-sm toggle-group-btn position-absolute top-50 end-0 translate-middle-y me-1" data-group="2" title="1번 그룹 토글">
+                                                            <i class="bi bi-chevron-down"></i>
+                                                        </button>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="group-2" data-label="금융소득계">
+                                                    <td class="bg-d6dce4" colspan="2">금융소득계(a+b)</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="group-2" data-label="원천징수금융소득">
+                                                    <td class="bg-d6dce4" colspan="2">원천징수금융소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="group-2" data-label="종합과세금융소득">
+                                                    <td class="bg-d6dce4" colspan="2">종합과세금융소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+                                                <tr data-label="산업재산권 양도소득">
+                                                     <td colspan="2" style="font-weight: bold;">산업재산권 양도소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="group-3" data-label="필요경비2">
+                                                    <td class="bg-d6dce4" colspan="">필요경비</td>
+													<td class="bg-d6dce4">60%</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+												<tr class="bg-d6dce4" data-label="필요경비공제후 기타소득">
+                                                    <td colspan="2" class="bg-d6dce4" class="position-relative text-center">필요경비공제 후<br/>기타소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+												
+                                                <tr class="bg-greenBold" data-label="근로외 건보료부과소득">
+                                                    <td colspan="2">근로외 건보료부과소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="bg-greenBold" data-label="총 소 득">
+                                                    <td colspan="2"><b>총 소 득</b></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="bg-green" data-label="종합소득공제">
+                                                    <td colspan="2"style="font-weight: bold;">종합소득공제</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="종합소득종합과세표준A">
+                                                    <td class="bg-d6dce4" colspan="2">종합소득종합과세표준A</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="종합소득분리과세표준B">
+                                                    <td class="bg-d6dce4" colspan="2">종합소득분리과세표준B</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="current-situation" data-label="종합과세시">
+                                                    <td rowspan="2" style="vertical-align: middle; text-align: center; background-color: #d6dce4;">산출세액</td>
+                                                    <td style="background-color: #d6dce4; text-align:center;" class="border-right">종합과세시</td>
+                                                    <td ></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="분리과세시">
+                                                    <td style="background-color: #d6dce4; text-align:center;">분리과세시</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                   <tr class="bg-green" data-label="총산출세액">
+                                                    <td colspan="2"  style="font-weight: bold;">총산출세액
+                                                    </td>
+                                                      <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                </tr>
+                                                <tr data-label="배당세액공제" style='display:none;'>
+                                                    <td colspan="2">배당세액공제</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="표준세액공제" style='display:none;'>
+                                                    <td colspan="2">표준세액공제</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+                                                <tr class="bg-greenBold" data-label="결정세액(지방소득세)">
+                                                    <td colspan="2">결정세액(지방소득세)</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="세부담률">
+                                                    <td colspan="2" class="bg-white">세부담률</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                              <tr class="bg-green" data-label="현재대비 세금 증가분">
+                                                    <td colspan="2"style="font-weight: bold;">현재대비 세금 증가분</td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                </tr>
+                                                 <tr class="bg-green"  data-label="△세금 / △소득">
+                                                    <td colspan="2" class="bg-white">△세금 / △소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+												<tr class="current-situation" data-label="건강보험료">
+                                                    <td class="bg-d6dce4" rowspan="2" style="vertical-align: middle; text-align: center; background-color: #d6dce4; border-right:1px solid black;">건강보험료</td>
+                                                    <td style="background-color: #d6dce4; text-align:center;" class="border-right">근로</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="근로외">
+                                                    <td style="background-color: #d6dce4; text-align:center;">근로 외</td>
+                                                    <td></td>
+			                                        <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="노인요양">
+                                                    <td colspan="2" class="bg-white">노인요양</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="국민연금">
+                                                    <td colspan="2" class="bg-white">국민연금</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                      <tr class="bg-green current-situation" data-label="준조세(계)">
+                                                    <td style="border-right:1px solid black; font-weight: bold;">준조세</td>
+                                                    <td style='text-align:center; font-weight: bold;' class="border-right">계</td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                    <td style="font-weight: bold;"></td>
+                                                </tr>
+                                              <tr class="current-situation" data-label="세금 계">
+                                                    <td class="bg-95c4ba" rowspan="2" style="vertical-align: middle; text-align: center; background-color: #97c8be; border-right:1px solid black; font-weight: bold;">준조세포함</td>
+                                                    <td style="background-color: #97c8be; text-align:center; font-weight: bold;" class="border-right">세금 계</td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                </tr>
+                                                <tr data-label="세부담률2">
+                                                    <td style="background-color: #97c8be;  font-weight: bold;">세부담률</td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                    <td style="background-color: #97c8be;  font-weight: bold;"></td>
+                                                </tr>
+                                              <tr class="bg-green" data-label="현재대비 준조세포함 증가분">
+                                                     <td colspan="2"style="font-weight: bold;">현재대비 준조세포함 증가분</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="준조세포함">
+                                                    <td colspan="2" class="bg-white">△준조세포함 / △소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+												<tr class="current-situation" data-label="법인의비용">
+                                                      <td class="bg-95c4ba" rowspan="4" style="vertical-align: middle; text-align: center; background-color: #97c8be; border-right:1px solid black; font-weight: bold;">법인의 비용</td>
+                                                    <td style="background-color: #dbebe7; text-align:center;" class="border-right">건강보험료 등</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+												
+                                                <tr data-label="국민연금2">
+                                                    <td style="background-color: #dbebe7; text-align:center;">국민연금</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="급여2">
+                                                    <td style="background-color: #dbebe7; text-align:center;">급여</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="법인계">
+                                                    <td style="background-color: #dbebe7; text-align:center; font-weight: bold;" class="border-right">법인의 비용 계</td>
+                                                         <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold;"></td>
+                                                </tr>
+												<tr class="current-situation" data-label="법인세감소액">
+                                                     <td class="bg-95c4ba" style="vertical-align: middle; text-align: center; background-color: #97c8be; border-right:1px solid black; font-weight: bold;">법인세</td>
+                                                    <td style="background-color: #dbebe7; text-align:center;font-weight: bold;"  class="border-right">감소액</td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight: bold; color:red;"></td>
+                                                </tr>
+
+												<tr class="current-situation" data-label="대외유출금액">
+                                                    <td class="bg-95c4ba" rowspan="2" style="vertical-align: middle; text-align: center; background-color: #97c8be; border-right:1px solid black;font-weight: bold;">대외유출</td>
+                                                    <td style="background-color: #dbebe7; text-align:center;font-weight: bold;" class="border-right">금액</td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                    <td style="background-color: #dbebe7;  font-weight:"></td>
+                                                </tr>
+                                                </tr>
+                                                <tr data-label="대외유출비율">
+                                                    <td style="background-color: #dbebe7; text-align:center;">비율</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+												<tr class="bg-greenBold" data-label="현재대비 대외유출 증가분">
+                                                    <td colspan="2">현재대비 대외유출<br/>증가분</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr data-label="△대외유출/△소득">
+                                                    <td colspan="2" class="bg-white">△대외유출/△소득</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+												
+                                               <tr class="bg-greenBold"  data-label="세후수령액">
+                                                    <td style="background-color: #d6dce4; text-align:center;" colspan=2>세후수령액</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+										
+                                    </div>
+                                </div>
+                            </div>
+							</div>
+            </div>
+							<!--@import(/roma/sub/sub-menu.html)-->	
+							</div>
+                        </div>
+						<
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="https://mixednuts.co.kr/calc801-2.js?v=2.9"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('sidebarToggle');
+  const iconLeft = toggleBtn.querySelector('.bi-chevron-left');
+  const iconRight = toggleBtn.querySelector('.bi-chevron-right');
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+
+    const isCollapsed = sidebar.classList.contains('collapsed');
+    iconLeft.style.display = isCollapsed ? 'none' : 'inline-block';
+    iconRight.style.display = isCollapsed ? 'inline-block' : 'none';
+  });
+});
+</script>
+

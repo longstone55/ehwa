@@ -1,0 +1,321 @@
+<!--@layout(/layout/basic/chat.html)-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .sticky-left {
+    position: sticky;
+    left: 0;
+    z-index: 20;
+    background-color: white;
+  }
+
+  .case-col { display: none; }
+  .case-col.active { display: table-cell !important; }
+
+  @media print {
+    .case-col { display: table-cell !important; }
+    .no-print { display: none !important; }
+    #calculator-wrap { background: white !important; }
+  }
+
+  .segmented-control {
+    position: relative;
+    display: flex;
+    background: #f2f4f6;
+    border-radius: 14px;
+    padding: 2px;
+  }
+  .segmented-item {
+    position: relative;
+    flex: 1;
+    z-index: 1;
+    min-width: 60px;
+  }
+  .segmented-item button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8b95a1;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    background: transparent;
+    white-space: nowrap;
+  }
+  .segmented-item button.active {
+    color: #1a1f27;
+    font-weight: 600;
+  }
+  .segmented-glider {
+    position: absolute;
+    height: calc(100% - 4px);
+    width: calc(10% - 1.33px);
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+  }
+</style>
+
+<div id="calculator-wrap" class="bg-[#f9fafb] min-h-screen pb-20 font-light">
+  <!-- Sub Page Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl" data-aos="fade-up">
+        <h1 class="text-3xl md:text-5xl font-normal text-[#1a1f27] mb-8 leading-tight tracking-tight">
+          비상장주식 이동 전 <br />
+          <span class="font-semibold text-[#3182f6]">세무 리스크를 체크하세요</span>
+        </h1>
+        <p class="text-base md:text-lg text-[#4e5968] leading-relaxed font-light opacity-90">
+          특수관계인 간 주식 거래 시 발생하는 <br class="hidden md:block" />
+          저가 양수 및 고가 양도 위험을 시나리오별로 정밀하게 분석해 드립니다.
+        </p>
+      </div>
+    </div>
+    <div class="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-50/30 to-transparent hidden lg:block"></div>
+  </section>
+
+  <!-- Sub Navigation -->
+  <!--@import(/roma/sub/sub-800-nav.html)-->
+
+  <div class="max-w-6xl mx-auto px-4 py-8 md:py-20">
+    <div id="print_wrap" data-aos="fade-up">
+
+      <!-- MAIN CONTENT CARD -->
+      <div class="bg-white rounded-[40px] shadow-[0_4px_30px_rgba(0,0,0,0.02)] border border-gray-100/50 overflow-hidden">
+        <!-- Instruction Header -->
+        <div class="p-5 md:p-8 bg-[#f9fafb]/40 border-b border-gray-50">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">01</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">액면가, 시가, 주당 취득가액을 <br class="hidden sm:block"/>먼저 설정하세요.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">02</span>
+              <p class="text-[14px] text-[#4e5968] font-normal leading-relaxed tracking-tight">매매 주식수와 시뮬레이션하고 <br class="hidden sm:block"/>싶은 매매단가를 입력합니다.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <span class="w-6 h-6 rounded-full bg-blue-50 text-[#3182f6] flex items-center justify-center text-[11px] font-semibold mt-0.5 shadow-sm">03</span>
+              <p class="text-[12px] text-[#4e5968] font-medium leading-tight tracking-tight">시가 대비 비율별(70%, 100% 등) 세무 리스크를 즉시 확인하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-8">
+          <!-- Section 1: 가액 정보 입력 -->
+          <section class="mb-16">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-1 h-6 bg-[#3182f6] rounded-full"></div>
+              <h3 class="text-xl font-normal text-[#1a1f27]">기초 주식 및 거래 단가 설정</h3>
+            </div>
+            
+            <div class="bg-[#f9fafb] p-8 rounded-[32px] border border-gray-100 shadow-inner">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-2xl border border-gray-50 shadow-sm">
+                  <label class="block text-[11px] font-bold text-gray-400 mb-2 uppercase tracking-widest leading-none">액면가 (원)</label>
+                  <input type="text" id="parValue" class="w-full text-right text-2xl font-black text-[#4e5968] border-0 bg-transparent p-0 focus:ring-0" value="10,000">
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-gray-50 shadow-sm">
+                  <label class="block text-[11px] font-bold text-gray-400 mb-2 uppercase tracking-widest leading-none">주당 취득가격 (원)</label>
+                  <input type="text" id="acquisitionPrice" class="w-full text-right text-2xl font-black text-[#4e5968] border-0 bg-transparent p-0 focus:ring-0" value="10,000">
+                </div>
+                <div class="bg-amber-50/50 p-5 rounded-2xl border border-amber-100 shadow-sm border-dashed">
+                  <label class="block text-[11px] font-bold text-amber-600 mb-2 uppercase tracking-widest leading-none">시가 (상증법상)</label>
+                  <input type="text" id="currentPrice" class="w-full text-right text-2xl font-black text-[#e67700] border-0 bg-transparent p-0 focus:ring-0" value="41,000">
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-gray-50 shadow-sm">
+                  <label class="block text-[11px] font-bold text-gray-400 mb-2 uppercase tracking-widest leading-none">매매 주식수 (주)</label>
+                  <input type="text" id="stockCount" class="w-full text-right text-2xl font-black text-[#2e7d32] border-0 bg-transparent p-0 focus:ring-0" value="10,000">
+                </div>
+                <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100 shadow-sm lg:col-span-2 border-dashed">
+                  <label class="block text-[11px] font-bold text-[#3182f6] mb-2 uppercase tracking-widest leading-none">임의 매매단가 (원) <span class="ms-2 opacity-30 text-[9px] font-medium uppercase tracking-tight">시나리오 8~10 적용</span></label>
+                  <input type="text" id="customPrice" class="w-full text-right text-3xl font-black text-[#3182f6] border-0 bg-transparent p-0 focus:ring-0" value="12,000">
+                  <span id="customPrice_mirror" class="hidden"></span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: 시나리오 탭 & 결과 테이블 -->
+          <section class="mb-16">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
+              <div class="flex items-center gap-3">
+                <div class="w-1 h-6 bg-[#22c55e] rounded-full"></div>
+                <h3 class="text-xl font-normal text-[#1a1f27]">시나리오별 리스크 정밀 판정</h3>
+              </div>
+
+              <!-- Case Selector -->
+              <div class="max-w-full overflow-x-auto no-scrollbar no-print">
+                <div class="segmented-control min-w-[600px] lg:min-w-0">
+                  <div class="segmented-item"><button class="active" onclick="switchCase(1)">시가액</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(2)">C2(70%)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(3)">C3(70%+)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(4)">C4(70%-)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(5)">C5(액면)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(6)">C6(액면+)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(7)">C7(액면-)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(8)">C8(임의)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(9)">C9(임의+)</button></div>
+                  <div class="segmented-item"><button onclick="switchCase(10)">C10(임의-)</button></div>
+                  <div class="segmented-glider" id="caseGlider"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto no-scrollbar rounded-3xl border border-gray-100 shadow-sm border-collapse">
+              <table class="w-full text-center min-w-[700px]">
+                <thead>
+                  <tr class="bg-[#1a1f27] text-white text-[10px] font-bold uppercase tracking-widest border-b border-white/5">
+                    <th class="p-5 text-left sticky-left !bg-[#1a1f27] w-[240px]">거래 분석 항목</th>
+                    <th class="p-5 text-center">시나리오별 분석 데이터</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50 text-[14px]">
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">주당 매매단가</th>
+                    <td class="p-5 case-col case-1 active font-black text-[#3182f6] text-xl" id="tradePrice_1"></td>
+                    <td class="p-5 case-col case-2 font-black text-[#3182f6] text-xl" id="tradePrice_2"></td>
+                    <td class="p-5 case-col case-3 font-black text-[#3182f6] text-xl" id="tradePrice_3"></td>
+                    <td class="p-5 case-col case-4 font-black text-[#3182f6] text-xl" id="tradePrice_4"></td>
+                    <td class="p-5 case-col case-5 font-black text-[#3182f6] text-xl" id="tradePrice_5"></td>
+                    <td class="p-5 case-col case-6 font-black text-[#3182f6] text-xl" id="tradePrice_6"></td>
+                    <td class="p-5 case-col case-7 font-black text-[#3182f6] text-xl" id="tradePrice_7"></td>
+                    <td class="p-5 case-col case-8 font-black text-[#3182f6] text-xl" id="tradePrice_8"></td>
+                    <td class="p-5 case-col case-9 font-black text-[#3182f6] text-xl" id="tradePrice_9"></td>
+                    <td class="p-5 case-col case-10 font-black text-[#3182f6] text-xl" id="tradePrice_10"></td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">총 매매대금</th>
+                    <td class="p-5 case-col case-1 active font-bold" id="tradeAmount_1"></td>
+                    <td class="p-5 case-col case-2 font-bold" id="tradeAmount_2"></td>
+                    <td class="p-5 case-col case-3 font-bold" id="tradeAmount_3"></td>
+                    <td class="p-5 case-col case-4 font-bold" id="tradeAmount_4"></td>
+                    <td class="p-5 case-col case-5 font-bold" id="tradeAmount_5"></td>
+                    <td class="p-5 case-col case-6 font-bold" id="tradeAmount_6"></td>
+                    <td class="p-5 case-col case-7 font-bold" id="tradeAmount_7"></td>
+                    <td class="p-5 case-col case-8 font-bold" id="tradeAmount_8"></td>
+                    <td class="p-5 case-col case-9 font-bold" id="tradeAmount_9"></td>
+                    <td class="p-5 case-col case-10 font-bold" id="tradeAmount_10"></td>
+                  </tr>
+                  <tr class="bg-red-50/30">
+                    <th class="p-5 text-left font-black text-red-600 sticky-left border-r border-red-100 !bg-inherit">1. 증여세 리스크</th>
+                    <td class="p-5 case-col case-1 active text-red-600 font-bold italic">저가 양수 및 고가 양도 이익 분석</td>
+                    <td class="p-5 case-col case-2 text-red-600 font-bold italic">저가 양수 및 고가 양도 이익 분석</td>
+                    <td class="p-5 case-col case-3 text-red-600 font-bold italic">저가 양수 및 고가 양도 이익 분석</td>
+                    <!-- repeat for all cases -->
+                  </tr>
+                  <tr class="hover:bg-red-50/10">
+                    <th class="p-5 text-left font-bold text-red-600 sticky-left border-r border-gray-50">증여 이익 가액</th>
+                    <td class="p-5 case-col case-1 active text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_1"></td>
+                    <td class="p-5 case-col case-2 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_2"></td>
+                    <td class="p-5 case-col case-3 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_3"></td>
+                    <td class="p-5 case-col case-4 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_4"></td>
+                    <td class="p-5 case-col case-5 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_5"></td>
+                    <td class="p-5 case-col case-6 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_6"></td>
+                    <td class="p-5 case-col case-7 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_7"></td>
+                    <td class="p-5 case-col case-8 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_8"></td>
+                    <td class="p-5 case-col case-9 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_9"></td>
+                    <td class="p-5 case-col case-10 text-right pr-10 font-black text-red-600 text-lg" id="giftProfit_10"></td>
+                  </tr>
+                  <tr class="hover:bg-red-50/10">
+                    <th class="p-5 text-left font-bold text-red-800 sticky-left border-r border-gray-50 !bg-red-50/5">└ 예상 증여세액</th>
+                    <td class="p-5 case-col case-1 active text-right pr-10 font-black text-red-800" id="giftTaxFinal_1"></td>
+                    <td class="p-5 case-col case-2 text-right pr-10 font-black text-red-800" id="giftTaxFinal_2"></td>
+                    <td class="p-5 case-col case-3 text-right pr-10 font-black text-red-800" id="giftTaxFinal_3"></td>
+                    <td class="p-5 case-col case-4 text-right pr-10 font-black text-red-800" id="giftTaxFinal_4"></td>
+                    <td class="p-5 case-col case-5 text-right pr-10 font-black text-red-800" id="giftTaxFinal_5"></td>
+                    <td class="p-5 case-col case-6 text-right pr-10 font-black text-red-800" id="giftTaxFinal_6"></td>
+                    <td class="p-5 case-col case-7 text-right pr-10 font-black text-red-800" id="giftTaxFinal_7"></td>
+                    <td class="p-5 case-col case-8 text-right pr-10 font-black text-red-800" id="giftTaxFinal_8"></td>
+                    <td class="p-5 case-col case-9 text-right pr-10 font-black text-red-800" id="giftTaxFinal_9"></td>
+                    <td class="p-5 case-col case-10 text-right pr-10 font-black text-red-800" id="giftTaxFinal_10"></td>
+                  </tr>
+                  <tr class="bg-blue-50/10">
+                    <th class="p-5 text-left font-bold text-[#3182f6] sticky-left border-r border-blue-100 !bg-inherit">2. 양도소득세 분석</th>
+                    <td class="p-5 case-col case-1 active">-</td><td class="p-5 case-col case-2">-</td><td class="p-5 case-col case-3">-</td><td class="p-5 case-col case-4">-</td><td class="p-5 case-col case-5">-</td><td class="p-5 case-col case-6">-</td><td class="p-5 case-col case-7">-</td><td class="p-5 case-col case-8">-</td><td class="p-5 case-col case-9">-</td><td class="p-5 case-col case-10">-</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50/50 transition-colors">
+                    <th class="p-5 text-left font-semibold text-[#4e5968] sticky-left border-r border-gray-50">양도 소득세</th>
+                    <td class="p-5 case-col case-1 active text-right pr-10 font-bold" id="transferTaxSum_1"></td>
+                    <td class="p-5 case-col case-2 text-right pr-10 font-bold" id="transferTaxSum_2"></td>
+                    <td class="p-5 case-col case-3 text-right pr-10 font-bold" id="transferTaxSum_3"></td>
+                    <td class="p-5 case-col case-4 text-right pr-10 font-bold" id="transferTaxSum_4"></td>
+                    <td class="p-5 case-col case-5 text-right pr-10 font-bold" id="transferTaxSum_5"></td>
+                    <td class="p-5 case-col case-6 text-right pr-10 font-bold" id="transferTaxSum_6"></td>
+                    <td class="p-5 case-col case-7 text-right pr-10 font-bold" id="transferTaxSum_7"></td>
+                    <td class="p-5 case-col case-8 text-right pr-10 font-bold" id="transferTaxSum_8"></td>
+                    <td class="p-5 case-col case-9 text-right pr-10 font-bold" id="transferTaxSum_9"></td>
+                    <td class="p-5 case-col case-10 text-right pr-10 font-bold" id="transferTaxSum_10"></td>
+                  </tr>
+                  <tr class="bg-[#1a1f27] text-white">
+                    <th class="p-8 text-left font-black text-[#fab005] sticky-left !bg-[#1a1f27] text-lg">최종 세금 합계</th>
+                    <td class="p-8 case-col case-1 active text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_1"></td>
+                    <td class="p-8 case-col case-2 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_2"></td>
+                    <td class="p-8 case-col case-3 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_3"></td>
+                    <td class="p-8 case-col case-4 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_4"></td>
+                    <td class="p-8 case-col case-5 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_5"></td>
+                    <td class="p-8 case-col case-6 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_6"></td>
+                    <td class="p-8 case-col case-7 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_7"></td>
+                    <td class="p-8 case-col case-8 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_8"></td>
+                    <td class="p-8 case-col case-9 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_9"></td>
+                    <td class="p-8 case-col case-10 text-center text-4xl font-black text-[#fab005] tracking-tighter" id="totalTaxSum_10"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Warning Box -->
+          <div class="p-8 bg-amber-50 rounded-[32px] border border-amber-100 flex gap-6 items-start shadow-sm">
+            <div class="w-12 h-12 rounded-2xl bg-white border border-amber-100 flex items-center justify-center text-amber-600 shrink-0 shadow-sm">
+              <i data-lucide="alert-circle" class="w-6 h-6"></i>
+            </div>
+            <div class="space-y-2">
+              <h4 class="text-base font-bold text-amber-900">특수관계인 간 저가 양수도 세무 주의보</h4>
+              <p class="text-sm text-amber-800/80 leading-relaxed font-medium">
+                법인 주주의 특수관계인 간 거래는 시가와의 차액이 30% 또는 3억 원을 초과할 경우 증여세가 부과될 수 있습니다. 
+                또한 부당행위계산부인 규정이 적용되어 '시가'를 기준으로 양도소득세가 재산정되므로 전문가의 정밀 진단이 반드시 필요합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standardized Footer -->
+        <div class="mt-8 border-t border-gray-50">
+          <!--@import(/roma/sub/sub-800-footer.html)-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden elements for script compatibility (Full 1-10) -->
+<div class="hidden">
+  <span id="stockCount_1"></span><span id="acquisitionPrice_1"></span><span id="securitiesTax_1"></span>
+  <span id="giftTax_1"></span><span id="giftTaxReport_1"></span><span id="capitalGain_1"></span>
+  <span id="transferTaxBase_1"></span><span id="transferTaxLocal_1"></span><span id="paymentAmount_1"></span>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://mixednuts.co.kr/calc805-4.js?v=2.0"></script>
+<script>
+  lucide.createIcons();
+  function switchCase(caseNum) {
+    document.querySelectorAll('.segmented-item button').forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === caseNum - 1);
+    });
+    const glider = document.getElementById('caseGlider');
+    glider.style.transform = `translateX(${(caseNum - 1) * 100}%)`;
+
+    document.querySelectorAll('.case-col').forEach(col => {
+      col.classList.toggle('active', col.classList.contains('case-' + caseNum));
+    });
+  }
+</script>
