@@ -40,9 +40,9 @@ export default function TaxCalculator() {
 
 
       {/* 2. Integrated Calculator Card */}
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
         {/* Header */}
-        <div className="p-8 border-b border-gray-100 bg-white">
+        <div className="p-5 md:p-5 md:p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="flex items-start gap-4 mb-6">
             <div className="space-y-3">
               <div className="grid gap-2 text-sm text-[#4e5968] leading-relaxed">
@@ -138,7 +138,7 @@ export default function TaxCalculator() {
               <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">확인란 / 소득구성에 따른 조세효과</h3>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
               <table className="w-full border-collapse min-w-[450px]">
                 <thead>
                   <tr className="bg-[#1a1f27] text-white">
@@ -385,7 +385,7 @@ export default function TaxCalculator() {
                 <span className="font-bold text-sm">인쇄</span>
               </button>
 
-              <button className="flex flex-col items-center justify-center gap-3 p-6 bg-[#203578] rounded-2xl border border-[#203578] shadow-lg hover:bg-[#1a2b61] transition-all group text-white">
+              <button className="flex flex-col items-center justify-center gap-3 p-5 md:p-6 bg-[#203578] rounded-2xl border border-[#203578] shadow-sm md:shadow-md hover:bg-[#1a2b61] transition-all group text-white">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sparkles"><path d="m12 3 1.912 4.912L18.824 9.824 13.912 11.736 12 16.648l-1.912-4.912L5.176 9.824l4.912-1.912L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/><path d="m11 11 3 3"/><path d="m14 11-3 3"/></svg>
                 </div>

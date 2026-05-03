@@ -34,7 +34,7 @@ export default function ReportActionFooter() {
             <span className="font-bold text-sm">인쇄</span>
           </button>
 
-          <button className="flex flex-col items-center justify-center gap-3 p-6 bg-[#203578] rounded-2xl border border-[#203578] shadow-lg hover:bg-[#1a2b61] transition-all group text-white">
+          <button className="flex flex-col items-center justify-center gap-3 p-5 md:p-6 bg-[#203578] rounded-2xl border border-[#203578] shadow-sm md:shadow-md hover:bg-[#1a2b61] transition-all group text-white">
             <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
               <Sparkles className="w-6 h-6" />
             </div>

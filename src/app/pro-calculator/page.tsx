@@ -9,7 +9,6 @@ import {
   Building2, 
   Landmark, 
   Home, 
-  Users, 
   Briefcase,
   ChevronRight,
   ArrowRight
@@ -61,20 +60,6 @@ const CATEGORIES = [
     items: [
       { id: '804-1', title: '법인 부동산 증여 분석' },
       { id: '804-2', title: '상가·빌딩 매각 세부담 비교' },
-      { id: '804-3', title: '주택 취득세 스마트 계산기' },
-    ]
-  },
-  {
-    id: '805',
-    title: '상속·증여 및 주식 이동',
-    icon: <Users className="w-6 h-6" />,
-    color: 'text-pink-600',
-    bg: 'bg-pink-50',
-    items: [
-      { id: '805-1', title: '상속세 미래 예측 시뮬레이션' },
-      { id: '805-2', title: '증여세 다중 수증자 통합 분석' },
-      { id: '805-3', title: '비상장주식 양도세 시뮬레이션' },
-      { id: '805-4', title: '주식 이동 전 리스크 체크' },
     ]
   },
   {
@@ -84,7 +69,6 @@ const CATEGORIES = [
     color: 'text-indigo-600',
     bg: 'bg-indigo-50',
     items: [
-      { id: '806-1', title: '자녀법인 가업 승계 로드맵' },
       { id: '806-2', title: '승계 후 법인세 구조 분석' },
       { id: '806-3', title: '배당소득 이중과세 정밀 분석' },
       { id: '806-4', title: '상증법 보충적 평가 시뮬레이션' },

@@ -339,13 +339,13 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
 
   return (
     <div className={`w-full space-y-6 ${className}`}>
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-100 bg-white">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
+        <div className="p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="space-y-3 text-sm text-[#4e5968] leading-relaxed">
-            <p className="flex gap-2"><span className="font-bold text-[#203578] shrink-0">1.</span><span>부?�산 법인?�환 ???�도?�득?? ?�월과세 차감 ???�자?��??? 주�? 변?�을 계산?�니??</span></p>
-            <p className="flex gap-2"><span className="font-bold text-[#203578] shrink-0">2.</span><span>?�업??비사?�용 ?��?, 보유기간, ?�기보유?�별공제, ?�진?�율???�본 ?�식 기�??�로 반영?�니??</span></p>
-            <p className="flex gap-2"><span className="font-bold text-[#203578] shrink-0">3.</span><span>법인?�환 취득?? 중과 취득?? ?�록면허?? ?�속 취득?��? ?�께 비교?�니??</span></p>
-            <p className="text-[11px] text-gray-400 bg-gray-50 p-3 rounded-xl border border-gray-100">calc804-1.js??주요 ?�율?��? 계산 ?�름??React ?�태 계산?�로 ?�식?�습?�다.</p>
+            <p className="flex gap-2"><span className="font-bold text-[#203578] shrink-0">1.</span><span>부동산 법인전환 시 양도소득세, 이월과세 차감 후 자산과 주가 변동을 계산합니다.</span></p>
+            <p className="flex gap-2"><span className="font-bold text-[#203578] shrink-0">2.</span><span>사업용·비사업용 여부, 보유기간, 장기보유특별공제, 누진세율을 기본 산식 기준으로 반영합니다.</span></p>
+            <p className="flex gap-2"><span className="font-bold text-[#203578] shrink-0">3.</span><span>법인전환 취득세, 중과 취득세, 등록면허세, 연속 취득세를 함께 비교합니다.</span></p>
+            <p className="text-[11px] text-gray-400 bg-gray-50 p-3 rounded-xl border border-gray-100">calc804-1.js의 주요 세율표와 계산 흐름을 React 상태 계산으로 이식했습니다.</p>
           </div>
         </div>
 
@@ -368,10 +368,10 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
 
           {activeTab === 'input' && (
             <section className="px-4 md:px-0">
-              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#203578] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#203578]">기초?�보 ?�력</h3></div>
+              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#203578] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#203578]">기초정보 입력</h3></div>
               <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm scrollbar-hide">
                 <table className="w-full border-collapse min-w-[900px]">
-                  <thead><tr className="bg-[#203578] text-white"><th className="p-3 md:p-4 text-left sticky left-0 bg-[#203578] z-20">??��</th>{assets.map((asset) => <th key={asset.name} className="p-3 md:p-4 text-center">{asset.name}</th>)}</tr></thead>
+                  <thead><tr className="bg-[#203578] text-white"><th className="p-3 md:p-4 text-left sticky left-0 bg-[#203578] z-20">구분</th>{assets.map((asset) => <th key={asset.name} className="p-3 md:p-4 text-center">{asset.name}</th>)}</tr></thead>
                   <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                     {[
                       ['취득일', 'acquisitionDate', 'date'],
@@ -394,23 +394,23 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
                       </tr>
                     ))}
                     <tr className="hover:bg-blue-50/20">
-                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">?�업???��?</th>
+                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">사업용 여부</th>
                       {assets.map((asset, index) => (
                         <td key={asset.name} className="p-2">
                           <select className="w-full p-3 rounded-xl bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 outline-none" value={asset.useType} onChange={(event): void => updateAsset(index, 'useType', event.target.value)}>
                             <option value="business">사업용</option>
-                            <option value="nonBusiness">비사?�용</option>
+                            <option value="nonBusiness">비사업용</option>
                           </select>
                         </td>
                       ))}
                     </tr>
                     <tr className="hover:bg-blue-50/20">
-                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">?��? ?��?</th>
+                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">임대 여부</th>
                       {assets.map((asset, index) => (
                         <td key={asset.name} className="p-2">
                           <select className="w-full p-3 rounded-xl bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 outline-none" value={asset.leaseType} onChange={(event): void => updateAsset(index, 'leaseType', event.target.value)}>
-                            <option value="lease">?��?</option>
-                            <option value="nonLease">비임?�</option>
+                            <option value="lease">임대</option>
+                            <option value="nonLease">비임대</option>
                           </select>
                         </td>
                       ))}
@@ -423,7 +423,7 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
 
           {activeTab === 'transferTax' && (
             <section className="px-4 md:px-0">
-              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#2e7d32]">?�도?�득??계산</h3></div>
+              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#2e7d32]">양도소득세 계산</h3></div>
               <ResultTable assets={assets} rows={[
                 ['보유기간', (r) => `${r.holdingYears}년`],
                 ['장기보유공제율', (r) => `${r.holdingRate}%`],
@@ -438,14 +438,14 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
                 ['산출세액', (r) => formatNumber(r.calculatedTax)],
                 ['지방소득세', (r) => formatNumber(r.localTax)],
                 ['세금 소계', (r) => formatNumber(r.taxSubtotal)],
-              ]} results={result.assetResults} totalLabel="?�도???�계" totalValue={formatNumber(result.totalTransferTax)} />
+              ]} results={result.assetResults} totalLabel="양도세 합계" totalValue={formatNumber(result.totalTransferTax)} />
             </section>
           )}
 
           {activeTab === 'conversion' && (
             <section className="px-4 md:px-0">
-              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#2e7d32]">법인?�환 ??주�? 변??추정</h3></div>
-              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#2e7d32]">법인전환 후 주가 변동 추정</h3></div>
+              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
                 <table className="w-full border-collapse min-w-[450px]">
                   <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                     {[
@@ -470,7 +470,7 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
 
           {activeTab === 'acquisition' && (
             <section className="px-4 md:px-0">
-              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#2e7d32]">법인?�환 취득 관???�금</h3></div>
+              <div className="flex items-center gap-3 mb-4 md:mb-6"><div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div><h3 className="text-lg md:text-xl font-black text-[#2e7d32]">법인전환 취득 관련 세금</h3></div>
               <ResultTable assets={assets} rows={[
                 ['취득세(감면)', (r) => formatNumber(r.normalAcquisitionTax)],
                 ['농특세(감면)', (r) => formatNumber(r.normalRuralTax)],
@@ -515,9 +515,9 @@ interface ResultTableProps {
 
 function ResultTable({ assets, results, rows, totalLabel, totalValue }: ResultTableProps) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+    <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
       <table className="w-full border-collapse min-w-[760px]">
-        <thead><tr className="bg-[#1a1f27] text-white"><th className="p-3 md:p-4 text-left sticky left-0 bg-[#1a1f27] z-20">분석 ??��</th>{assets.map((asset) => <th key={asset.name} className="p-3 md:p-4 text-right">{asset.name}</th>)}</tr></thead>
+        <thead><tr className="bg-[#1a1f27] text-white"><th className="p-3 md:p-4 text-left sticky left-0 bg-[#1a1f27] z-20">분석 항목</th>{assets.map((asset) => <th key={asset.name} className="p-3 md:p-4 text-right">{asset.name}</th>)}</tr></thead>
         <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
           {rows.map(([label, formatter]) => (
             <tr key={label} className="hover:bg-gray-50 bg-white">

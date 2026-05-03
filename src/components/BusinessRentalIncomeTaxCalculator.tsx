@@ -489,8 +489,8 @@ export default function BusinessRentalIncomeTaxCalculator({
 
   return (
     <div className={`w-full space-y-6 ${className}`}>
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-100 bg-white">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
+        <div className="p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="space-y-5">
             <div>
               <p className="text-xs font-bold text-[#8B95A1]">개인 대표 사업소득 + 임대소득 세금 비교</p>
@@ -586,7 +586,7 @@ export default function BusinessRentalIncomeTaxCalculator({
               <h3 className="text-lg md:text-xl font-black text-[#2E7D32]">확인란 / 소득구성에 따른 조세효과</h3>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
               <table className="w-full border-collapse min-w-[450px]">
                 <thead>
                   <tr className="bg-[#1a1f27] text-white">

@@ -1,7 +1,7 @@
+﻿import HomeAcquisitionTaxCalculator from '@/components/HomeAcquisitionTaxCalculator';
 import CalculatorTabs from '@/components/CalculatorTabs';
-import DifferentialDividendAfterTaxCalculator from '@/components/DifferentialDividendAfterTaxCalculator';
 
-export default function DifferentialDividendAfterTaxPage() {
+export default function HomeAcquisitionTaxPage() {
   return (
     <div className="min-h-screen bg-[#f9fafb] text-[#1a1f27]">
       <main className="pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-10 lg:px-20">
@@ -10,15 +10,17 @@ export default function DifferentialDividendAfterTaxPage() {
 
           <header className="mb-8 text-center md:mb-12 md:text-left">
             <h1 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 tracking-tight leading-tight">
-              법인주주 차등배당 세후수령액 분석
+              주택 취득세 스마트 계산기
             </h1>
             <p className="text-base md:text-lg text-[#4e5968] font-medium leading-relaxed">
-              지분율별 차등배당 시나리오에 따른 법인세, 세후수령액, 주식 양수 가능 수량과 필요 기간을 비교합니다.
+              매입가격과 전용면적을 기준으로 주택 취득세, 지방교육세, 농어촌특별세를 자동 계산합니다.
             </p>
           </header>
-          <DifferentialDividendAfterTaxCalculator />
+          <HomeAcquisitionTaxCalculator />
         </div>
       </main>
     </div>
   );
 }
+
+

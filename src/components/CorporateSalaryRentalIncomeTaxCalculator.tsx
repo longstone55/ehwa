@@ -532,8 +532,8 @@ export default function CorporateSalaryRentalIncomeTaxCalculator({
 
   return (
     <div className={`w-full space-y-6 ${className}`}>
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-100 bg-white">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
+        <div className="p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="flex items-start gap-4 mb-6">
             <div className="space-y-3">
               <div className="grid gap-2 text-sm text-[#4e5968] leading-relaxed">
@@ -629,7 +629,7 @@ export default function CorporateSalaryRentalIncomeTaxCalculator({
               <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">확인란 / 소득구성에 따른 조세효과</h3>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
               <table className="w-full border-collapse min-w-[450px]">
                 <thead>
                   <tr className="bg-[#1a1f27] text-white">

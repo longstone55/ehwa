@@ -23,8 +23,7 @@ export default function Header() {
   const navLinks = [
     { name: "서비스", href: "/#services" },
     { name: "세미나", href: "/#seminar" },
-    { name: "간편 계산기", href: "/simple-calculator" },
-    { name: "심화 시뮬레이션", href: "/pro-calculator" },
+    { name: "간편 계산기", href: "/simple-calculator" },
     { name: "AI 서비스", href: "/ai" },
   ];
 
@@ -37,6 +36,13 @@ export default function Header() {
     { name: "특정법인 증여와 법인세", href: "/specific-corporation-gift-corporate-tax" },
     { name: "토지 무상사용 적정임대료", href: "/land-free-use-rent" },
     { name: "법인전환 양도·취득세", href: "/corporate-conversion-transfer-tax" },
+    { name: "부동산 양도소득세(주택외)", href: "/commercial-building-sale-tax" },
+    { name: "주택 취득세 계산기", href: "/home-acquisition-tax" },
+    { name: "상속세 미래 예측", href: "/inheritance-tax-forecast" },
+    { name: "증여세 다중 수증자", href: "/multi-donee-gift-tax" },
+    { name: "주식양도소득세 계산기", href: "/stock-transfer-income-tax" },
+    { name: "주식양수도 케이스별 세금", href: "/stock-transfer-case-tax" },
+    { name: "자녀법인 차등배당", href: "/child-corporation-differential-dividend" },
   ];
 
   return (

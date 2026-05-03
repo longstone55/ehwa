@@ -142,26 +142,26 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
 
   return (
     <div className={`w-full space-y-6 ${className}`}>
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-100 bg-white">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
+        <div className="p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="flex items-start gap-4 mb-6">
             <div className="space-y-3">
               <div className="grid gap-2 text-sm text-[#4e5968] leading-relaxed">
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">1.</span>
-                  <span>부법인??주�?, 발행주식 총수, 부�?보유주식?��? ?�력?�여 차등배당 ???�후?�령?�을 계산?�니??</span>
+                  <span>부법인 주가, 발행주식 총수, 부 보유주식 수를 입력하여 차등배당 후 세후수령액을 계산합니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">2.</span>
-                  <span>1%, 20%, 50% 지분율�?고정 배당 ?�나리오?� 법인??부?�을 ?�본 ?�식 그�?�?반영?�니??</span>
+                  <span>1%, 20%, 50% 지분율과 고정 배당 시나리오별 법인세 부담을 기본 산식 그대로 반영합니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">3.</span>
-                  <span>?�후?�령?�으�??�수 가?�한 주식?? 지분율, 부�?보유주식 ?�량 ?�수???�요??기간???�출?�니??</span>
+                  <span>세후수령액으로 매수 가능한 주식 수, 지분율, 부 보유주식 전량 매수에 필요한 기간을 산출합니다.</span>
                 </p>
               </div>
               <p className="text-[11px] text-gray-400 bg-gray-50 p-3 rounded-xl border border-gray-100">
-                ?�본 calc802-2.js??배당?�득 배열, 과세?��? 비율, 법인??계산?? 주식???�산 공식???�일?�게 ?�용?�습?�다.
+                원본 calc802-2.js의 배당소득 배열, 과세대상 비율, 법인세 계산과 주식 수 환산 공식을 동일하게 적용했습니다.
               </p>
             </div>
           </div>
@@ -186,7 +186,7 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
           <section className="px-4 md:px-0">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-1 h-6 bg-[#203578] rounded-full"></div>
-              <h3 className="text-lg md:text-xl font-black text-[#203578]">기본 ?�보 ?�력</h3>
+              <h3 className="text-lg md:text-xl font-black text-[#203578]">기본 정보 입력</h3>
               <span className="hidden md:inline text-xs text-gray-400 font-medium ml-2">부법인 주식 기준값을 입력합니다.</span>
             </div>
 
@@ -236,8 +236,8 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
           <section className="px-4 md:px-0">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div>
-              <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">{activeRate} 지분율 배당 ?�과 분석</h3>
-              <span className="hidden md:inline text-xs text-gray-400 font-medium ml-2">?�정법인 주주?�별 결과?�니??</span>
+              <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">{activeRate} 지분율 배당 효과 분석</h3>
+              <span className="hidden md:inline text-xs text-gray-400 font-medium ml-2">특정법인 주주수별 결과입니다.</span>
             </div>
 
             <div className="grid gap-4 md:grid-cols-3 mb-6">
@@ -250,19 +250,20 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
                 <p className="text-2xl md:text-3xl font-black tracking-tight">{formatNumber(bestScenario.convertibleStockCount)}</p>
               </div>
               <div className="rounded-2xl bg-[#1a1f27] p-6 text-white shadow-lg">
-                <p className="text-xs font-bold text-white/70 mb-2">?�량 ?�수 ?�요 기간</p>
+                <p className="text-xs font-bold text-white/70 mb-2">전량 매수 필요 기간</p>
                 <p className="text-2xl md:text-3xl font-black tracking-tight text-[#fab005]">{bestScenario.acquisitionPeriod}</p>
               </div>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
               <table className="w-full border-collapse min-w-[900px]">
                 <thead>
                   <tr className="bg-[#1a1f27] text-white">
-                    <th className="p-3 md:p-4 w-[140px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">분석 ??��</th>
+                    <th className="p-3 md:p-4 w-[140px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">분석 항목</th>
                     {activeScenario.rows.map((row: DividendScenario) => (
                       <th key={row.shareholderCount} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold whitespace-nowrap">
-                        {row.shareholderCount}�?                      </th>
+                        {row.shareholderCount}명
+                      </th>
                     ))}
                   </tr>
                 </thead>
@@ -286,7 +287,7 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
                     ))}
                   </tr>
                   <tr className="hover:bg-gray-50 transition-colors bg-white">
-                    <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">주식???�산</td>
+                    <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">주식 수 환산</td>
                     {activeScenario.rows.map((row: DividendScenario) => (
                       <td key={row.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap text-[#4e5968]">{formatNumber(row.convertibleStockCount)}</td>
                     ))}
@@ -298,7 +299,7 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
                     ))}
                   </tr>
                   <tr className="bg-[#1a1f27] text-white">
-                    <td className="p-3 md:p-4 border-r border-white/10 sticky left-0 bg-[#1a1f27] z-10 font-black">?�량 ?�수 기간</td>
+                    <td className="p-3 md:p-4 border-r border-white/10 sticky left-0 bg-[#1a1f27] z-10 font-black">전량 매수 기간</td>
                     {activeScenario.rows.map((row: DividendScenario) => (
                       <td key={row.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-black text-[#fab005]">{row.acquisitionPeriod}</td>
                     ))}
@@ -311,7 +312,7 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
           <section className="px-4 md:px-0">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-1 h-6 bg-[#203578] rounded-full"></div>
-              <h3 className="text-lg md:text-xl font-black text-[#203578]">지분율�??�약</h3>
+              <h3 className="text-lg md:text-xl font-black text-[#203578]">지분율별 요약</h3>
             </div>
 
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm scrollbar-hide">
@@ -354,8 +355,8 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">배당 ?�나리오</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">주주?�별 배당�??�후?�령?�을 ??번에 비교?�니??</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">배당 시나리오</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">주주수별 배당세와 세후수령액을 한 번에 비교합니다.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
@@ -363,8 +364,8 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
             <Clock className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�수 기간</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">부�?보유주식 ?�량 ?�수까�? ?�요??기간???�출?�니??</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">매수 기간</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">부 보유주식 전량 매수까지 필요한 기간을 산출합니다.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
@@ -372,8 +373,8 @@ export default function DifferentialDividendAfterTaxCalculator({ className = '' 
             <Phone className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�무 ?�담</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">차등배당 ?�행 ???�무 리스?��? 검?�할 ???�습?�다.</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">세무 부담</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">차등배당 실행 시 세무 리스크를 검토할 수 있습니다.</p>
           </div>
         </div>
       </div>

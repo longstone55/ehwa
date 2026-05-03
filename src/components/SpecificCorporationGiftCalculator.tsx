@@ -182,7 +182,7 @@ const calculateResult = (state: CalculatorState): CalculationResult => {
   const dealTax: number = Math.floor(corporateTaxInfo.tax * cappedRatio);
   const majorShareRate: number = shareholderCount > 0 ? 1 / shareholderCount : 0;
   const giftAssumedIncome: number = (tradeProfit - dealTax) * majorShareRate;
-  const giftAssumedJudgment: string = giftAssumedIncome >= 100_000_000 ? '증여?�제 O' : '증여?�제 X';
+  const giftAssumedJudgment: string = giftAssumedIncome >= 100_000_000 ? '증여의제 O' : '증여의제 X';
   const giftTaxInfo: GiftTaxBracket = getGiftTaxInfo(giftAssumedIncome);
   const giftAssumedTax: number = Math.floor(giftAssumedIncome * giftTaxInfo.rate - giftTaxInfo.deduction * 0.97);
   const directGiftIncome: number = tradeProfit * majorShareRate;
@@ -190,7 +190,7 @@ const calculateResult = (state: CalculatorState): CalculationResult => {
   const directGiftTax: number = Math.floor(directGiftIncome * directTaxInfo.rate - directTaxInfo.deduction * 0.97);
   const corporateTaxShare: number = Math.floor(dealTax * majorShareRate);
   const giftTaxLimit: number = Math.floor(directGiftTax - dealTax * majorShareRate);
-  const finalGiftTax: number = giftAssumedJudgment === '증여?�제 X' ? 0 : Math.min(giftAssumedTax, giftTaxLimit);
+  const finalGiftTax: number = giftAssumedJudgment === '증여의제 X' ? 0 : Math.min(giftAssumedTax, giftTaxLimit);
   const equalDividend: number = dividendIncome * (parentCorporationShareRate / 100);
 
   return {
@@ -272,26 +272,26 @@ export default function SpecificCorporationGiftCalculator({ className = '' }: Sp
 
   return (
     <div className={`w-full space-y-6 ${className}`}>
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-100 bg-white">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
+        <div className="p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="flex items-start gap-4 mb-6">
             <div className="space-y-3">
               <div className="grid gap-2 text-sm text-[#4e5968] leading-relaxed">
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">1.</span>
-                  <span>?�정법인�?주주 구성, 지분율, 배당금액???�력?�여 ?�정법인 증여?�제 ?��?�?검?�합?�다.</span>
+                  <span>특정법인의 주주 구성, 지분율, 배당금액을 입력하여 특정법인 증여의제 해당 여부를 검토합니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">2.</span>
-                  <span>?�가·고�? 거래, 채무면제, ?�물출자, ?�산?�공, 금전?�부, 배당?�득???�본 ?�식 그�?�?반영?�니??</span>
+                  <span>저가·고가 거래, 채무면제, 현물출자, 재산제공, 금전대부, 배당소득을 기본 산식 그대로 반영합니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">3.</span>
-                  <span>법인???�당?�과 증여???�도?�을 비교?�여 최종 ?��???증여?�액??계산?�니??</span>
+                  <span>법인세 상당액과 증여세 한도액을 비교하여 최종 납부할 증여세액을 계산합니다.</span>
                 </p>
               </div>
               <p className="text-[11px] text-gray-400 bg-gray-50 p-3 rounded-xl border border-gray-100">
-                ?�본 calc802-1.js??법인?�율, 증여?�율, ?�입배당�??�금불산?�률, 증여?�제 ?�단 기�????�일?�게 ?�용?�습?�다.
+                원본 calc802-1.js의 법인세율, 증여세율, 수입배당금 익금불산입률, 증여의제 판단 기준을 동일하게 적용했습니다.
               </p>
             </div>
           </div>
@@ -326,7 +326,7 @@ export default function SpecificCorporationGiftCalculator({ className = '' }: Sp
                         onChange={(event: React.ChangeEvent<HTMLInputElement>): void => handleInputChange('shareholderCount', event.target.value)}
                       />
                     </td>
-                    <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100">?�정법인 지분율</th>
+                    <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100">특정법인 지분율</th>
                     <td className="p-0">
                       <input
                         type="text"
@@ -350,9 +350,9 @@ export default function SpecificCorporationGiftCalculator({ className = '' }: Sp
                     </td>
                   </tr>
                   <tr className="bg-[#203578]/5">
-                    <th className="p-3 md:p-4 text-left font-black text-[#203578] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">?�정법인 배당?�득</th>
+                    <th className="p-3 md:p-4 text-left font-black text-[#203578] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">특정법인 배당소득</th>
                     <td className="p-3 md:p-4 text-right font-black text-[#203578]">{formatNumber(result.corporationDividendIncome)}</td>
-                    <th className="p-3 md:p-4 text-left font-black text-[#203578] bg-[#f8f9fa] border-r border-gray-100">?�정법인 균등배당?�득</th>
+                    <th className="p-3 md:p-4 text-left font-black text-[#203578] bg-[#f8f9fa] border-r border-gray-100">특정법인 균등배당소득</th>
                     <td className="p-3 md:p-4 text-right font-black text-[#203578]">{formatNumber(result.topEqualDividendIncome)}</td>
                   </tr>
                 </tbody>
@@ -402,20 +402,20 @@ export default function SpecificCorporationGiftCalculator({ className = '' }: Sp
 
             <div className="grid gap-4 md:grid-cols-3 mb-6">
               <div className="rounded-2xl bg-[#203578] p-6 text-white shadow-lg">
-                <p className="text-xs font-bold text-white/70 mb-2">주주 1?�당 증여?�제?�익</p>
+                <p className="text-xs font-bold text-white/70 mb-2">주주 1인당 증여의제이익</p>
                 <p className="text-2xl md:text-3xl font-black tracking-tight">{formatNumber(result.giftAssumedIncome)}</p>
               </div>
               <div className="rounded-2xl bg-[#2e7d32] p-6 text-white shadow-lg">
-                <p className="text-xs font-bold text-white/70 mb-2">증여?�제 ?��?</p>
+                <p className="text-xs font-bold text-white/70 mb-2">증여의제 여부</p>
                 <p className="text-2xl md:text-3xl font-black tracking-tight">{result.giftAssumedJudgment}</p>
               </div>
               <div className="rounded-2xl bg-[#1a1f27] p-6 text-white shadow-lg">
-                <p className="text-xs font-bold text-white/70 mb-2">?��???증여?�액</p>
+                <p className="text-xs font-bold text-white/70 mb-2">납부할 증여세액</p>
                 <p className="text-2xl md:text-3xl font-black tracking-tight text-[#fab005]">{formatNumber(result.finalGiftTax)}</p>
               </div>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
               <table className="w-full border-collapse min-w-[450px]">
                 <thead>
                   <tr className="bg-[#1a1f27] text-white">
@@ -452,8 +452,8 @@ export default function SpecificCorporationGiftCalculator({ className = '' }: Sp
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�동 계산</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">?�력 즉시 증여?�제 ?�단�?최종?�액???�출?�니??</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">자동 계산</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">입력 즉시 증여의제 판단과 최종세액을 산출합니다.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
@@ -461,8 +461,8 @@ export default function SpecificCorporationGiftCalculator({ className = '' }: Sp
             <Clock className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�시�?반영</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">거래?�익�?지분율 변경이 결과?�에 바로 반영?�니??</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">실시간 반영</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">거래이익과 지분율 변경이 결과에 바로 반영됩니다.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
@@ -470,8 +470,8 @@ export default function SpecificCorporationGiftCalculator({ className = '' }: Sp
             <Phone className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�무 ?�담</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">계산 결과�?바탕?�로 ?�제 거래 구조�?검?�할 ???�습?�다.</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">세무 상담</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">계산 결과를 바탕으로 실제 거래 구조를 검토할 수 있습니다.</p>
           </div>
         </div>
       </div>

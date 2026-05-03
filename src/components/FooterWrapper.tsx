@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useSearchParams } from 'next/navigation';
 import Footer from './Footer';
@@ -22,3 +22,4 @@ export default function FooterWrapper() {
     </Suspense>
   );
 }
+

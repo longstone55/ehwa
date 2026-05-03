@@ -158,26 +158,26 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
 
   return (
     <div className={`w-full space-y-6 ${className}`}>
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-100 bg-white">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
+        <div className="p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="flex items-start gap-4 mb-6">
             <div className="space-y-3">
               <div className="grid gap-2 text-sm text-[#4e5968] leading-relaxed">
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">1.</span>
-                  <span>?�정법인??1?�분 증여?�산???�전?�는 경우 부?�산 지분율�??�요기간??계산?�니??</span>
+                  <span>특정법인에 1인분 증여재산을 이전하는 경우 부동산 지분율과 필요기간을 계산합니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">2.</span>
-                  <span>???��?료는 ?�본 JS?� ?�일?�게 12개월분으�??�동 ?�산?�어 ?�간 ?��?료에 반영?�니??</span>
+                  <span>월 임대료는 원본 JS와 동일하게 12개월분으로 자동 환산되어 연간 임대료에 반영됩니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">3.</span>
-                  <span>1?�차부??10?�차까�? ?��??�득, ?�정법인 ?�득금액, 법인?��? ?�출?�니??</span>
+                  <span>1년차부터 10년차까지 임대소득, 특정법인 소득금액, 법인세를 산출합니다.</span>
                 </p>
               </div>
               <p className="text-[11px] text-gray-400 bg-gray-50 p-3 rounded-xl border border-gray-100">
-                ?�본 calc802-3.js??법인?�율 구간, 증여?�산 배열, 지분율, ?�요기간, ?��??�득 계산 공식??그�?�??�식?�습?�다.
+                원본 calc802-3.js의 법인세율 구간, 증여재산 배열, 지분율, 필요기간, 임대소득 계산 공식을 그대로 이식했습니다.
               </p>
             </div>
           </div>
@@ -205,8 +205,8 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
           <section className="px-4 md:px-0">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-1 h-6 bg-[#203578] rounded-full"></div>
-              <h3 className="text-lg md:text-xl font-black text-[#203578]">기본 ?�보 ?�력</h3>
-              <span className="hidden md:inline text-xs text-gray-400 font-medium ml-2">부?�산 가?�과 ???��?료�? ?�력?�니??</span>
+              <h3 className="text-lg md:text-xl font-black text-[#203578]">기본 정보 입력</h3>
+              <span className="hidden md:inline text-xs text-gray-400 font-medium ml-2">부동산 가액과 월 임대료를 입력합니다.</span>
             </div>
 
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm scrollbar-hide">
@@ -248,7 +248,7 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-3 mb-6">
               <div className="rounded-2xl bg-[#203578] p-6 text-white shadow-lg">
-                <p className="text-xs font-bold text-white/70 mb-2">최�? 증여?�산</p>
+                <p className="text-xs font-bold text-white/70 mb-2">최대 증여재산</p>
                 <p className="text-2xl md:text-3xl font-black tracking-tight">{formatNumber(lastAssetScenario.giftAssetValue)}</p>
               </div>
               <div className="rounded-2xl bg-[#2e7d32] p-6 text-white shadow-lg">
@@ -268,7 +268,7 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                   <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">1인분 증여재산 분석</h3>
                 </div>
 
-                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
                   <table className="w-full border-collapse min-w-[900px]">
                     <thead>
                       <tr className="bg-[#1a1f27] text-white">
@@ -288,13 +288,13 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                         ))}
                       </tr>
                       <tr className="bg-[#2e7d32]/5 text-[#2e7d32]">
-                        <td className="p-3 md:p-4 border-r border-gray-100 sticky left-0 bg-[#2e7d32]/5 z-10 font-black">부?�산 지분율</td>
+                        <td className="p-3 md:p-4 border-r border-gray-100 sticky left-0 bg-[#2e7d32]/5 z-10 font-black">부동산 지분율</td>
                         {assetScenarios.map((scenario: AssetScenario) => (
                           <td key={scenario.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-black">{scenario.realEstateShareRate}</td>
                         ))}
                       </tr>
                       <tr className="bg-[#203578]/5 text-[#203578]">
-                        <td className="p-3 md:p-4 border-r border-gray-100 sticky left-0 bg-[#203578]/5 z-10 font-black">?�요기간</td>
+                        <td className="p-3 md:p-4 border-r border-gray-100 sticky left-0 bg-[#203578]/5 z-10 font-black">필요기간</td>
                         {assetScenarios.map((scenario: AssetScenario) => (
                           <td key={scenario.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-black">{scenario.requiredYears}</td>
                         ))}
@@ -325,20 +325,21 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                   ))}
                 </div>
 
-                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
                   <table className="w-full border-collapse min-w-[900px]">
                     <thead>
                       <tr className="bg-[#1a1f27] text-white">
-                        <th className="p-3 md:p-4 w-[150px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">분석 ??��</th>
+                        <th className="p-3 md:p-4 w-[150px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">분석 항목</th>
                         {activeYearScenario.rows.map((row: YearScenarioRow) => (
                           <th key={row.shareholderCount} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold whitespace-nowrap">
-                            {row.shareholderCount}�?                          </th>
+                            {row.shareholderCount}명
+                          </th>
                         ))}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                       <tr className="hover:bg-gray-50 transition-colors bg-white">
-                        <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">?��??�득</td>
+                        <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">임대소득</td>
                         {activeYearScenario.rows.map((row: YearScenarioRow) => (
                           <td key={row.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(row.rentalIncome)}</td>
                         ))}
@@ -372,8 +373,8 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
             <Sparkles className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">증여?�산 분석</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">1?�분 증여?�산�?부?�산 지분율�?기간???�출?�니??</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">증여재산 분석</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">1인분 증여재산과 부동산 지분율, 기간을 산출합니다.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
@@ -381,8 +382,8 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
             <Clock className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�차�?계산</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">1?�차부??10?�차까�? ?��??�득�?법인?��? 비교?�니??</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">연차별 계산</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">1년차부터 10년차까지 임대소득과 법인세를 비교합니다.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
@@ -390,8 +391,8 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
             <Phone className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�무 ?�담</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">증여 구조?� 법인??부?�을 ?�께 검?�할 ???�습?�다.</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">세무 상담</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">증여 구조와 법인세 부담을 함께 검토할 수 있습니다.</p>
           </div>
         </div>
       </div>

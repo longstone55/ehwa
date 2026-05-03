@@ -30,6 +30,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Swiper Shadow Clipping Fix */
 .accountant-swiper {
   padding: 20px !important;

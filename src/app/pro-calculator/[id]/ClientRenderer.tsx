@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { Phone, Clock, FileDown, Eye, Printer, Sparkles, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import TaxCalculator from '@/components/TaxCalculator';
+import CommercialBuildingSaleTaxCalculator from '@/components/CommercialBuildingSaleTaxCalculator';
 
 interface ClientRendererProps {
   title: string;
@@ -16,6 +17,15 @@ interface ClientRendererProps {
   id: string;
   isContentOnly?: boolean;
   useReactCalculator?: boolean;
+  reactCalculatorId?: '801-1' | '804-2';
+}
+
+interface CalculatorWindow extends Window {
+  switchCase?: (caseNum: number) => void;
+  updateResult?: () => void;
+  lucide?: {
+    createIcons: () => void;
+  };
 }
 
 const CATEGORIES = [
@@ -52,24 +62,12 @@ const CATEGORIES = [
     items: [
       { id: '804-1', title: '법인 부동산 증여' },
       { id: '804-2', title: '상가·빌딩 매각 세부담' },
-      { id: '804-3', title: '주택 취득세 계산기' },
-    ]
-  },
-  {
-    id: '805',
-    title: '상속·증여/주식',
-    items: [
-      { id: '805-1', title: '상속세 미래 예측' },
-      { id: '805-2', title: '증여세 통합 분석' },
-      { id: '805-3', title: '비상장주식 양도세' },
-      { id: '805-4', title: '주식 이동 리스크' },
     ]
   },
   {
     id: '806',
     title: '가업승계/자산',
     items: [
-      { id: '806-1', title: '가업 승계 로드맵' },
       { id: '806-2', title: '승계 후 법인세 분석' },
       { id: '806-3', title: '이중과세 정밀 분석' },
       { id: '806-4', title: '상증법 보충적 평가' },
@@ -86,7 +84,8 @@ export default function ClientRenderer({
   inlineStyles, 
   id, 
   isContentOnly,
-  useReactCalculator
+  useReactCalculator,
+  reactCalculatorId
 }: ClientRendererProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -95,16 +94,17 @@ export default function ClientRenderer({
   const currentCategory = CATEGORIES.find(c => c.id === currentCategoryId) || CATEGORIES[0];
   
   useEffect(() => {
+    const calculatorWindow = window as CalculatorWindow;
     // ... (existing switchCase logic)
     // 1. Define a robust global switchCase function that works with all sub-html structures
-    (window as any).switchCase = (caseNum: number) => {
+    calculatorWindow.switchCase = (caseNum: number) => {
       // Update Tab Buttons
       document.querySelectorAll('.segmented-item button').forEach((btn, idx) => {
         btn.classList.toggle('active', idx === caseNum - 1);
       });
 
       // Update Table Columns
-      document.querySelectorAll('.case-col').forEach((col: any) => {
+      document.querySelectorAll<HTMLElement>('.case-col').forEach((col) => {
         if (col.classList.contains(`case-${caseNum}`)) {
           col.style.display = 'table-cell';
           col.classList.add('active');
@@ -121,14 +121,14 @@ export default function ClientRenderer({
       }
 
       // Trigger calculation logic if it exists in the external script (e.g., calc801-1.js)
-      if (typeof (window as any).updateResult === 'function') {
-        (window as any).updateResult();
+      if (typeof calculatorWindow.updateResult === 'function') {
+        calculatorWindow.updateResult();
       }
     };
 
     // 2. Re-initialize icons
-    if ((window as any).lucide) {
-      (window as any).lucide.createIcons();
+    if (calculatorWindow.lucide) {
+      calculatorWindow.lucide.createIcons();
     }
   }, [html]);
 
@@ -184,7 +184,7 @@ export default function ClientRenderer({
 
         {/* --- Unified Calculator Layout --- */}
         {useReactCalculator ? (
-          <TaxCalculator />
+          reactCalculatorId === '804-2' ? <CommercialBuildingSaleTaxCalculator /> : <TaxCalculator />
         ) : (
           <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
             {/* 1. Instruction Header (Navy) - Exact Match with TaxCalculator.tsx */}
@@ -312,9 +312,10 @@ export default function ClientRenderer({
               try {
                 const cleanScript = script.replace(/lucide\.createIcons\(\);/g, '');
                 new Function(cleanScript)();
-              } catch (e) {}
+              } catch {}
             });
-            if ((window as any).lucide) (window as any).lucide.createIcons();
+            const calculatorWindow = window as CalculatorWindow;
+            if (calculatorWindow.lucide) calculatorWindow.lucide.createIcons();
           }}
         />
       ))}

@@ -1,7 +1,7 @@
+﻿import StockTransferCaseTaxCalculator from '@/components/StockTransferCaseTaxCalculator';
 import CalculatorTabs from '@/components/CalculatorTabs';
-import BusinessRentalIncomeTaxCalculator from '@/components/BusinessRentalIncomeTaxCalculator';
 
-export default function BusinessRentalIncomeTaxPage() {
+export default function StockTransferCaseTaxPage() {
   return (
     <div className="min-h-screen bg-[#f9fafb] text-[#1a1f27]">
       <main className="pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-10 lg:px-20">
@@ -9,16 +9,17 @@ export default function BusinessRentalIncomeTaxPage() {
           <CalculatorTabs />
 
           <header className="mb-8 text-center md:mb-12 md:text-left">
-            <h1 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 tracking-tight leading-tight">
-              사업소득·임대소득 세금 비교
-            </h1>
+            <h1 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 tracking-tight leading-tight">주식양수도 케이스별 세금</h1>
             <p className="text-base md:text-lg text-[#4e5968] font-medium leading-relaxed">
-              개인 대표의 사업소득과 임대소득 조합에 따른 세금, 준조세, 세후 수령액을 CASE별로 비교합니다.
+              시가, 시가의 70%, 액면가, 임의가격 거래를 기준으로 증여세, 양도소득세, 증권거래세를 케이스별로 비교합니다.
             </p>
           </header>
-          <BusinessRentalIncomeTaxCalculator />
+
+          <StockTransferCaseTaxCalculator />
         </div>
       </main>
     </div>
   );
 }
+
+

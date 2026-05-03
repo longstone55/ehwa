@@ -30,8 +30,7 @@ export default function Footer() {
           <h5 className="font-bold text-[#1a1f27] mb-8 text-[16px]">퀵 링크</h5>
           <ul className="space-y-4 text-sm font-extrabold text-primary">
             <li className="hover:underline cursor-pointer"><Link href="/simple-calculator">간편 세금 계산기</Link></li>
-            <li className="hover:underline cursor-pointer"><Link href="/calculator">전문 세금 계산기</Link></li>
-            <li className="hover:underline cursor-pointer"><Link href="/pro-calculator">심화 시뮬레이션</Link></li>
+            <li className="hover:underline cursor-pointer"><Link href="/calculator">전문 세금 계산기</Link></li>
             <li className="hover:underline cursor-pointer">세미나 신청</li>
           </ul>
         </div>

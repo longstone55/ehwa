@@ -29,7 +29,26 @@ export default async function ProCalculatorPage(props: {
       </div>
     );
   }
-  
+
+  if (id === '804-2') {
+    return (
+      <div className="min-h-screen bg-[#f9fafb]">
+        <ClientRenderer
+          title="상가·빌딩 매각 세부담 비교 분석"
+          description="감정평가액과 매매사례가액 시나리오별 양도소득세, 취득세, 등록면허세 부담을 비교합니다."
+          html=""
+          scriptUrls={[]}
+          inlineScripts={[]}
+          inlineStyles={[]}
+          id={id}
+          isContentOnly={type === 'content'}
+          useReactCalculator={true}
+          reactCalculatorId="804-2"
+        />
+      </div>
+    );
+  }
+
   const rootDir = process.cwd();
   const filePath = path.join(rootDir, 'sub', `sub-${id}.html`);
 
@@ -47,7 +66,7 @@ export default async function ProCalculatorPage(props: {
   const description = descMatch ? descMatch[1].replace(/<br\s*\/?>/gi, ' ').trim() : '세무법인 이화의 정밀 로직을 통해 최적의 절세 방안을 확인해 보세요.';
 
   // 2. Clean HTML (Remove Hero, Nav, Footer, and CMS tags)
-  let cleanHtml = htmlContent
+  const cleanHtml = htmlContent
     .replace(/<!--@layout[\s\S]*?-->/g, '')
     .replace(/<!--@import[\s\S]*?-->/g, '')
     // Remove Hero Sections (Multiple variations)

@@ -109,7 +109,7 @@ const calculateResult = (state: CalculatorState): CalculationResult => {
 
   const realEstateRows: RealEstateRow[] = [
     {
-      label: '?��?',
+      label: '임대료',
       area: landArea,
       unitPrice: landUnitPrice,
       amount: landAmount,
@@ -130,7 +130,7 @@ const calculateResult = (state: CalculatorState): CalculationResult => {
 
   const freeUseRows: FreeUseRow[] = [
     {
-      label: '기�??��?',
+      label: '기준임대료',
       landPrice: landAmount,
       halfLandPrice: landAmount * 0.5,
       deposit: standardDeposit,
@@ -199,26 +199,26 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
 
   return (
     <div className={`w-full space-y-6 ${className}`}>
-      <div className="bg-white rounded-[32px] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-100 bg-white">
+      <div className="bg-white rounded-2xl md:rounded-[32px] border border-gray-100 shadow-sm md:shadow-xl overflow-hidden">
+        <div className="p-5 md:p-8 border-b border-gray-100 bg-white">
           <div className="flex items-start gap-4 mb-6">
             <div className="space-y-3">
               <div className="grid gap-2 text-sm text-[#4e5968] leading-relaxed">
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">1.</span>
-                  <span>?�버지 ?�유 ?��?�??��? 법인??무상 ?�는 ?�가�??�용?�는 경우???�정?��?료�? 계산?�니??</span>
+                  <span>아버지 소유 토지를 법인이 무상 또는 저가로 사용하는 경우의 적정임대료를 계산합니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">2.</span>
-                  <span>기�??��?, 감정?��??? 보증금을 반영???�득?�법???�정?��?료�? 무상?�용?�익???�출?�니??</span>
+                  <span>기준임대료, 감정평가액, 보증금을 반영해 소득세법상 적정임대료와 무상사용이익을 산출합니다.</span>
                 </p>
                 <p className="flex gap-2">
                   <span className="font-bold text-[#203578] shrink-0">3.</span>
-                  <span>5?�간 ?�재가치계?��? 1?�원 기�??�로 증여?�제 ?��?�??�단?�니??</span>
+                  <span>5년간 현재가치계수와 1억원 기준으로 증여의제 해당 여부를 판단합니다.</span>
                 </p>
               </div>
               <p className="text-[11px] text-gray-400 bg-gray-50 p-3 rounded-xl border border-gray-100">
-                ?�본 calc803-1.js??2.9%, 2%, 3.79079, 2천만???��?�??�분, 1?�원 증여?�제 ?�단 기�????�일?�게 ?�용?�습?�다.
+                원본 calc803-1.js의 2.9%, 2%, 3.79079, 2천만원 임대료 구분, 1억원 증여의제 판단 기준을 동일하게 적용했습니다.
               </p>
             </div>
           </div>
@@ -251,7 +251,7 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
                 <p className="text-2xl md:text-3xl font-black tracking-tight">{formatNumber(standardFreeUse.fairRent)}</p>
               </div>
               <div className="rounded-2xl bg-[#1a1f27] p-6 text-white shadow-lg">
-                <p className="text-xs font-bold text-white/70 mb-2">무상?�용?�익</p>
+                <p className="text-xs font-bold text-white/70 mb-2">무상사용이익</p>
                 <p className="text-2xl md:text-3xl font-black tracking-tight text-[#fab005]">{formatNumber(standardGift.benefit)}</p>
               </div>
             </div>
@@ -261,7 +261,7 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
             <section className="px-4 md:px-0">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="w-1 h-6 bg-[#203578] rounded-full"></div>
-                <h3 className="text-lg md:text-xl font-black text-[#203578]">?�력??/ 부?�산 ?�황</h3>
+                <h3 className="text-lg md:text-xl font-black text-[#203578]">입력값 / 부동산 현황</h3>
               </div>
 
               <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm scrollbar-hide">
@@ -274,12 +274,12 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">금액</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">감정평가액</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">비율</th>
-                      <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">?��?�??�분</th>
+                      <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">임대료 구분</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                     <tr className="hover:bg-blue-50/20 transition-colors">
-                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">?��?</th>
+                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">구분</th>
                       <td className="p-0"><input type="text" className="w-full p-3 md:p-4 text-right border-none bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 focus:bg-white outline-none text-sm md:text-base transition-all" value={formData.landArea} onChange={(event: React.ChangeEvent<HTMLInputElement>): void => handleInputChange('landArea', event.target.value)} /></td>
                       <td className="p-0"><input type="text" className="w-full p-3 md:p-4 text-right border-none bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 focus:bg-white outline-none text-sm md:text-base transition-all" value={formData.landUnitPrice} onChange={(event: React.ChangeEvent<HTMLInputElement>): void => handleInputChange('landUnitPrice', event.target.value)} /></td>
                       <td className="p-3 md:p-4 text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(result.realEstateRows[0].amount)}</td>
@@ -297,7 +297,7 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
                       <td className="p-3 md:p-4 text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(result.realEstateRows[1].leaseShare)}</td>
                     </tr>
                     <tr className="bg-[#1a1f27] text-white">
-                      <td className="p-3 md:p-4 border-r border-white/10 sticky left-0 bg-[#1a1f27] z-10 font-black">?�계</td>
+                      <td className="p-3 md:p-4 border-r border-white/10 sticky left-0 bg-[#1a1f27] z-10 font-black">합계</td>
                       <td className="p-3 md:p-4 text-right">-</td>
                       <td className="p-3 md:p-4 text-right">-</td>
                       <td className="p-3 md:p-4 text-right font-black">{formatNumber(result.totalAmount)}</td>
@@ -315,14 +315,14 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
             <section className="px-4 md:px-0">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div>
-                <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">?�정?��?�?계산</h3>
+                <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">적정임대료 계산</h3>
               </div>
 
-              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
                 <table className="w-full border-collapse min-w-[650px]">
                   <thead>
                     <tr className="bg-[#1a1f27] text-white">
-                      <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">기�?</th>
+                      <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">기준</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">토지 가액</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">50%</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">보증금</th>
@@ -360,10 +360,10 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
             <section className="px-4 md:px-0">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div>
-                <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">무상?�용?�익 / 증여?�제 ?�단</h3>
+                <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">무상사용이익 / 증여의제 판단</h3>
               </div>
 
-              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-lg scrollbar-hide">
+              <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
                 <table className="w-full border-collapse min-w-[450px]">
                   <thead>
                     <tr className="bg-[#1a1f27] text-white">
@@ -372,7 +372,7 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">2%</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">5년 현재가치계수</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">무상사용이익</th>
-                      <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">증여?�제 ?��?</th>
+                      <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">증여의제 여부</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
@@ -411,8 +411,8 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
             <Clock className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">증여?�제 ?�단</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">5??무상?�용?�익??1?�원 미만?��? ?�인?�니??</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">증여의제 판단</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">5년 무상사용이익이 1억원 미만인지 확인합니다.</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm flex items-start gap-4">
@@ -420,8 +420,8 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
             <Phone className="w-5 h-5" />
           </div>
           <div>
-            <h5 className="font-black text-[#1a1f27] mb-1">?�무 ?�담</h5>
-            <p className="text-xs text-[#4e5968] leading-relaxed">부?�산 ?�용 구조?� 과세 ?�험??검?�할 ???�습?�다.</p>
+            <h5 className="font-black text-[#1a1f27] mb-1">세무 부담</h5>
+            <p className="text-xs text-[#4e5968] leading-relaxed">부동산 사용 구조와 과세 위험을 검토할 수 있습니다.</p>
           </div>
         </div>
       </div>

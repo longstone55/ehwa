@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import TaxCalculator from "@/components/TaxCalculator";
+import CalculatorTabs from "@/components/CalculatorTabs";
 import { ChevronRight } from "lucide-react";
 
 import { useSearchParams } from "next/navigation";
@@ -12,13 +13,15 @@ function CalculatorContent() {
   const isContentOnly = searchParams.get('type') === 'content';
 
   return (
-    <main className={`${isContentOnly ? 'pt-4' : 'pt-32'} pb-20 px-4 md:px-10 lg:px-20`}>
+    <main className={`${isContentOnly ? 'pt-4' : 'pt-24 md:pt-32'} pb-16 md:pb-20 px-4 md:px-10 lg:px-20`}>
       <div className="max-w-7xl mx-auto">
-        <header className="mb-12 text-center md:text-left">
-          <h1 className="text-3xl md:text-5xl font-black mb-6 tracking-tight">
+        {!isContentOnly && <CalculatorTabs />}
+
+        <header className="mb-8 text-center md:mb-12 md:text-left">
+          <h1 className="text-2xl md:text-5xl font-black mb-4 md:mb-6 tracking-tight leading-tight">
             개인사업자 소득구성과 조세효과
           </h1>
-          <p className="text-lg text-[#4e5968] font-medium leading-relaxed">
+          <p className="text-base md:text-lg text-[#4e5968] font-medium leading-relaxed">
             개인사업자의 소득 구성에 따른 세금 부담 효과를 분석한 자료입니다.<br className="hidden md:block" />
             사업소득과 임대소득의 조합에 따른 세금 및 준조세 부담률을 케이스별로 비교해 보세요.
           </p>

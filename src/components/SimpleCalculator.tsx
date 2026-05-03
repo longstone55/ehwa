@@ -29,7 +29,7 @@ export default function SimpleCalculator() {
   const formatNumber = (num: number) => num.toLocaleString() + '원';
 
   return (
-    <div className="w-full max-w-xl mx-auto p-8 bg-white rounded-[40px] shadow-2xl border border-gray-50">
+    <div className="w-full max-w-xl mx-auto p-5 md:p-8 bg-white rounded-2xl md:rounded-[32px] shadow-sm md:shadow-xl border border-gray-100">
       <div className="flex items-center gap-3 mb-10 text-primary font-black text-2xl">
         <Calculator className="w-8 h-8" />
         간편 양도세 계산기

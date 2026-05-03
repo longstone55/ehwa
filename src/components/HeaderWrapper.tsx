@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useSearchParams } from 'next/navigation';
 import Header from './Header';
@@ -23,3 +23,4 @@ export default function HeaderWrapper() {
     </Suspense>
   );
 }
+
