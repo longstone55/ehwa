@@ -221,7 +221,7 @@ export default function StockTransferCaseTaxCalculator({ className = '' }: Stock
           </div>
         </div>
 
-        <div className="flex p-1 bg-gray-100 rounded-2xl max-w-5xl mx-4 md:mx-auto mt-8 overflow-x-auto scrollbar-hide">
+        <div className="flex mx-4 mb-8 mt-8 max-w-5xl overflow-x-auto rounded-2xl bg-gray-100 p-1 scrollbar-hide md:mx-auto">
           {result.cases.map((row, index) => (
             <button
               key={row.caseNo}
@@ -234,7 +234,7 @@ export default function StockTransferCaseTaxCalculator({ className = '' }: Stock
           ))}
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-4">
           <MetricCard icon={<ArrowRightLeft className="w-5 h-5" />} label="선택 케이스" value={activeResult.title} />

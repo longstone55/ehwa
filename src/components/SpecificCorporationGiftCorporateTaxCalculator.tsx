@@ -183,7 +183,7 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
           </div>
         </div>
 
-        <div className="flex p-1 bg-gray-100 rounded-2xl md:max-w-md mx-auto mt-8">
+        <div className="flex mx-4 mb-8 mt-8 overflow-x-auto rounded-2xl bg-gray-100 p-1 scrollbar-hide md:mx-auto md:max-w-md">
           {[
             { label: '증여재산', value: 'asset' as ViewTab },
             { label: '연차별 법인세', value: 'year' as ViewTab },
@@ -192,7 +192,7 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
               key={tab.value}
               type="button"
               onClick={(): void => setActiveTab(tab.value)}
-              className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
+              className={`min-w-[84px] flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
                 activeTab === tab.value ? 'bg-white text-[#203578] shadow-sm' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -201,7 +201,7 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
           ))}
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-1 h-6 bg-[#203578] rounded-full"></div>
@@ -310,7 +310,7 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                   <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">연차별 특정법인 증여세 법인세</h3>
                 </div>
 
-                <div className="flex p-1 bg-gray-100 rounded-2xl overflow-x-auto scrollbar-hide">
+                <div className="flex overflow-x-auto rounded-2xl bg-gray-100 p-1 scrollbar-hide">
                   {yearScenarios.map((scenario: YearScenario) => (
                     <button
                       key={scenario.year}

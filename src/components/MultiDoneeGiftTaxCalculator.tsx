@@ -160,7 +160,7 @@ export default function MultiDoneeGiftTaxCalculator({ className = '' }: MultiDon
           </div>
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-4">
               <MetricCard icon={<Users className="w-5 h-5" />} label="수증자 수" value={`${result.results.length}명`} />

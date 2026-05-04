@@ -349,7 +349,7 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
           </div>
         </div>
 
-        <div className="flex p-1 bg-gray-100 rounded-2xl md:max-w-2xl mx-auto mt-8 overflow-x-auto scrollbar-hide">
+        <div className="flex mx-4 mb-8 mt-8 overflow-x-auto rounded-2xl bg-gray-100 p-1 scrollbar-hide md:mx-auto md:max-w-2xl">
           {tabs.map((tab) => (
             <button key={tab.value} type="button" onClick={(): void => setActiveTab(tab.value)} className={`min-w-[96px] flex-1 py-3 text-sm font-bold rounded-xl transition-all ${activeTab === tab.value ? 'bg-white text-[#203578] shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
               {tab.label}
@@ -357,7 +357,7 @@ export default function CorporateConversionTransferTaxCalculator({ className = '
           ))}
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-2xl bg-[#203578] p-6 text-white shadow-lg"><p className="text-xs font-bold text-white/70 mb-2">현재 순자산가액</p><p className="text-2xl md:text-3xl font-black tracking-tight">{formatNumber(result.currentNetAssets)}</p></div>

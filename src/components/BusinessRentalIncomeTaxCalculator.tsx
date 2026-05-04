@@ -518,12 +518,12 @@ export default function BusinessRentalIncomeTaxCalculator({
           </div>
         </div>
 
-        <div className="flex p-1 bg-gray-100 rounded-2xl md:max-w-md mx-auto mt-8">
+        <div className="flex mx-4 mb-8 mt-8 overflow-x-auto rounded-2xl bg-gray-100 p-1 scrollbar-hide md:mx-auto md:max-w-md">
           {CASE_LABELS.map((label: string, index: number) => (
             <button
               key={label}
               onClick={(): void => setActiveCase(index)}
-              className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
+              className={`min-w-[84px] flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
                 activeCase === index ? 'bg-white text-[#203578] shadow-sm' : 'text-gray-500 hover:text-gray-700'
               }`}
               type="button"
@@ -533,7 +533,7 @@ export default function BusinessRentalIncomeTaxCalculator({
           ))}
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-1 h-6 bg-[#203578] rounded-full" />

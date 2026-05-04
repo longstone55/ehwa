@@ -154,7 +154,7 @@ export default function HomeAcquisitionTaxCalculator({ className = '' }: HomeAcq
           </div>
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-4">
           <MetricCard icon={<Home className="w-5 h-5" />} label="과세 구간" value={result.bracketLabel} />

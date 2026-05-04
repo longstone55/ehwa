@@ -224,13 +224,13 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
           </div>
         </div>
 
-        <div className="flex p-1 bg-gray-100 rounded-2xl md:max-w-xl mx-auto mt-8">
+        <div className="flex mx-4 mb-8 mt-8 overflow-x-auto rounded-2xl bg-gray-100 p-1 scrollbar-hide md:mx-auto md:max-w-xl">
           {tabs.map((tab: { label: string; value: ViewTab }) => (
             <button
               key={tab.value}
               type="button"
               onClick={(): void => setActiveTab(tab.value)}
-              className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
+              className={`min-w-[84px] flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
                 activeTab === tab.value ? 'bg-white text-[#203578] shadow-sm' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -239,7 +239,7 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
           ))}
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-2xl bg-[#203578] p-6 text-white shadow-lg">

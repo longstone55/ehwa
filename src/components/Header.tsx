@@ -18,6 +18,13 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navLinks = [
@@ -149,19 +156,19 @@ export default function Header() {
         onClick={toggleMenu}
       >
         <div 
-          className={`absolute top-0 left-0 bottom-0 w-[280px] bg-white shadow-2xl transition-transform duration-300 ease-out p-6 ${
+          className={`absolute top-0 left-0 bottom-0 flex h-dvh w-[280px] flex-col overflow-hidden bg-white p-6 shadow-2xl transition-transform duration-300 ease-out ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex items-center justify-between mb-10">
+          <div className="mb-6 flex shrink-0 items-center justify-between">
             <span className="text-lg font-black text-primary">세무법인이화</span>
             <button onClick={toggleMenu} className="p-2 text-gray-400">
               <X className="w-6 h-6" />
             </button>
           </div>
 
-          <div className="space-y-2">
+          <div className="min-h-0 flex-1 space-y-2 overflow-y-auto pb-6 pr-1 scrollbar-hide">
             {navLinks.slice(0, 3).map((link) => (
               <Link
                 key={link.name}
@@ -200,7 +207,7 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="absolute bottom-10 left-6 right-6">
+          <div className="shrink-0 border-t border-gray-100 pt-4">
             <button className="w-full py-4 bg-primary text-white rounded-2xl font-bold shadow-lg shadow-primary/20">
               상담 신청하기
             </button>

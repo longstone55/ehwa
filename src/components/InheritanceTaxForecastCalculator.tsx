@@ -299,7 +299,7 @@ export default function InheritanceTaxForecastCalculator({ className = '' }: Inh
           </div>
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-4">
               <MetricCard icon={<Landmark className="w-5 h-5" />} label="현재 상속재산가액" value={formatNumber(result.current.taxBase)} />

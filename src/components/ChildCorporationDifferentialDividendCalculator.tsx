@@ -197,7 +197,7 @@ export default function ChildCorporationDifferentialDividendCalculator({ classNa
           </div>
         </div>
 
-        <div className="w-full p-0 md:p-8 space-y-8 md:space-y-12">
+        <div className="w-full p-0 pb-8 md:p-8 md:pb-8 space-y-8 md:space-y-12">
           <section className="px-4 md:px-0 pt-8 md:pt-0">
             <div className="grid gap-4 md:grid-cols-4">
           <MetricCard icon={<Building2 className="w-5 h-5" />} label="부법인 현금" value={formatNumber(result.subCorpIncome)} />
