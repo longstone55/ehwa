@@ -224,13 +224,13 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
           </div>
         </div>
 
-        <div className="flex mx-4 mb-8 mt-8 overflow-x-auto rounded-2xl bg-gray-100 p-1 scrollbar-hide md:mx-auto md:max-w-xl">
+        <div className="flex mx-4 mb-8 mt-8 overflow-x-auto rounded-2xl bg-gray-100 p-1 md:mx-auto md:max-w-2xl">
           {tabs.map((tab: { label: string; value: ViewTab }) => (
             <button
               key={tab.value}
               type="button"
               onClick={(): void => setActiveTab(tab.value)}
-              className={`min-w-[84px] flex-1 py-3 text-sm font-bold rounded-xl transition-all ${
+              className={`min-w-[132px] shrink-0 md:min-w-[160px] md:flex-1 py-3 px-4 text-sm font-bold rounded-xl whitespace-nowrap transition-all ${
                 activeTab === tab.value ? 'bg-white text-[#203578] shadow-sm' : 'text-gray-500 hover:text-gray-700'
               }`}
             >
@@ -265,21 +265,21 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
               </div>
 
               <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm scrollbar-hide">
-                <table className="w-full border-collapse min-w-[650px]">
+                <table className="w-full border-collapse min-w-[760px]">
                   <thead>
                     <tr className="bg-[#203578] text-white">
-                      <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#203578] z-20">구분</th>
+                      <th className="p-3 md:p-4 w-[96px] min-w-[96px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#203578] z-20">구분</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">면적</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">기준시가</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">금액</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">감정평가액</th>
                       <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">비율</th>
-                      <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold">임대료 구분</th>
+                      <th className="p-3 md:p-4 min-w-[110px] text-right text-[10px] md:text-[11px] font-bold whitespace-nowrap">임대료 구분</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                     <tr className="hover:bg-blue-50/20 transition-colors">
-                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">구분</th>
+                      <th className="p-3 md:p-4 w-[96px] min-w-[96px] text-left font-bold text-[#4e5968] whitespace-nowrap bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">구분</th>
                       <td className="p-0"><input type="text" className="w-full p-3 md:p-4 text-right border-none bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 focus:bg-white outline-none text-sm md:text-base transition-all" value={formData.landArea} onChange={(event: React.ChangeEvent<HTMLInputElement>): void => handleInputChange('landArea', event.target.value)} /></td>
                       <td className="p-0"><input type="text" className="w-full p-3 md:p-4 text-right border-none bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 focus:bg-white outline-none text-sm md:text-base transition-all" value={formData.landUnitPrice} onChange={(event: React.ChangeEvent<HTMLInputElement>): void => handleInputChange('landUnitPrice', event.target.value)} /></td>
                       <td className="p-3 md:p-4 text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(result.realEstateRows[0].amount)}</td>
@@ -288,7 +288,7 @@ export default function LandFreeUseRentCalculator({ className = '' }: LandFreeUs
                       <td className="p-3 md:p-4 text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(result.realEstateRows[0].leaseShare)}</td>
                     </tr>
                     <tr className="hover:bg-blue-50/20 transition-colors">
-                      <th className="p-3 md:p-4 text-left font-bold text-[#4e5968] bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">건물</th>
+                      <th className="p-3 md:p-4 w-[96px] min-w-[96px] text-left font-bold text-[#4e5968] whitespace-nowrap bg-[#f8f9fa] border-r border-gray-100 sticky left-0 z-10">건물</th>
                       <td className="p-0"><input type="text" className="w-full p-3 md:p-4 text-right border-none bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 focus:bg-white outline-none text-sm md:text-base transition-all" value={formData.buildingArea} onChange={(event: React.ChangeEvent<HTMLInputElement>): void => handleInputChange('buildingArea', event.target.value)} /></td>
                       <td className="p-3 md:p-4 text-right text-gray-400">-</td>
                       <td className="p-0"><input type="text" className="w-full p-3 md:p-4 text-right border-none bg-transparent font-black text-[#203578] focus:ring-2 focus:ring-[#203578]/20 focus:bg-white outline-none text-sm md:text-base transition-all" value={formData.buildingAmount} onChange={(event: React.ChangeEvent<HTMLInputElement>): void => handleInputChange('buildingAmount', event.target.value)} /></td>

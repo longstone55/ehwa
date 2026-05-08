@@ -253,7 +253,7 @@ export default function StockTransferCaseTaxCalculator({ className = '' }: Stock
               <table className="w-full border-collapse min-w-[760px]">
                 <thead>
                   <tr className="bg-[#203578] text-white">
-                    <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black border-r border-white/10 sticky left-0 bg-[#203578] z-20">구분</th>
+                    <th className="p-3 md:p-4 w-[120px] min-w-[120px] text-left text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#203578] z-20">구분</th>
                     <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-black border-r border-white/10">액면가</th>
                     <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-black border-r border-white/10">주당 취득가격</th>
                     <th className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-black border-r border-white/10">현재 주가</th>
@@ -263,7 +263,7 @@ export default function StockTransferCaseTaxCalculator({ className = '' }: Stock
                 </thead>
                 <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                   <tr className="bg-white hover:bg-gray-50 transition-colors">
-                    <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">?낅젰</td>
+                    <td className="p-3 md:p-4 w-[120px] min-w-[120px] text-[#1a1f27] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">입력</td>
                     <InputCell value={state.parValue} onChange={(value): void => updateState('parValue', value)} />
                     <InputCell value={state.acquisitionPrice} onChange={(value): void => updateState('acquisitionPrice', value)} />
                     <InputCell value={state.currentPrice} onChange={(value): void => updateState('currentPrice', value)} />
@@ -351,7 +351,7 @@ function TaxResultTable({ cases }: { cases: CaseResult[] }) {
     ['양도소득세(지방세 포함)', (row) => formatNumber(row.transferTaxWithLocal)],
     ['증권거래세', (row) => formatNumber(row.securitiesTax)],
     ['양도소득세 소계(b)', (row) => formatNumber(row.transferTaxSum), true],
-    ['?멸툑 ?⑷퀎(a+b)', (row) => formatNumber(row.totalTaxSum), true],
+    ['세금 합계(a+b)', (row) => formatNumber(row.totalTaxSum), true],
     ['매수자가 지급할 대금', (row) => formatNumber(row.paymentAmount), true],
   ];
 
@@ -368,22 +368,22 @@ function TaxResultTable({ cases }: { cases: CaseResult[] }) {
 
 function WideTable({ cases, rows }: { cases: CaseResult[]; rows: Array<[string, (row: CaseResult) => string, boolean?]> }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
-      <table className="w-full border-collapse min-w-[1120px]">
+    <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md">
+      <table className="w-full border-collapse min-w-[1360px]">
         <thead>
           <tr className="bg-[#1a1f27] text-white">
-            <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">구분</th>
+            <th className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-left text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#1a1f27] z-30 shadow-[6px_0_14px_rgba(15,23,42,0.16)]">구분</th>
             {cases.map((row) => (
-              <th key={row.caseNo} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-black border-r border-white/10">CASE {row.caseNo}</th>
+              <th key={row.caseNo} className="p-3 md:p-4 min-w-[116px] text-right text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10">CASE {row.caseNo}</th>
             ))}
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
           {rows.map(([label, formatter, highlight]) => (
             <tr key={label} className={`${highlight ? 'bg-blue-50/50' : 'bg-white'} hover:bg-gray-50 transition-colors`}>
-              <td className={`p-3 md:p-4 border-r border-gray-100 sticky left-0 z-10 font-bold ${highlight ? 'bg-blue-50/50 text-[#203578]' : 'bg-white text-[#1a1f27]'}`}>{label}</td>
+              <td className={`p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] whitespace-nowrap border-r border-gray-100 sticky left-0 z-20 font-bold shadow-[6px_0_14px_rgba(15,23,42,0.08)] ${highlight ? 'bg-[#f2f5fb] text-[#203578]' : 'bg-white text-[#1a1f27]'}`}>{label}</td>
               {cases.map((row) => (
-                <td key={`${label}-${row.caseNo}`} className={`p-3 md:p-4 text-right whitespace-nowrap border-r border-gray-100 ${highlight ? 'font-black text-[#203578]' : 'font-bold text-[#4e5968]'}`}>{formatter(row)}</td>
+                <td key={`${label}-${row.caseNo}`} className={`p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap border-r border-gray-100 ${highlight ? 'font-black text-[#203578]' : 'font-bold text-[#4e5968]'}`}>{formatter(row)}</td>
               ))}
             </tr>
           ))}
@@ -392,4 +392,3 @@ function WideTable({ cases, rows }: { cases: CaseResult[]; rows: Array<[string, 
     </div>
   );
 }
-

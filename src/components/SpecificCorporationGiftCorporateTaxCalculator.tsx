@@ -268,13 +268,13 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                   <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">1인분 증여재산 분석</h3>
                 </div>
 
-                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
-                  <table className="w-full border-collapse min-w-[900px]">
+                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md">
+                  <table className="w-full border-collapse min-w-[1360px]">
                     <thead>
                       <tr className="bg-[#1a1f27] text-white">
-                        <th className="p-3 md:p-4 w-[150px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">분석 기준</th>
+                        <th className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#1a1f27] z-30 shadow-[6px_0_14px_rgba(15,23,42,0.16)]">분석 기준</th>
                         {assetScenarios.map((scenario: AssetScenario) => (
-                          <th key={scenario.shareholderCount} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold whitespace-nowrap">
+                          <th key={scenario.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right text-[10px] md:text-[11px] font-bold whitespace-nowrap">
                             {scenario.shareholderCount}인
                           </th>
                         ))}
@@ -282,21 +282,21 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                     </thead>
                     <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                       <tr className="hover:bg-gray-50 transition-colors bg-white">
-                        <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">증여재산가액</td>
+                        <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-[#1a1f27] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-white z-20 font-bold shadow-[6px_0_14px_rgba(15,23,42,0.08)]">증여재산가액</td>
                         {assetScenarios.map((scenario: AssetScenario) => (
-                          <td key={scenario.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(scenario.giftAssetValue)}</td>
+                          <td key={scenario.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(scenario.giftAssetValue)}</td>
                         ))}
                       </tr>
                       <tr className="bg-[#2e7d32]/5 text-[#2e7d32]">
-                        <td className="p-3 md:p-4 border-r border-gray-100 sticky left-0 bg-[#2e7d32]/5 z-10 font-black">부동산 지분율</td>
+                        <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-[#f1f8f2] z-20 font-black shadow-[6px_0_14px_rgba(15,23,42,0.08)]">부동산 지분율</td>
                         {assetScenarios.map((scenario: AssetScenario) => (
-                          <td key={scenario.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-black">{scenario.realEstateShareRate}</td>
+                          <td key={scenario.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap font-black">{scenario.realEstateShareRate}</td>
                         ))}
                       </tr>
                       <tr className="bg-[#203578]/5 text-[#203578]">
-                        <td className="p-3 md:p-4 border-r border-gray-100 sticky left-0 bg-[#203578]/5 z-10 font-black">필요기간</td>
+                        <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-[#f2f5fb] z-20 font-black shadow-[6px_0_14px_rgba(15,23,42,0.08)]">필요기간</td>
                         {assetScenarios.map((scenario: AssetScenario) => (
-                          <td key={scenario.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-black">{scenario.requiredYears}</td>
+                          <td key={scenario.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap font-black">{scenario.requiredYears}</td>
                         ))}
                       </tr>
                     </tbody>
@@ -325,13 +325,13 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                   ))}
                 </div>
 
-                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
-                  <table className="w-full border-collapse min-w-[900px]">
+                <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md">
+                  <table className="w-full border-collapse min-w-[1360px]">
                     <thead>
                       <tr className="bg-[#1a1f27] text-white">
-                        <th className="p-3 md:p-4 w-[150px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">분석 항목</th>
+                        <th className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-left text-[10px] md:text-[11px] font-black uppercase tracking-wider whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#1a1f27] z-30 shadow-[6px_0_14px_rgba(15,23,42,0.16)]">분석 항목</th>
                         {activeYearScenario.rows.map((row: YearScenarioRow) => (
-                          <th key={row.shareholderCount} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-bold whitespace-nowrap">
+                          <th key={row.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right text-[10px] md:text-[11px] font-bold whitespace-nowrap">
                             {row.shareholderCount}명
                           </th>
                         ))}
@@ -339,21 +339,21 @@ export default function SpecificCorporationGiftCorporateTaxCalculator({ classNam
                     </thead>
                     <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
                       <tr className="hover:bg-gray-50 transition-colors bg-white">
-                        <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">임대소득</td>
+                        <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-[#1a1f27] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-white z-20 font-bold shadow-[6px_0_14px_rgba(15,23,42,0.08)]">임대소득</td>
                         {activeYearScenario.rows.map((row: YearScenarioRow) => (
-                          <td key={row.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(row.rentalIncome)}</td>
+                          <td key={row.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap font-bold text-[#4e5968]">{formatNumber(row.rentalIncome)}</td>
                         ))}
                       </tr>
                       <tr className="bg-[#203578]/5 text-[#203578]">
-                        <td className="p-3 md:p-4 border-r border-gray-100 sticky left-0 bg-[#203578]/5 z-10 font-black">특정법인 소득금액</td>
+                        <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-[#f2f5fb] z-20 font-black shadow-[6px_0_14px_rgba(15,23,42,0.08)]">특정법인 소득금액</td>
                         {activeYearScenario.rows.map((row: YearScenarioRow) => (
-                          <td key={row.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-black">{formatNumber(row.corporationIncome)}</td>
+                          <td key={row.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap font-black">{formatNumber(row.corporationIncome)}</td>
                         ))}
                       </tr>
                       <tr className="bg-[#1a1f27] text-white">
-                        <td className="p-3 md:p-4 border-r border-white/10 sticky left-0 bg-[#1a1f27] z-10 font-black">법인세</td>
+                        <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20 font-black shadow-[6px_0_14px_rgba(15,23,42,0.16)]">법인세</td>
                         {activeYearScenario.rows.map((row: YearScenarioRow) => (
-                          <td key={row.shareholderCount} className="p-3 md:p-4 text-right whitespace-nowrap font-black text-[#fab005]">{row.corporateTax > 0 ? formatNumber(row.corporateTax) : '-'}</td>
+                          <td key={row.shareholderCount} className="p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap font-black text-[#fab005]">{row.corporateTax > 0 ? formatNumber(row.corporateTax) : '-'}</td>
                         ))}
                       </tr>
                     </tbody>

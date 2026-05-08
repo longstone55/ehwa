@@ -164,9 +164,9 @@ export default function MultiDoneeGiftTaxCalculator({ className = '' }: MultiDon
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-4">
               <MetricCard icon={<Users className="w-5 h-5" />} label="수증자 수" value={`${result.results.length}명`} />
-          <MetricCard icon={<Coins className="w-5 h-5" />} label="증여재산 합계" value={formatNumber(result.totalGiftValue)} color="dark" />
-          <MetricCard icon={<Percent className="w-5 h-5" />} label="신고세액공제 합계" value={formatNumber(result.totalReportDeduction)} color="green" />
-              <MetricCard icon={<ReceiptText className="w-5 h-5" />} label="?좉퀬?몄븸 ?⑷퀎" value={formatNumber(result.totalDeclaredTax)} color="blue" />
+              <MetricCard icon={<Coins className="w-5 h-5" />} label="증여재산 합계" value={formatNumber(result.totalGiftValue)} color="dark" />
+              <MetricCard icon={<Percent className="w-5 h-5" />} label="신고세액공제 합계" value={formatNumber(result.totalReportDeduction)} color="green" />
+              <MetricCard icon={<ReceiptText className="w-5 h-5" />} label="신고세액 합계" value={formatNumber(result.totalDeclaredTax)} color="blue" />
             </div>
           </section>
 
@@ -193,7 +193,7 @@ export default function MultiDoneeGiftTaxCalculator({ className = '' }: MultiDon
           <section className="px-4 md:px-0">
             <div className="flex items-center gap-3 mb-4 md:mb-6">
               <div className="w-1 h-6 bg-[#203578] rounded-full"></div>
-              <h3 className="text-lg md:text-xl font-black text-[#203578]">?섏쬆?먮퀎 ?낅젰</h3>
+              <h3 className="text-lg md:text-xl font-black text-[#203578]">수증자별 입력</h3>
             </div>
             <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm scrollbar-hide">
               <table className="w-full border-collapse min-w-[1120px]">
@@ -293,35 +293,35 @@ function CellMoneyInput({ value, onChange }: { value: string; onChange: (value: 
 function GiftResultTable({ result }: { result: CalculationResult }) {
   const rows: Array<[string, (row: DoneeResult) => string, boolean?]> = [
     ['증여재산가액', (row) => formatNumber(row.giftValue), true],
-            ['(-) 증여재산공제', (row) => formatNumber(row.exemptionValue)],
-            ['증여세 과세표준', (row) => formatNumber(row.taxableBase), true],
-            ['증여세 산출세액', (row) => formatNumber(row.taxDue)],
-            ['(-) 신고세액공제', (row) => row.reportDeduction === 0 ? '0' : `-${formatNumber(row.reportDeduction)}`],
-            ['증여세 신고세액', (row) => formatNumber(row.declaredTax), true],
+    ['(-) 증여재산공제', (row) => formatNumber(row.exemptionValue)],
+    ['증여세 과세표준', (row) => formatNumber(row.taxableBase), true],
+    ['증여세 산출세액', (row) => formatNumber(row.taxDue)],
+    ['(-) 신고세액공제', (row) => row.reportDeduction === 0 ? '0' : `-${formatNumber(row.reportDeduction)}`],
+    ['증여세 신고세액', (row) => formatNumber(row.declaredTax), true],
   ];
 
   return (
     <section className="px-4 md:px-0">
       <div className="flex items-center gap-3 mb-4 md:mb-6">
         <div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div>
-          <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">수증자별 증여세 결과</h3>
+        <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">수증자별 증여세 결과</h3>
       </div>
-      <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
-        <table className="w-full border-collapse min-w-[1120px]">
+      <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md">
+        <table className="w-full border-collapse min-w-[1360px]">
           <thead>
             <tr className="bg-[#1a1f27] text-white">
-            <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">구분</th>
+              <th className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-left text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#1a1f27] z-30 shadow-[6px_0_14px_rgba(15,23,42,0.16)]">구분</th>
               {result.results.map((row, index) => (
-                <th key={`${row.name}-${index}`} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-black border-r border-white/10">{row.name}</th>
+                <th key={`${row.name}-${index}`} className="p-3 md:p-4 min-w-[116px] text-right text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10">{row.name}</th>
               ))}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
             {rows.map(([label, formatter, highlight]) => (
               <tr key={label} className={`${highlight ? 'bg-blue-50/50' : 'bg-white'} hover:bg-gray-50 transition-colors`}>
-                <td className={`p-3 md:p-4 border-r border-gray-100 sticky left-0 z-10 font-bold ${highlight ? 'bg-blue-50/50 text-[#203578]' : 'bg-white text-[#1a1f27]'}`}>{label}</td>
+                <td className={`p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] whitespace-nowrap border-r border-gray-100 sticky left-0 z-20 font-bold shadow-[6px_0_14px_rgba(15,23,42,0.08)] ${highlight ? 'bg-[#f2f5fb] text-[#203578]' : 'bg-white text-[#1a1f27]'}`}>{label}</td>
                 {result.results.map((row, index) => (
-                  <td key={`${label}-${index}`} className={`p-3 md:p-4 text-right whitespace-nowrap border-r border-gray-100 ${highlight ? 'font-black text-[#203578]' : 'font-bold text-[#4e5968]'}`}>{formatter(row)}</td>
+                  <td key={`${label}-${index}`} className={`p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap border-r border-gray-100 ${highlight ? 'font-black text-[#203578]' : 'font-bold text-[#4e5968]'}`}>{formatter(row)}</td>
                 ))}
               </tr>
             ))}
@@ -331,4 +331,3 @@ function GiftResultTable({ result }: { result: CalculationResult }) {
     </section>
   );
 }
-

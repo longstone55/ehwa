@@ -154,9 +154,9 @@ export default function StockTransferIncomeTaxCalculator({ className = '' }: Sto
           <section className="px-4 md:px-0">
             <div className="grid gap-4 md:grid-cols-4">
               <MetricCard icon={<ArrowRightLeft className="w-5 h-5" />} label="선택 케이스 양도가액" value={formatNumber(activeResult.transferAmount)} />
-          <MetricCard icon={<TrendingUp className="w-5 h-5" />} label="선택 케이스 양도차익" value={formatNumber(activeResult.capitalGain)} color="dark" />
-          <MetricCard icon={<ReceiptText className="w-5 h-5" />} label="선택 케이스 세금" value={formatNumber(activeResult.totalTax)} color="green" />
-          <MetricCard icon={<Coins className="w-5 h-5" />} label="전체 케이스 세금" value={formatNumber(result.totalTax)} color="blue" />
+              <MetricCard icon={<TrendingUp className="w-5 h-5" />} label="선택 케이스 양도차익" value={formatNumber(activeResult.capitalGain)} color="dark" />
+              <MetricCard icon={<ReceiptText className="w-5 h-5" />} label="선택 케이스 세금" value={formatNumber(activeResult.totalTax)} color="green" />
+              <MetricCard icon={<Coins className="w-5 h-5" />} label="전체 케이스 세금" value={formatNumber(result.totalTax)} color="blue" />
             </div>
           </section>
 
@@ -166,13 +166,13 @@ export default function StockTransferIncomeTaxCalculator({ className = '' }: Sto
               <h3 className="text-lg md:text-xl font-black text-[#203578]">케이스별 입력</h3>
               <span className="hidden md:inline text-xs text-gray-400 font-medium ml-2">입력값을 수정하면 결과가 즉시 반영됩니다.</span>
             </div>
-            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm scrollbar-hide">
-              <table className="w-full border-collapse min-w-[980px]">
+            <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+              <table className="w-full border-collapse min-w-[1360px]">
                 <thead>
                   <tr className="bg-[#203578] text-white">
-                    <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black border-r border-white/10 sticky left-0 bg-[#203578] z-20">구분</th>
+                    <th className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-left text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#203578] z-30 shadow-[6px_0_14px_rgba(15,23,42,0.16)]">구분</th>
                     {cases.map((_, index) => (
-                      <th key={index} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-black border-r border-white/10">CASE {index + 1}</th>
+                      <th key={index} className="p-3 md:p-4 min-w-[116px] text-right text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10">CASE {index + 1}</th>
                     ))}
                   </tr>
                 </thead>
@@ -225,9 +225,9 @@ function InputTableRow({ label, field, cases, updateCase }: {
 }) {
   return (
     <tr className="bg-white hover:bg-gray-50 transition-colors">
-      <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">{label}</td>
+      <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-[#1a1f27] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-white z-20 font-bold shadow-[6px_0_14px_rgba(15,23,42,0.08)]">{label}</td>
       {cases.map((row, index) => (
-        <td key={index} className="p-0 border-r border-gray-100 bg-blue-50/30">
+        <td key={index} className="p-0 min-w-[116px] border-r border-gray-100 bg-blue-50/30">
           <input
             type="text"
             value={row[field]}
@@ -243,9 +243,9 @@ function InputTableRow({ label, field, cases, updateCase }: {
 function OutputTableRow({ label, values }: { label: string; values: number[] }) {
   return (
     <tr className="bg-white hover:bg-gray-50 transition-colors">
-      <td className="p-3 md:p-4 text-[#1a1f27] border-r border-gray-100 sticky left-0 bg-white z-10 font-bold">{label}</td>
+      <td className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-[#1a1f27] whitespace-nowrap border-r border-gray-100 sticky left-0 bg-white z-20 font-bold shadow-[6px_0_14px_rgba(15,23,42,0.08)]">{label}</td>
       {values.map((value, index) => (
-        <td key={index} className="p-3 md:p-4 text-right text-[#4e5968] border-r border-gray-100 whitespace-nowrap font-bold">{formatOptionalNumber(value)}</td>
+        <td key={index} className="p-3 md:p-4 min-w-[116px] text-right text-[#4e5968] border-r border-gray-100 whitespace-nowrap font-bold">{formatOptionalNumber(value)}</td>
       ))}
     </tr>
   );
@@ -253,38 +253,38 @@ function OutputTableRow({ label, values }: { label: string; values: number[] }) 
 
 function ResultTable({ cases }: { cases: CaseResult[] }) {
   const rows: Array<[string, (row: CaseResult) => number, boolean?]> = [
-              ['양도차익', (row) => row.capitalGain, true],
-              ['과세표준', (row) => row.taxBase, true],
+    ['양도차익', (row) => row.capitalGain, true],
+    ['과세표준', (row) => row.taxBase, true],
     ['양도소득세', (row) => row.capitalTax],
-              ['지방소득세', (row) => row.localTax],
+    ['지방소득세', (row) => row.localTax],
     ['증권거래세', (row) => row.stockTax],
-    ['?멸툑 ?⑷퀎', (row) => row.totalTax, true],
-    ['?묐룄?먯쓽 ?멸툑', (row) => row.totalTax, true],
-              ['매수자의 필요자금', (row) => row.requiredAmountBuyer, true],
+    ['세금 합계', (row) => row.totalTax, true],
+    ['양도자의 세금', (row) => row.totalTax, true],
+    ['매수자의 필요자금', (row) => row.requiredAmountBuyer, true],
   ];
 
   return (
     <section className="px-4 md:px-0">
       <div className="flex items-center gap-3 mb-4 md:mb-6">
         <div className="w-1 h-6 bg-[#2e7d32] rounded-full"></div>
-            <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">양도소득세 계산 결과</h3>
+        <h3 className="text-lg md:text-xl font-black text-[#2e7d32]">양도소득세 계산 결과</h3>
       </div>
-      <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md scrollbar-hide">
-        <table className="w-full border-collapse min-w-[980px]">
+      <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm md:shadow-md">
+        <table className="w-full border-collapse min-w-[1360px]">
           <thead>
             <tr className="bg-[#1a1f27] text-white">
-              <th className="p-3 md:p-4 text-left text-[10px] md:text-[11px] font-black border-r border-white/10 sticky left-0 bg-[#1a1f27] z-20">구분</th>
+              <th className="p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] text-left text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10 sticky left-0 bg-[#1a1f27] z-30 shadow-[6px_0_14px_rgba(15,23,42,0.16)]">구분</th>
               {cases.map((_, index) => (
-                <th key={index} className="p-3 md:p-4 text-right text-[10px] md:text-[11px] font-black border-r border-white/10">CASE {index + 1}</th>
+                <th key={index} className="p-3 md:p-4 min-w-[116px] text-right text-[10px] md:text-[11px] font-black whitespace-nowrap border-r border-white/10">CASE {index + 1}</th>
               ))}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 text-[12px] md:text-[13px]">
             {rows.map(([label, formatter, highlight]) => (
               <tr key={label} className={`${highlight ? 'bg-blue-50/50' : 'bg-white'} hover:bg-gray-50 transition-colors`}>
-                <td className={`p-3 md:p-4 border-r border-gray-100 sticky left-0 z-10 font-bold ${highlight ? 'bg-blue-50/50 text-[#203578]' : 'bg-white text-[#1a1f27]'}`}>{label}</td>
+                <td className={`p-3 md:p-4 w-[180px] min-w-[180px] md:w-[200px] md:min-w-[200px] whitespace-nowrap border-r border-gray-100 sticky left-0 z-20 font-bold shadow-[6px_0_14px_rgba(15,23,42,0.08)] ${highlight ? 'bg-[#f2f5fb] text-[#203578]' : 'bg-white text-[#1a1f27]'}`}>{label}</td>
                 {cases.map((row, index) => (
-                  <td key={index} className={`p-3 md:p-4 text-right whitespace-nowrap border-r border-gray-100 ${highlight ? 'font-black text-[#203578]' : 'font-bold text-[#4e5968]'}`}>{formatOptionalNumber(formatter(row))}</td>
+                  <td key={index} className={`p-3 md:p-4 min-w-[116px] text-right whitespace-nowrap border-r border-gray-100 ${highlight ? 'font-black text-[#203578]' : 'font-bold text-[#4e5968]'}`}>{formatOptionalNumber(formatter(row))}</td>
                 ))}
               </tr>
             ))}
@@ -294,4 +294,3 @@ function ResultTable({ cases }: { cases: CaseResult[] }) {
     </section>
   );
 }
-
