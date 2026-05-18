@@ -32,6 +32,7 @@ export default function Header() {
     { name: "세미나", href: "/#seminar" },
     { name: "간편 계산기", href: "/simple-calculator" },
     { name: "AI 서비스", href: "/ai" },
+    { name: "부동산시세 조회", href: "/map" },
   ];
 
   const calculatorLinks = [
@@ -78,11 +79,11 @@ export default function Header() {
           <div className="flex flex-1 justify-center md:justify-start">
             <Link href="/" className="flex items-center">
               <Image 
-                src="/logo4.png" 
+                src="/logo.png" 
                 alt="세무법인이화 로고" 
-                width={280}
-                height={70}
-                className="w-[120px] h-auto md:w-[120px] md:h-auto object-contain"
+                width={400}
+                height={100}
+                className="w-[160px] h-auto md:w-[200px] md:h-auto object-contain"
                 priority
               />
             </Link>
@@ -107,7 +108,7 @@ export default function Header() {
                 className="flex items-center gap-1 hover:text-primary transition-colors"
                 aria-expanded={isCalculatorOpen}
               >
-                계산기
+                전문계산기
                 <ChevronDown className={`w-4 h-4 transition-transform ${isCalculatorOpen ? "rotate-180" : ""}`} />
               </button>
               <div
